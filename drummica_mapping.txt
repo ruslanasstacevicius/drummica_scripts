@@ -263,7 +263,7 @@ on pgs_changed
 end on
 
 on controller
-    if ($CC_NUM=$HIHAT_cc1 or ($CC_NUM=$HIHAT_cc2))
+    if ($CC_NUM=$hihat_cc1 or ($CC_NUM=$hihat_cc2))
         $hihat_cc_state := %CC[$CC_NUM]
     end if
 end on
