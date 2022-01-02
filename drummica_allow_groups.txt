@@ -1,311 +1,333 @@
 
 on init
+    set_script_title("Allow Groups")
 end on
+
 on note
-disallow_group(-1)
-if (pgs_get_key_val(MICS,0)=1)
-allow_group(0)
-else
-if (pgs_get_key_val(MICS,0)=2)
-allow_group(1)
-else
-if (pgs_get_key_val(MICS,0)=3)
-allow_group(2)
-else
-if (pgs_get_key_val(MICS,0)=4)
-allow_group(104)
-end if
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,1)=1)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(3)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(4)
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,1)=2)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(5)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(6)
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,1)=3)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(7)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(8)
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,2)=1)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(9)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(10)
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,2)=2)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(11)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(12)
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,3)=1)
-allow_group(13)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,99,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,100,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,101,4,1)
-end if
-if (pgs_get_key_val(MICS,3)=2)
-allow_group(14)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,99,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,100,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,101,4,1)
-end if
-if (pgs_get_key_val(MICS,3)=3)
-allow_group(15)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,99,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,100,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,101,4,1)
-end if
-if (pgs_get_key_val(MICS,4)=1)
-allow_group(16)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,102,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,103,4,1)
-if (pgs_get_key_val(MICS,9)=1 or (pgs_get_key_val(MICS,10)=1))
-allow_group(97)
-end if
-end if
-if (pgs_get_key_val(MICS,4)=2)
-allow_group(17)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,102,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,103,4,1)
-if (pgs_get_key_val(MICS,9)=1 or (pgs_get_key_val(MICS,10)=1))
-allow_group(98)
-end if
-end if
-if (pgs_get_key_val(MICS,5)=1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(19)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(20)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,5)=2)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(21)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(22)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,5)=3)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(23)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(24)
-end if
-end if
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,6)=1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(25)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(26)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,6)=2)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(27)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(28)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,6)=3)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(29)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(30)
-end if
-end if
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,7)=1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(31)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(32)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,7)=2)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(33)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(34)
-end if
-end if
-else
-if (pgs_get_key_val(MICS,7)=3)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(35)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(36)
-end if
-end if
-end if
-end if
-end if
-if (pgs_get_key_val(MICS,8)=1)
-allow_group(37)
-allow_group(41)
-allow_group(45)
-allow_group(49)
-allow_group(53)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(57)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(58)
-end if
-end if
-allow_group(65)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,106,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(69)
-allow_group(77)
-allow_group(85)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(70)
-allow_group(78)
-allow_group(86)
-end if
-end if
-allow_group(93)
-end if
-if (pgs_get_key_val(MICS,8)=2)
-allow_group(38)
-allow_group(42)
-allow_group(46)
-allow_group(50)
-allow_group(54)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(59)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(60)
-end if
-end if
-allow_group(66)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,107,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(71)
-allow_group(79)
-allow_group(87)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(72)
-allow_group(80)
-allow_group(88)
-end if
-end if
-allow_group(94)
-end if
-if (pgs_get_key_val(MICS,8)=3)
-allow_group(39)
-allow_group(43)
-allow_group(47)
-allow_group(51)
-allow_group(55)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(61)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(62)
-end if
-end if
-allow_group(67)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,108,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(73)
-allow_group(81)
-allow_group(89)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(74)
-allow_group(82)
-allow_group(90)
-end if
-end if
-allow_group(95)
-end if
-if (pgs_get_key_val(MICS,8)=4)
-allow_group(40)
-allow_group(44)
-allow_group(48)
-allow_group(52)
-allow_group(56)
-if (pgs_get_key_val(MICS,9)=1)
-allow_group(63)
-else
-if (pgs_get_key_val(MICS,9)=0)
-allow_group(64)
-end if
-end if
-allow_group(68)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
-set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,109,4,1)
-if (pgs_get_key_val(MICS,10)=1)
-allow_group(75)
-allow_group(83)
-allow_group(91)
-else
-if (pgs_get_key_val(MICS,10)=0)
-allow_group(76)
-allow_group(84)
-allow_group(92)
-end if
-end if
-allow_group(96)
-end if
+
+    disallow_group(-1)
+
+    if (pgs_get_key_val(MICS,0)=1)
+        allow_group(0)
+    else
+    if (pgs_get_key_val(MICS,0)=2)
+        allow_group(1)
+    else
+    if (pgs_get_key_val(MICS,0)=3)
+        allow_group(2)
+    else
+    if (pgs_get_key_val(MICS,0)=4)
+        allow_group(104)
+    end if
+    end if
+    end if
+    end if
+
+    if (pgs_get_key_val(MICS,1)=1)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(3)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(4)
+        end if
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,1)=2)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(5)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(6)
+        end if
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,1)=3)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(7)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(8)
+        end if
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,2)=1)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(9)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(10)
+        end if
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,2)=2)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(11)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(12)
+        end if
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,3)=1)
+        allow_group(13)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,99,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,100,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,101,4,1)
+    end if
+
+    if (pgs_get_key_val(MICS,3)=2)
+        allow_group(14)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,99,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,100,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,101,4,1)
+    end if
+
+    if (pgs_get_key_val(MICS,3)=3)
+        allow_group(15)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,99,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,100,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,101,4,1)
+    end if
+
+    if (pgs_get_key_val(MICS,4)=1)
+        allow_group(16)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,102,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,103,4,1)
+        if (pgs_get_key_val(MICS,9)=1 or (pgs_get_key_val(MICS,10)=1))
+            allow_group(97)
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,4)=2)
+        allow_group(17)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,102,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,103,4,1)
+        if (pgs_get_key_val(MICS,9)=1 or (pgs_get_key_val(MICS,10)=1))
+            allow_group(98)
+        end if
+    end if
+
+    if (pgs_get_key_val(MICS,5)=1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(19)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(20)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,5)=2)
+        if (pgs_get_key_val(MICS,10)=1)
+        allow_group(21)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(22)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,5)=3)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(23)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(24)
+        end if
+        end if
+    end if {(pgs_get_key_val(MICS,5)=3)}
+    end if {(pgs_get_key_val(MICS,5)=2)}
+    end if {(pgs_get_key_val(MICS,5)=1)}
+
+    if (pgs_get_key_val(MICS,6)=1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(25)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(26)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,6)=2)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(27)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(28)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,6)=3)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(29)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(30)
+        end if
+        end if
+    end if {(pgs_get_key_val(MICS,6)=3)}
+    end if {(pgs_get_key_val(MICS,6)=2)}
+    end if {(pgs_get_key_val(MICS,6)=1)}
+
+    if (pgs_get_key_val(MICS,7)=1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(31)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(32)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,7)=2)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(33)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(34)
+        end if
+        end if
+    else
+    if (pgs_get_key_val(MICS,7)=3)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(35)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(36)
+        end if
+        end if
+    end if {(pgs_get_key_val(MICS,7)=3)}
+    end if {(pgs_get_key_val(MICS,7)=2)}
+    end if {(pgs_get_key_val(MICS,7)=1)}
+
+    if (pgs_get_key_val(MICS,8)=1)
+        allow_group(37)
+        allow_group(41)
+        allow_group(45)
+        allow_group(49)
+        allow_group(53)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(57)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(58)
+        end if
+        end if
+        allow_group(65)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,106,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(69)
+            allow_group(77)
+            allow_group(85)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(70)
+            allow_group(78)
+            allow_group(86)
+        end if
+        end if
+        allow_group(93)
+    end if
+
+    if (pgs_get_key_val(MICS,8)=2)
+        allow_group(38)
+        allow_group(42)
+        allow_group(46)
+        allow_group(50)
+        allow_group(54)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(59)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(60)
+        end if
+        end if
+        allow_group(66)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,107,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(71)
+            allow_group(79)
+            allow_group(87)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(72)
+            allow_group(80)
+            allow_group(88)
+        end if
+        end if
+        allow_group(94)
+    end if
+
+    if (pgs_get_key_val(MICS,8)=3)
+        allow_group(39)
+        allow_group(43)
+        allow_group(47)
+        allow_group(51)
+        allow_group(55)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(61)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(62)
+        end if
+        end if
+        allow_group(67)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,108,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,109,4,1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(73)
+            allow_group(81)
+            allow_group(89)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(74)
+            allow_group(82)
+            allow_group(90)
+        end if
+        end if
+        allow_group(95)
+    end if
+
+    if (pgs_get_key_val(MICS,8)=4)
+        allow_group(40)
+        allow_group(44)
+        allow_group(48)
+        allow_group(52)
+        allow_group(56)
+        if (pgs_get_key_val(MICS,9)=1)
+            allow_group(63)
+        else
+        if (pgs_get_key_val(MICS,9)=0)
+            allow_group(64)
+        end if
+        end if
+        allow_group(68)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,106,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,107,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,108,4,1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,109,4,1)
+        if (pgs_get_key_val(MICS,10)=1)
+            allow_group(75)
+            allow_group(83)
+            allow_group(91)
+        else
+        if (pgs_get_key_val(MICS,10)=0)
+            allow_group(76)
+            allow_group(84)
+            allow_group(92)
+        end if
+        end if
+        allow_group(96)
+    end if
+
 end on
