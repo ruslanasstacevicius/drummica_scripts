@@ -8035,31 +8035,31 @@ on init
             end if {($mic_current=1)}
 
             if ($mic_current=1 and (%vol_buffer[1]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=2 and (%vol_buffer[2]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=3 and (%vol_buffer[3]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=4 and (%vol_buffer[4]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=5 and (%vol_buffer[5]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=6 and (%vol_buffer[6]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=7 and (%vol_buffer[7]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=8 and (%vol_buffer[8]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             else
             if ($mic_current=9 and (%vol_buffer[9]=0))
-            $mic_0db := 0
+                $mic_0db := 0
             end if
             end if
             end if
@@ -26530,10 +26530,12 @@ on ui_control($mic_0db)
         end if
     else
     if ($mic_0db=0)
-        $mix_hh_vol := %vol_buffer[1]
-        if ($anysolo # 1 or ($mix_hh_solo=1))
-            set_engine_par($ENGINE_PAR_VOLUME,$mix_hh_vol*7874,-1,-1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+        if ($mic_current=1)
+            $mix_hh_vol := %vol_buffer[1]
+            if ($anysolo # 1 or ($mix_hh_solo=1))
+                set_engine_par($ENGINE_PAR_VOLUME,$mix_hh_vol*7874,-1,-1,$NI_BUS_OFFSET+0)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+            end if
         end if
         if ($mic_current=2)
             $mix_bdi_vol := %vol_buffer[2]
