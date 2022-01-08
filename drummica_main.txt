@@ -35391,6 +35391,7 @@ on ui_control($mix_preset_up)
         attach_level_meter(get_ui_id($mix_tomlow_meter),-1,-1,1,7)
     end if
     end if
+    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
 end on
 
 on ui_control($mix_preset_down)
@@ -37161,6 +37162,7 @@ on ui_control($mix_preset_down)
         attach_level_meter(get_ui_id($mix_tomlow_meter),-1,-1,1,7)
     end if
     end if
+    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
 end on
 
 on ui_control($mix_load)
