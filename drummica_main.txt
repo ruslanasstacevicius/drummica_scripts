@@ -21169,14 +21169,14 @@ on ui_control($drums_tomhi_micthumb)
         end if
         end if
     end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
-    end if {($mic_current=9)}
+    end if {($mic_current=8)}
+    end if {($mic_current=7)}
+    end if {($mic_current=6)}
+    end if {($mic_current=5)}
+    end if {($mic_current=4)}
+    end if {($mic_current=3)}
+    end if {($mic_current=2)}
+    end if {($mic_current=1)}
 
     call reset_mic_0db
 
@@ -29159,41 +29159,8 @@ on ui_control($mix_hh_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_bdi_miclabel)
@@ -29712,41 +29679,8 @@ on ui_control($mix_bdi_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_bdo_miclabel)
@@ -30266,41 +30200,8 @@ on ui_control($mix_bdo_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_sntop_miclabel)
@@ -30819,41 +30720,8 @@ on ui_control($mix_sntop_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_snbt_miclabel)
@@ -31373,41 +31241,8 @@ on ui_control($mix_snbt_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_tomhi_miclabel)
@@ -31926,41 +31761,8 @@ on ui_control($mix_tomhi_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_tommid_miclabel)
@@ -32480,41 +32282,8 @@ on ui_control($mix_tommid_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_tomlow_miclabel)
@@ -33033,41 +32802,8 @@ on ui_control($mix_tomlow_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
+
 end on
 
 on ui_control($mix_ov_miclabel)
@@ -33587,41 +33323,7 @@ on ui_control($mix_ov_miclabel)
     end if {($mic_current=2)}
     end if {($mic_current=1)}
 
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
+    call reset_mic_0db
 
 end on
 
