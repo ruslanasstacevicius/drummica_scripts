@@ -5070,7 +5070,6 @@ on init
                 inc($i)
             end while
         end if
-
         if ($mix_td=1)
             $i := 1
             while ($i<=$id22)
@@ -5084,7 +5083,6 @@ on init
                 inc($i)
             end while
         end if
-
         if ($mix_comp=1)
             $i := 1
             while ($i<=$id23)
@@ -5098,7 +5096,6 @@ on init
                 inc($i)
             end while
         end if
-
         if ($mix_ov_mono=0)
             set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
         else
@@ -11478,6 +11475,110 @@ function set_micthumb
     end if
     end if
     end if
+    end if
+    end if
+    end if
+end function
+
+function refresh_fx_controls
+    if ($mix_eq=1)
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+    else
+    if ($mix_td=1)
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+    else
+    if ($mix_comp=1)
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
     end if
     end if
     end if
@@ -22946,107 +23047,9 @@ on ui_control($mix_hh_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
     $fx_eq_lf := $fx_eq_lf_hh
     $fx_eq_lg := $fx_eq_lg_hh
@@ -23126,107 +23129,9 @@ on ui_control($mix_bdi_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
     $fx_eq_lf := $fx_eq_lf_bdi
     $fx_eq_lg := $fx_eq_lg_bdi
@@ -23306,107 +23211,9 @@ on ui_control($mix_bdo_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
     $fx_eq_lf := $fx_eq_lf_bdo
     $fx_eq_lg := $fx_eq_lg_bdo
@@ -23486,107 +23293,9 @@ on ui_control($mix_sntop_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
     $fx_eq_lf := $fx_eq_lf_sntop
     $fx_eq_lg := $fx_eq_lg_sntop
@@ -23666,107 +23375,9 @@ on ui_control($mix_snbt_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
     $fx_eq_lf := $fx_eq_lf_snbt
     $fx_eq_lg := $fx_eq_lg_snbt
@@ -23846,107 +23457,9 @@ on ui_control($mix_tomhi_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
     $fx_eq_lf := $fx_eq_lf_tomhi
     $fx_eq_lg := $fx_eq_lg_tomhi
@@ -24026,107 +23539,9 @@ on ui_control($mix_tommid_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
     $fx_eq_lf := $fx_eq_lf_tommid
     $fx_eq_lg := $fx_eq_lg_tommid
@@ -24206,107 +23621,9 @@ on ui_control($mix_tomlow_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-    end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
     $fx_eq_lf := $fx_eq_lf_tomlow
     $fx_eq_lg := $fx_eq_lg_tomlow
@@ -24386,107 +23703,9 @@ on ui_control($mix_ov_sel)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
     $fx_eq_lf := $fx_eq_lf_ov
     $fx_eq_lg := $fx_eq_lg_ov
@@ -24566,107 +23785,9 @@ on ui_control($mix_master_select)
         end if
         inc($i)
     end while
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
+
+    call refresh_fx_controls
+
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
     $fx_eq_lf := $fx_eq_lf_master
     $fx_eq_lg := $fx_eq_lg_master
