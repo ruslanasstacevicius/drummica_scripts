@@ -12810,160 +12810,160 @@ on ui_control($menu_drums)
     if ($menu_drums=1)
     $i := 1
     while ($i<=$id2)
-    set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id21)
-    set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id22)
-    set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id23)
-    set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id41)
-    set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id42)
-    set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id43)
-    set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id1)
-    set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id5)
-    set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id3)
-    set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     $i := 1
     while ($i<=$id6)
-    set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    inc($i)
+        set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
     end while
     set_skin_offset(0)
     $i := 1
     while ($i<=$id1)
-    set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-    inc($i)
+        set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
     end while
     if ($drums_hh_mic_current=1)
-    set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
     else
     if ($drums_hh_mic_current=2)
-    set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
     else
     if ($drums_hh_mic_current=3)
-    set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
     else
     if ($drums_hh_mic_current=4)
-    set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
     end if
     end if
     end if
     end if
     if ($drums_bdi_mic_current=1)
-    set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
     else
     if ($drums_bdi_mic_current=2)
-    set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
     else
     if ($drums_bdi_mic_current=3)
-    set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
     end if
     end if
     end if
     if ($drums_bdo_mic_current=1)
-    set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
     else
     if ($drums_bdo_mic_current=2)
-    set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
     end if
     end if
     if ($drums_sntop_mic_current=1)
-    set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
     else
     if ($drums_sntop_mic_current=2)
-    set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
     else
     if ($drums_sntop_mic_current=3)
-    set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
     end if
     end if
     end if
     if ($drums_snbt_mic_current=1)
-    set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
     else
     if ($drums_snbt_mic_current=2)
-    set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
     end if
     end if
     if ($drums_tomhi_mic_current=1)
-    set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
     else
     if ($drums_tomhi_mic_current=2)
-    set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
     else
     if ($drums_tomhi_mic_current=3)
-    set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
     end if
     end if
     end if
     if ($drums_tommid_mic_current=1)
-    set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
     else
     if ($drums_tommid_mic_current=2)
-    set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
     else
     if ($drums_tommid_mic_current=3)
-    set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
     end if
     end if
     end if
     if ($drums_tomlow_mic_current=1)
-    set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
     else
     if ($drums_tomlow_mic_current=2)
-    set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
     else
     if ($drums_tomlow_mic_current=3)
-    set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
     end if
     end if
     end if
     if ($drums_ov_mic_current=1)
-    set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
     else
     if ($drums_ov_mic_current=2)
-    set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
     else
     if ($drums_ov_mic_current=3)
-    set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
     else
     if ($drums_ov_mic_current=4)
-    set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
     end if
     end if
     end if
@@ -12978,31 +12978,31 @@ on ui_control($menu_drums)
     $drums_tomlow_micthumb := 0
     $drums_ov_micthumb := 0
     if ($mix_hh_sel=1)
-    $drums_hh_micthumb := 1
+        $drums_hh_micthumb := 1
     else
     if ($mix_bdi_sel=1)
-    $drums_bdi_micthumb := 1
+        $drums_bdi_micthumb := 1
     else
     if ($mix_bdo_sel=1)
-    $drums_bdo_micthumb := 1
+        $drums_bdo_micthumb := 1
     else
     if ($mix_sntop_sel=1)
-    $drums_sntop_micthumb := 1
+        $drums_sntop_micthumb := 1
     else
     if ($mix_snbt_sel=1)
-    $drums_snbt_micthumb := 1
+        $drums_snbt_micthumb := 1
     else
     if ($mix_tomhi_sel=1)
-    $drums_tomhi_micthumb := 1
+        $drums_tomhi_micthumb := 1
     else
     if ($mix_tommid_sel=1)
-    $drums_tommid_micthumb := 1
+        $drums_tommid_micthumb := 1
     else
     if ($mix_tomlow_sel=1)
-    $drums_tomlow_micthumb := 1
+        $drums_tomlow_micthumb := 1
     else
     if ($mix_ov_sel=1)
-    $drums_ov_micthumb := 1
+        $drums_ov_micthumb := 1
     end if
     end if
     end if
@@ -13720,39 +13720,39 @@ on ui_control($drums_bdo_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
             $i := 53
             while ($i<=56)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $i := 57
             while ($i<=64)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $i := 65
             while ($i<=68)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $i := 69
             while ($i<=76)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $i := 77
             while ($i<=84)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $i := 85
             while ($i<=92)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-            inc($i)
+                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
+                inc($i)
             end while
             $anysolo := 0
             $i := 0
             while ($i<=8)
-            set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            inc($i)
+                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
+                inc($i)
             end while
         end if
         end if
@@ -16279,31 +16279,31 @@ on ui_control($mic_solo)
                     set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
                     $anysolo := 1
                     if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
                     else
                     if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
                     else
                     if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
                     else
                     if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
                     else
                     if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
                     else
                     if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
                     else
                     if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                     else
                     if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                     else
                     if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
+                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
                     end if
                     end if
                     end if
@@ -16873,10 +16873,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -17010,10 +17010,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -17147,10 +17147,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -17764,10 +17764,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -17849,10 +17849,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -17934,10 +17934,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -18019,10 +18019,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
@@ -21243,7 +21243,6 @@ on ui_control($mix_bdo_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
 
     call refresh_mic_pictures
     call reset_mic_0db
