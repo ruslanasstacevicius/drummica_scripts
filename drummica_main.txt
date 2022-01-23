@@ -12355,12 +12355,13 @@ on ui_control($drums_hh_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_hh_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_hh_sel := 1
     if (get_control_par(%solo_ui_ids[0],$CONTROL_PAR_VALUE)=1)
         %solo_arr[0] := 1
         $i := 0
@@ -12527,12 +12528,13 @@ on ui_control($drums_bdi_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_bdi_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_bdi_sel := 1
     if (get_control_par(%solo_ui_ids[1],$CONTROL_PAR_VALUE)=1)
         %solo_arr[1] := 1
         $i := 0
@@ -12698,12 +12700,13 @@ on ui_control($drums_bdo_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_bdo_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_bdo_sel := 1
     if (get_control_par(%solo_ui_ids[2],$CONTROL_PAR_VALUE)=1)
         %solo_arr[2] := 1
         $i := 0
@@ -12869,12 +12872,13 @@ on ui_control($drums_sntop_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_sntop_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_sntop_sel := 1
     if (get_control_par(%solo_ui_ids[3],$CONTROL_PAR_VALUE)=1)
         %solo_arr[3] := 1
         $i := 0
@@ -13040,12 +13044,13 @@ on ui_control($drums_snbt_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_snbt_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_snbt_sel := 1
     if (get_control_par(%solo_ui_ids[4],$CONTROL_PAR_VALUE)=1)
         %solo_arr[4] := 1
         $i := 0
@@ -13211,12 +13216,13 @@ on ui_control($drums_tomhi_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_tomhi_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_tomhi_sel := 1
     if (get_control_par(%solo_ui_ids[5],$CONTROL_PAR_VALUE)=1)
         %solo_arr[5] := 1
         $i := 0
@@ -13382,12 +13388,13 @@ on ui_control($drums_tomhi_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_tommid_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_tommid_sel := 1
     if (get_control_par(%solo_ui_ids[6],$CONTROL_PAR_VALUE)=1)
         %solo_arr[6] := 1
         $i := 0
@@ -13553,12 +13560,13 @@ on ui_control($drums_tomlow_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_tomlow_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_tomlow_sel := 1
     if (get_control_par(%solo_ui_ids[7],$CONTROL_PAR_VALUE)=1)
         %solo_arr[7] := 1
         $i := 0
@@ -13724,12 +13732,13 @@ on ui_control($drums_ov_micthumb)
     call refresh_mic_pictures
     call reset_mic_0db
 
+    $mix_ov_sel := 1
+
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    $mix_ov_sel := 1
     if (get_control_par(%solo_ui_ids[8],$CONTROL_PAR_VALUE)=1)
         %solo_arr[8] := 1
         $i := 0
