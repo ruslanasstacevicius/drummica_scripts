@@ -4363,7 +4363,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_bdi_mic_current=1)
             set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
         else
@@ -4375,7 +4374,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_bdo_mic_current=1)
             set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
         else
@@ -4383,7 +4381,6 @@ on init
             set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
         end if
         end if
-
         if ($drums_sntop_mic_current=1)
             set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
         else
@@ -4395,7 +4392,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_snbt_mic_current=1)
             set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
         else
@@ -4403,7 +4399,6 @@ on init
             set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
         end if
         end if
-
         if ($drums_tomhi_mic_current=1)
             set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
         else
@@ -4415,7 +4410,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_tommid_mic_current=1)
             set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
         else
@@ -4427,7 +4421,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_tomlow_mic_current=1)
             set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
         else
@@ -4439,7 +4432,6 @@ on init
         end if
         end if
         end if
-
         if ($drums_ov_mic_current=1)
             set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
         else
@@ -11222,6 +11214,108 @@ function hide_all_controls
     end while
 end function
 
+function set_mic_pictures
+    if ($drums_hh_mic_current=1)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
+    else
+    if ($drums_hh_mic_current=2)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
+    else
+    if ($drums_hh_mic_current=3)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
+    else
+    if ($drums_hh_mic_current=4)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
+    end if
+    end if
+    end if
+    end if
+    if ($drums_bdi_mic_current=1)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
+    else
+    if ($drums_bdi_mic_current=2)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
+    else
+    if ($drums_bdi_mic_current=3)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
+    end if
+    end if
+    end if
+    if ($drums_bdo_mic_current=1)
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
+    else
+    if ($drums_bdo_mic_current=2)
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
+    end if
+    end if
+    if ($drums_sntop_mic_current=1)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
+    else
+    if ($drums_sntop_mic_current=2)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
+    else
+    if ($drums_sntop_mic_current=3)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
+    end if
+    end if
+    end if
+    if ($drums_snbt_mic_current=1)
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
+    else
+    if ($drums_snbt_mic_current=2)
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
+    end if
+    end if
+    if ($drums_tomhi_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
+    else
+    if ($drums_tomhi_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
+    else
+    if ($drums_tomhi_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
+    end if
+    end if
+    end if
+    if ($drums_tommid_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
+    else
+    if ($drums_tommid_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
+    else
+    if ($drums_tommid_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
+    end if
+    end if
+    end if
+    if ($drums_tomlow_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
+    else
+    if ($drums_tomlow_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
+    else
+    if ($drums_tomlow_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
+    end if
+    end if
+    end if
+    if ($drums_ov_mic_current=1)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
+    else
+    if ($drums_ov_mic_current=2)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
+    else
+    if ($drums_ov_mic_current=3)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
+    else
+    if ($drums_ov_mic_current=4)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
+    end if
+    end if
+    end if
+    end if
+end function
+
 
 on ui_control($menu_output_hh)
     set_engine_par($ENGINE_PAR_OUTPUT_CHANNEL,$menu_output_hh,-1,-1,$NI_BUS_OFFSET+0)
@@ -11291,10 +11385,8 @@ on ui_control($menu_micsel)
                 set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
                 inc($i)
             end while
-
             call refresh_mic_pictures
             call reset_mic_0db
-
         else
         if ($mix_bdi_sel=1)
             call hide_all_controls
@@ -11401,113 +11493,7 @@ on ui_control($menu_micsel)
                 inc($i)
             end while
 
-            if ($drums_hh_mic_current=1)
-                set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-            else
-            if ($drums_hh_mic_current=2)
-                set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-            else
-            if ($drums_hh_mic_current=3)
-                set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-            else
-            if ($drums_hh_mic_current=4)
-                set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-            end if
-            end if
-            end if
-            end if
-
-            if ($drums_bdi_mic_current=1)
-                set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-            else
-            if ($drums_bdi_mic_current=2)
-                set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-            else
-            if ($drums_bdi_mic_current=3)
-                set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-            end if
-            end if
-            end if
-
-            if ($drums_bdo_mic_current=1)
-                set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-            else
-            if ($drums_bdo_mic_current=2)
-                set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-            end if
-            end if
-
-            if ($drums_sntop_mic_current=1)
-                set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-            else
-            if ($drums_sntop_mic_current=2)
-                set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-            else
-            if ($drums_sntop_mic_current=3)
-                set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-            end if
-            end if
-            end if
-
-            if ($drums_snbt_mic_current=1)
-                set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-            else
-            if ($drums_snbt_mic_current=2)
-                set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-            end if
-            end if
-
-            if ($drums_tomhi_mic_current=1)
-                set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-            else
-            if ($drums_tomhi_mic_current=2)
-                set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-            else
-            if ($drums_tomhi_mic_current=3)
-                set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-            end if
-            end if
-            end if
-
-            if ($drums_tommid_mic_current=1)
-                set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-            else
-            if ($drums_tommid_mic_current=2)
-                set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-            else
-            if ($drums_tommid_mic_current=3)
-                set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-            end if
-            end if
-            end if
-
-            if ($drums_tomlow_mic_current=1)
-                set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-            else
-            if ($drums_tomlow_mic_current=2)
-                set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-            else
-            if ($drums_tomlow_mic_current=3)
-                set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-            end if
-            end if
-            end if
-
-            if ($drums_ov_mic_current=1)
-                set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-            else
-            if ($drums_ov_mic_current=2)
-                set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-            else
-            if ($drums_ov_mic_current=3)
-                set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-            else
-            if ($drums_ov_mic_current=4)
-                set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-            end if
-            end if
-            end if
-            end if
+            call set_mic_pictures
 
             $drums_hh_micthumb := 0
             $drums_bdi_micthumb := 0
@@ -12210,105 +12196,9 @@ on ui_control($menu_drums)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-        end if
-        end if
-        end if
-        end if
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-        end if
-        end if
-        end if
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-        end if
-        end if
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-        end if
-        end if
-        end if
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-        end if
-        end if
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-        end if
-        end if
-        end if
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-        end if
-        end if
-        end if
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-        end if
-        end if
-        end if
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-        end if
-        end if
-        end if
-        end if
+
+        call set_mic_pictures
+
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -13986,105 +13876,9 @@ on ui_control($mic_gallery_select1)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-        end if
-        end if
-        end if
-        end if
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-        end if
-        end if
-        end if
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-        end if
-        end if
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-        end if
-        end if
-        end if
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-        end if
-        end if
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-        end if
-        end if
-        end if
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-        end if
-        end if
-        end if
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-        end if
-        end if
-        end if
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-        end if
-        end if
-        end if
-        end if
+
+        call set_mic_pictures
+
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -14212,105 +14006,9 @@ on ui_control($mic_gallery_select2)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-        end if
-        end if
-        end if
-        end if
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-        end if
-        end if
-        end if
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-        end if
-        end if
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-        end if
-        end if
-        end if
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-        end if
-        end if
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-        end if
-        end if
-        end if
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-        end if
-        end if
-        end if
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-        end if
-        end if
-        end if
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-        end if
-        end if
-        end if
-        end if
+
+        call set_mic_pictures
+
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -14426,105 +14124,9 @@ on ui_control($mic_gallery_select3)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-        end if
-        end if
-        end if
-        end if
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-        end if
-        end if
-        end if
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-        end if
-        end if
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-        end if
-        end if
-        end if
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-        end if
-        end if
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-        end if
-        end if
-        end if
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-        end if
-        end if
-        end if
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-        end if
-        end if
-        end if
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-        end if
-        end if
-        end if
-        end if
+
+        call set_mic_pictures
+
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -14610,105 +14212,9 @@ on ui_control($mic_gallery_select4)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-        end if
-        end if
-        end if
-        end if
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-        end if
-        end if
-        end if
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-        end if
-        end if
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-        end if
-        end if
-        end if
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-        end if
-        end if
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-        end if
-        end if
-        end if
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-        end if
-        end if
-        end if
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-        end if
-        end if
-        end if
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-        end if
-        end if
-        end if
-        end if
+
+        call set_mic_pictures
+
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
