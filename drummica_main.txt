@@ -11152,6 +11152,18 @@ function refresh_mic_pictures
     end if {($mic_current=1)}
 end function
 
+function fx_eq_td_comp_reset
+    if ($fx_eq_reset=1)
+        $fx_eq_reset := 0
+    end if
+    if ($fx_td_reset=1)
+        $fx_td_reset := 0
+    end if
+    if ($fx_comp_reset=1)
+        $fx_comp_reset := 0
+    end if
+end function
+
 on ui_control($menu_output_hh)
     set_engine_par($ENGINE_PAR_OUTPUT_CHANNEL,$menu_output_hh,-1,-1,$NI_BUS_OFFSET+0)
 end on
@@ -13297,15 +13309,8 @@ on ui_control($drums_hh_micthumb)
     end if
     end if
 
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_bdi_micthumb)
@@ -13528,15 +13533,9 @@ on ui_control($drums_bdi_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_bdo_micthumb)
@@ -13759,15 +13758,9 @@ on ui_control($drums_bdo_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_sntop_micthumb)
@@ -13990,15 +13983,9 @@ on ui_control($drums_sntop_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_snbt_micthumb)
@@ -14221,15 +14208,9 @@ on ui_control($drums_snbt_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+   call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_tomhi_micthumb)
@@ -14452,15 +14433,9 @@ on ui_control($drums_tomhi_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
  end on
 
  on ui_control($drums_tommid_micthumb)
@@ -14683,15 +14658,9 @@ on ui_control($drums_tomhi_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_tomlow_micthumb)
@@ -14914,15 +14883,9 @@ on ui_control($drums_tomlow_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($drums_ov_micthumb)
@@ -15145,15 +15108,9 @@ on ui_control($drums_ov_micthumb)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mic_gallery_select1)
@@ -18767,15 +18724,9 @@ on ui_control($mix_hh_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_hh_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
         $fx_eq_lf := $fx_eq_lf_hh
@@ -19056,15 +19007,9 @@ on ui_control($mix_bdi_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_bdi_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
         $fx_eq_lf := $fx_eq_lf_bdi
@@ -19334,15 +19279,9 @@ on ui_control($mix_bdo_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_bdo_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
         $fx_eq_lf := $fx_eq_lf_bdo
@@ -19625,15 +19564,9 @@ on ui_control($mix_sntop_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_sntop_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
         $fx_eq_lf := $fx_eq_lf_sntop
@@ -19903,15 +19836,9 @@ on ui_control($mix_snbt_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_snbt_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
         $fx_eq_lf := $fx_eq_lf_snbt
@@ -20160,15 +20087,9 @@ on ui_control($mix_tomhi_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_tomhi_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
         $fx_eq_lf := $fx_eq_lf_tomhi
@@ -20415,15 +20336,9 @@ on ui_control($mix_tommid_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_tommid_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
         $fx_eq_lf := $fx_eq_lf_tommid
@@ -20670,15 +20585,9 @@ on ui_control($mix_tomlow_solo)
         end if
     end if
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($mix_tomlow_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
         $fx_eq_lf := $fx_eq_lf_tomlow
@@ -20956,15 +20865,8 @@ on ui_control($mix_ov_solo)
     end if
     end if
 
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+    call fx_eq_td_comp_reset
+
     if ($mix_ov_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
         $fx_eq_lf := $fx_eq_lf_ov
@@ -21876,15 +21778,9 @@ on ui_control($mix_preset_up)
         inc($i)
     end while
     $anysolo := 0
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
     if ($current_preset=1)
         $i := 0
         while ($i<=304)
@@ -23645,15 +23541,8 @@ on ui_control($mix_preset_down)
         inc($i)
     end while
     $anysolo := 0
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
 
     if ($current_preset=1)
         $i := 0
@@ -26025,15 +25914,9 @@ on ui_control($mix_hh_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_bdi_sel)
@@ -26211,15 +26094,9 @@ on ui_control($mix_bdi_sel)
         inc($i)
     end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_bdo_sel)
@@ -26397,15 +26274,9 @@ on ui_control($mix_bdo_sel)
         inc($i)
     end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_sntop_sel)
@@ -26583,15 +26454,9 @@ on ui_control($mix_sntop_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_snbt_sel)
@@ -26769,15 +26634,9 @@ on ui_control($mix_snbt_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_tomhi_sel)
@@ -26955,15 +26814,9 @@ on ui_control($mix_tomhi_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_tommid_sel)
@@ -27141,15 +26994,9 @@ on ui_control($mix_tommid_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_tomlow_sel)
@@ -27327,15 +27174,9 @@ on ui_control($mix_tomlow_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_ov_sel)
@@ -27513,15 +27354,9 @@ on ui_control($mix_ov_sel)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($mix_master_select)
@@ -27706,15 +27541,9 @@ on ui_control($mix_master_select)
             inc($i)
         end while
     end if
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
+
+    call fx_eq_td_comp_reset
+
 end on
 
 on ui_control($fx_eq_lf)
@@ -30310,15 +30139,7 @@ on async_complete
 
             $anysolo := 0
 
-            if ($fx_eq_reset=1)
-                $fx_eq_reset := 0
-            end if
-            if ($fx_td_reset=1)
-                $fx_td_reset := 0
-            end if
-            if ($fx_comp_reset=1)
-                $fx_comp_reset := 0
-            end if
+            call fx_eq_td_comp_reset
 
             set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_user")
             set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_inactive")
