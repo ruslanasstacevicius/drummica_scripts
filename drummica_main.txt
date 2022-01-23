@@ -11144,6 +11144,135 @@ function refresh_mic_pictures
     end if {($mic_current=1)}
 end function
 
+function refresh_mic_fader_labels
+    if ($drums_hh_mic_current=1)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_hh_mic_current=2)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_hh_mic_current=3)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_hh_mic_current=4)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    end if
+    if ($drums_bdi_mic_current=1)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_bdi_mic_current=2)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_bdi_mic_current=3)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    if ($drums_bdo_mic_current=1)
+        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
+        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_bdo_mic_current=2)
+        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
+        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    if ($drums_sntop_mic_current=1)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_sntop_mic_current=2)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_sntop_mic_current=3)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_snbt_mic_current=1)
+        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
+        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_snbt_mic_current=2)
+        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    if ($drums_tomhi_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomhi_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomhi_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_tommid_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tommid_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tommid_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_tomlow_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomlow_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomlow_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_ov_mic_current=1)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_ov_mic_current=2)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_ov_mic_current=3)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_ov_mic_current=4)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    end if
+end function
+
 function fx_eq_td_comp_reset
     if ($fx_eq_reset=1)
         $fx_eq_reset := 0
@@ -11994,140 +12123,7 @@ on ui_control($menu_mixer)
         end if {($mix_bdi_sel=1)}
         end if {($mix_hh_sel=1)}
 
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-            set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-            set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
-            set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
-            set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        end if
-        end if
-        end if
-        end if
-
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
-            set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-            set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
-            set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        end if
-        end if
-        end if
-
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
-            set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
-            set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
-            set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-            set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-            set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-        end if
-
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
-            set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-            set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-            set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-            set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-            set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-        end if
-
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-            set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-            set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-            set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-        end if
-
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-            set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-            set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-            set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        end if
-        end if
-        end if
-
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-            set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-            set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
-            set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
-            set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-        end if
-        end if
-        end if
-        end if
+        call refresh_mic_fader_labels
 
         if ($mix_eq=1)
             $i := 1
@@ -20731,132 +20727,9 @@ on ui_control($mix_preset_up)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    if ($drums_hh_mic_current=1)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_hh_mic_current=2)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=3)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=4)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
-    if ($drums_bdi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    if ($drums_bdo_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_bdo_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_sntop_mic_current=1)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=2)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=3)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_snbt_mic_current=1)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_snbt_mic_current=2)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_tomhi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tommid_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tomlow_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_ov_mic_current=1)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_ov_mic_current=2)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=3)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=4)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
+
+    call refresh_mic_fader_labels
+
     if ($mix_swap=0)
         set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
     else
@@ -22495,132 +22368,9 @@ on ui_control($mix_preset_down)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    if ($drums_hh_mic_current=1)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_hh_mic_current=2)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=3)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=4)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
-    if ($drums_bdi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    if ($drums_bdo_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_bdo_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_sntop_mic_current=1)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=2)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=3)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_snbt_mic_current=1)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_snbt_mic_current=2)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_tomhi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tommid_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tomlow_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_ov_mic_current=1)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_ov_mic_current=2)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=3)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=4)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
+    
+    call refresh_mic_fader_labels
+
     if ($mix_swap=0)
         set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
     else
@@ -28697,140 +28447,7 @@ on async_complete
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
 
-            if ($drums_hh_mic_current=1)
-                set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-                set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            else
-            if ($drums_hh_mic_current=2)
-                set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-                set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_hh_mic_current=3)
-                set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
-                set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_hh_mic_current=4)
-                set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
-                set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            end if
-            end if
-            end if
-            end if
-
-            if ($drums_bdi_mic_current=1)
-                set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
-                set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_bdi_mic_current=2)
-                set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-                set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_bdi_mic_current=3)
-                set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
-                set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            end if
-            end if
-            end if
-
-            if ($drums_bdo_mic_current=1)
-                set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
-                set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            else
-            if ($drums_bdo_mic_current=2)
-                set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
-                set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-
-            if ($drums_sntop_mic_current=1)
-                set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
-                set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_sntop_mic_current=2)
-                set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-                set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_sntop_mic_current=3)
-                set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-                set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-            end if
-
-            if ($drums_snbt_mic_current=1)
-                set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
-                set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_snbt_mic_current=2)
-                set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-                set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-
-            if ($drums_tomhi_mic_current=1)
-                set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-                set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tomhi_mic_current=2)
-                set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-                set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tomhi_mic_current=3)
-                set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-                set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-            end if
-
-            if ($drums_tommid_mic_current=1)
-                set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-                set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tommid_mic_current=2)
-                set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-                set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tommid_mic_current=3)
-                set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-                set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-            end if
-
-            if ($drums_tomlow_mic_current=1)
-                set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-                set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tomlow_mic_current=2)
-                set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-                set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_tomlow_mic_current=3)
-                set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-                set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            end if
-            end if
-            end if
-
-            if ($drums_ov_mic_current=1)
-                set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-                set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            else
-            if ($drums_ov_mic_current=2)
-                set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-                set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            else
-            if ($drums_ov_mic_current=3)
-                set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
-                set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-            else
-            if ($drums_ov_mic_current=4)
-                set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
-                set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-            end if
-            end if
-            end if
-            end if
+            call refresh_mic_fader_labels
 
             if ($mix_swap=0)
                 set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
