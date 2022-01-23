@@ -15614,10 +15614,10 @@ on ui_control($mic_solo)
             $i := 0
             while ($i<=8)
                 if (%solo_arr[$i]=1)
-                inc($help1)
+                    inc($help1)
                 else
                 if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
                 end if
                 end if
                 inc($i)
