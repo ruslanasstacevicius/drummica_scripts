@@ -11585,7 +11585,6 @@ function update_fx_contols
     end if
 end function
 
-
 function update_rev_send
     if ($i=0)
         set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
@@ -11622,6 +11621,39 @@ function update_rev_send
     end if
     end if
     end if
+end function
+
+function update_ov_volume
+    $i := 53
+    while ($i<=56)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 57
+    while ($i<=64)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 65
+    while ($i<=68)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 69
+    while ($i<=76)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 77
+    while ($i<=84)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 85
+    while ($i<=92)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
 end function
 
 
@@ -12467,36 +12499,7 @@ on ui_control($drums_hh_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -12605,36 +12608,7 @@ on ui_control($drums_bdi_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -12743,36 +12717,7 @@ on ui_control($drums_bdo_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -12850,10 +12795,10 @@ on ui_control($drums_sntop_micthumb)
         $i := 0
         while ($i<=8)
             if (%solo_arr[$i]=1)
-            inc($help1)
+                inc($help1)
             else
             if (%solo_arr[$i]=0)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
             end if
             end if
             inc($i)
@@ -12881,36 +12826,7 @@ on ui_control($drums_sntop_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13019,36 +12935,7 @@ on ui_control($drums_snbt_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13157,36 +13044,7 @@ on ui_control($drums_tomhi_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13295,36 +13153,7 @@ on ui_control($drums_tomhi_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13433,36 +13262,7 @@ on ui_control($drums_tomlow_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13571,36 +13371,7 @@ on ui_control($drums_ov_micthumb)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -13994,36 +13765,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14097,36 +13839,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14200,36 +13913,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14303,36 +13987,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14406,36 +14061,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14509,36 +14135,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14612,36 +14209,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14715,36 +14283,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14818,36 +14357,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -14924,36 +14434,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15009,36 +14490,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15094,36 +14546,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15179,36 +14602,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15264,36 +14658,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15349,36 +14714,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15434,36 +14770,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15518,37 +14825,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -15604,36 +14881,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                $i := 53
-                while ($i<=56)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 57
-                while ($i<=64)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 65
-                while ($i<=68)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 69
-                while ($i<=76)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 77
-                while ($i<=84)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
-                $i := 85
-                while ($i<=92)
-                    set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                    inc($i)
-                end while
+                call update_ov_volume
                 $anysolo := 0
                 $i := 0
                 while ($i<=8)
@@ -16119,36 +15367,7 @@ on ui_control($mix_hh_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -16368,36 +15587,7 @@ on ui_control($mix_bdi_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -16606,36 +15796,7 @@ on ui_control($mix_bdo_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -16857,36 +16018,7 @@ on ui_control($mix_sntop_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -17095,36 +16227,7 @@ on ui_control($mix_snbt_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -17312,36 +16415,7 @@ on ui_control($mix_tomhi_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -17527,36 +16601,7 @@ on ui_control($mix_tommid_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -17742,36 +16787,7 @@ on ui_control($mix_tomlow_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -17888,36 +16904,7 @@ on ui_control($mix_ov_vol)
     if ($anysolo # 1 or ($mix_ov_solo=1))
         set_engine_par($ENGINE_PAR_VOLUME,$mix_ov_vol*7874,-1,-1,$NI_BUS_OFFSET+8)
         set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-        $i := 53
-        while ($i<=56)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
-        $i := 57
-        while ($i<=64)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
-        $i := 65
-        while ($i<=68)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
-        $i := 69
-        while ($i<=76)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
-        $i := 77
-        while ($i<=84)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
-        $i := 85
-        while ($i<=92)
-            set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-            inc($i)
-        end while
+        call update_ov_volume
         %vol_buffer[9] := 0
     end if
 end on
@@ -17987,36 +16974,7 @@ on ui_control($mix_ov_solo)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
             $anysolo := 0
             $i := 0
             while ($i<=8)
@@ -18423,36 +17381,8 @@ on ui_control($mix_preset_up)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    $i := 53
-    while ($i<=56)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 57
-    while ($i<=64)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 65
-    while ($i<=68)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 69
-    while ($i<=76)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 77
-    while ($i<=84)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 85
-    while ($i<=92)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
+    call update_ov_volume
+
     $anysolo := 0
 
     call fx_eq_td_comp_reset
@@ -19901,36 +18831,7 @@ on ui_control($mix_preset_up)
     set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    $i := 53
-    while ($i<=56)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 57
-    while ($i<=64)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 65
-    while ($i<=68)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 69
-    while ($i<=76)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 77
-    while ($i<=84)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 85
-    while ($i<=92)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
+    call update_ov_volume
     if ($mix_ov_mono=0)
         set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
         set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
@@ -20063,36 +18964,8 @@ on ui_control($mix_preset_down)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    $i := 53
-    while ($i<=56)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 57
-    while ($i<=64)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 65
-    while ($i<=68)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 69
-    while ($i<=76)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 77
-    while ($i<=84)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 85
-    while ($i<=92)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
+    call update_ov_volume
+
     $anysolo := 0
 
     call fx_eq_td_comp_reset
@@ -21542,36 +20415,7 @@ on ui_control($mix_preset_down)
     set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
     set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    $i := 53
-    while ($i<=56)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 57
-    while ($i<=64)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 65
-    while ($i<=68)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 69
-    while ($i<=76)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 77
-    while ($i<=84)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 85
-    while ($i<=92)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
+    call update_ov_volume
     if ($mix_ov_mono=0)
         set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
         set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
@@ -25448,36 +24292,7 @@ on async_complete
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
 
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
 
             $anysolo := 0
 
@@ -26638,36 +25453,7 @@ on async_complete
             set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
             set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
 
-            $i := 53
-            while ($i<=56)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 57
-            while ($i<=64)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 65
-            while ($i<=68)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 69
-            while ($i<=76)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 77
-            while ($i<=84)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
-            $i := 85
-            while ($i<=92)
-                set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-                inc($i)
-            end while
+            call update_ov_volume
 
             if ($mix_ov_mono=0)
                 set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
