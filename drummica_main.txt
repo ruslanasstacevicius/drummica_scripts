@@ -11586,6 +11586,45 @@ function update_fx_contols
 end function
 
 
+function update_rev_send
+    if ($i=0)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+    else
+    if ($i=1)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
+    else
+    if ($i=2)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
+    else
+    if ($i=3)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
+    else
+    if ($i=4)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
+    else
+    if ($i=5)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
+    else
+    if ($i=6)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
+    else
+    if ($i=7)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+    else
+    if ($i=8)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+end function
+
+
 on ui_control($menu_output_hh)
     set_engine_par($ENGINE_PAR_OUTPUT_CHANNEL,$menu_output_hh,-1,-1,$NI_BUS_OFFSET+0)
 end on
@@ -12384,41 +12423,7 @@ on ui_control($drums_hh_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -12557,41 +12562,7 @@ on ui_control($drums_bdi_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[1],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+1)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -12729,41 +12700,7 @@ on ui_control($drums_bdo_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[2],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+2)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -12901,41 +12838,7 @@ on ui_control($drums_sntop_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -13073,41 +12976,7 @@ on ui_control($drums_snbt_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[4],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+4)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -13245,41 +13114,7 @@ on ui_control($drums_tomhi_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -13417,41 +13252,7 @@ on ui_control($drums_tomhi_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -13589,41 +13390,7 @@ on ui_control($drums_tomlow_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -13761,41 +13528,7 @@ on ui_control($drums_ov_micthumb)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -14320,41 +14053,7 @@ on ui_control($mic_solo)
                 if (%solo_arr[$i]=1)
                     set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -14457,41 +14156,7 @@ on ui_control($mic_solo)
                     if (%solo_arr[$i]=1)
                         set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[1],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+1)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -14594,41 +14259,7 @@ on ui_control($mic_solo)
                 if (%solo_arr[$i]=1)
                     set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[2],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+2)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -14728,44 +14359,10 @@ on ui_control($mic_solo)
                         set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
                     end if
                 else
-                    if (%solo_arr[$i]=1)
-                        set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
+                if (%solo_arr[$i]=1)
+                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -14868,41 +14465,7 @@ on ui_control($mic_solo)
                 if (%solo_arr[$i]=1)
                     set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[4],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+4)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -15002,44 +14565,10 @@ on ui_control($mic_solo)
                         set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
                     end if
                 else
-                    if (%solo_arr[$i]=1)
-                        set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
+                if (%solo_arr[$i]=1)
+                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -15139,44 +14668,10 @@ on ui_control($mic_solo)
                         set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
                     end if
                 else
-                    if (%solo_arr[$i]=1)
-                        set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
+                if (%solo_arr[$i]=1)
+                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -15276,44 +14771,10 @@ on ui_control($mic_solo)
                         set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
                     end if
                 else
-                    if (%solo_arr[$i]=1)
-                        set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
+                if (%solo_arr[$i]=1)
+                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
                     $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -15414,43 +14875,9 @@ on ui_control($mic_solo)
                     end if
                 else
                 if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
-                $anysolo := 1
-                    if ($i=0)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                    else
-                    if ($i=1)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                    else
-                    if ($i=2)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                    else
-                    if ($i=3)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                    else
-                    if ($i=4)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                    else
-                    if ($i=5)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                    else
-                    if ($i=6)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                    else
-                    if ($i=7)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                    else
-                    if ($i=8)
-                        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
-                    end if
+                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
+                    $anysolo := 1
+                    call update_rev_send
                 end if
                 end if
                 inc($i)
@@ -16649,41 +16076,7 @@ on ui_control($mix_hh_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -16932,41 +16325,7 @@ on ui_control($mix_bdi_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[1],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+1)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -17204,41 +16563,7 @@ on ui_control($mix_bdo_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[2],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+2)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -17489,41 +16814,7 @@ on ui_control($mix_sntop_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -17761,41 +17052,7 @@ on ui_control($mix_snbt_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[4],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+4)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -18012,41 +17269,7 @@ on ui_control($mix_tomhi_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -18261,41 +17484,7 @@ on ui_control($mix_tommid_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -18510,41 +17699,7 @@ on ui_control($mix_tomlow_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
@@ -18789,41 +17944,7 @@ on ui_control($mix_ov_solo)
             if (%solo_arr[$i]=1)
                 set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
                 $anysolo := 1
-                if ($i=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-                else
-                if ($i=1)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-                else
-                if ($i=2)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-                else
-                if ($i=3)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-                else
-                if ($i=4)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-                else
-                if ($i=5)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-                else
-                if ($i=6)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-                else
-                if ($i=7)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-                else
-                if ($i=8)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
-                end if
+                call update_rev_send
             end if
             end if
             inc($i)
