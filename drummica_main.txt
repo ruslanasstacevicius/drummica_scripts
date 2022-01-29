@@ -11832,9 +11832,7 @@ on ui_control($menu_micsel)
                 set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
                 inc($i)
             end while
-
             call set_mic_pictures
-
             $drums_hh_micthumb := 0
             $drums_bdi_micthumb := 0
             $drums_bdo_micthumb := 0
@@ -11844,9 +11842,7 @@ on ui_control($menu_micsel)
             $drums_tommid_micthumb := 0
             $drums_tomlow_micthumb := 0
             $drums_ov_micthumb := 0
-
             call set_micthumb
-
         end if {($mix_master_select=1)}
         end if {($mix_ov_sel=1)}
         end if {($mix_tomlow_sel=1)}
@@ -12369,9 +12365,7 @@ on ui_control($menu_drums)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-
         call set_mic_pictures
-
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -12381,9 +12375,7 @@ on ui_control($menu_drums)
         $drums_tommid_micthumb := 0
         $drums_tomlow_micthumb := 0
         $drums_ov_micthumb := 0
-
         call set_micthumb
-
     end if
 end on
 
@@ -14825,6 +14817,7 @@ on ui_control($mic_solo)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
                 set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
                 call update_ov_volume
                 $anysolo := 0
                 $i := 0
@@ -18830,7 +18823,6 @@ on ui_control($mix_preset_up)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
     set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
     call update_ov_volume
     if ($mix_ov_mono=0)
         set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
@@ -20414,7 +20406,6 @@ on ui_control($mix_preset_down)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
     set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
     set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
     call update_ov_volume
     if ($mix_ov_mono=0)
         set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
@@ -25451,7 +25442,6 @@ on async_complete
             set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
             set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
             set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
 
             call update_ov_volume
 
