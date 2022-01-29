@@ -410,6 +410,7 @@ on init
     declare $instr_bus_tomlow := 7
     declare $instr_bus_ov := 8
     declare $IR_current := 0
+    declare $busidx := -1
 
     make_persistent($IR_current)
 
@@ -649,7 +650,6 @@ on init
     declare $drums_tomlow_mic_current
     declare $drums_ov_mic_current
     declare $anysolo
-    declare $soloidx
     declare $mix_sn_diff
     declare $mix_bd_diff
     declare $mix_snbt_locked
