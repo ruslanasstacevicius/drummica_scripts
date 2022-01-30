@@ -11735,6 +11735,32 @@ function update_solo_status
     end if
 end function
 
+function set_fx_text
+    {parameter $busidx}
+    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+
+    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$busidx))
+
+    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$busidx))
+end function
+
 on ui_control($menu_output_hh)
     set_engine_par($ENGINE_PAR_OUTPUT_CHANNEL,$menu_output_hh,-1,-1,$NI_BUS_OFFSET+0)
 end on
@@ -11967,36 +11993,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_hh
             $fx_eq_hg := $fx_eq_hg_hh
             $fx_eq_hb := $fx_eq_hb_hh
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
             $fx_td_in := $fx_td_in_hh
             $fx_td_atk := $fx_td_atk_hh
             $fx_td_rel := $fx_td_rel_hh
             $fx_td_out := $fx_td_out_hh
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
             $fx_comp_tres := $fx_comp_tres_hh
             $fx_comp_atk := $fx_comp_atk_hh
             $fx_comp_rel := $fx_comp_rel_hh
             $fx_comp_rat := $fx_comp_rat_hh
             $fx_comp_mix := $fx_comp_mix_hh
             $fx_comp_makeup := $fx_comp_makeup_hh
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
+            call set_fx_text
         else
         if ($mix_bdi_sel=1)
             $busidx := 1
@@ -12013,36 +12020,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_bdi
             $fx_eq_hg := $fx_eq_hg_bdi
             $fx_eq_hb := $fx_eq_hb_bdi
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
             $fx_td_in := $fx_td_in_bdi
             $fx_td_atk := $fx_td_atk_bdi
             $fx_td_rel := $fx_td_rel_bdi
             $fx_td_out := $fx_td_out_bdi
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
             $fx_comp_tres := $fx_comp_tres_bdi
             $fx_comp_atk := $fx_comp_atk_bdi
             $fx_comp_rel := $fx_comp_rel_bdi
             $fx_comp_rat := $fx_comp_rat_bdi
             $fx_comp_mix := $fx_comp_mix_bdi
             $fx_comp_makeup := $fx_comp_makeup_bdi
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
+            call set_fx_text
         else
         if ($mix_bdo_sel=1)
             $busidx := 2
@@ -12059,36 +12047,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_bdo
             $fx_eq_hg := $fx_eq_hg_bdo
             $fx_eq_hb := $fx_eq_hb_bdo
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
             $fx_td_in := $fx_td_in_bdo
             $fx_td_atk := $fx_td_atk_bdo
             $fx_td_rel := $fx_td_rel_bdo
             $fx_td_out := $fx_td_out_bdo
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
             $fx_comp_tres := $fx_comp_tres_bdo
             $fx_comp_atk := $fx_comp_atk_bdo
             $fx_comp_rel := $fx_comp_rel_bdo
             $fx_comp_rat := $fx_comp_rat_bdo
             $fx_comp_mix := $fx_comp_mix_bdo
             $fx_comp_makeup := $fx_comp_makeup_bdo
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
+            call set_fx_text
         else
         if ($mix_sntop_sel=1)
             $busidx := 3
@@ -12105,36 +12074,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_sntop
             $fx_eq_hg := $fx_eq_hg_sntop
             $fx_eq_hb := $fx_eq_hb_sntop
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
             $fx_td_in := $fx_td_in_sntop
             $fx_td_atk := $fx_td_atk_sntop
             $fx_td_rel := $fx_td_rel_sntop
             $fx_td_out := $fx_td_out_sntop
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
             $fx_comp_tres := $fx_comp_tres_sntop
             $fx_comp_atk := $fx_comp_atk_sntop
             $fx_comp_rel := $fx_comp_rel_sntop
             $fx_comp_rat := $fx_comp_rat_sntop
             $fx_comp_mix := $fx_comp_mix_sntop
             $fx_comp_makeup := $fx_comp_makeup_sntop
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
+            call set_fx_text
         else
         if ($mix_snbt_sel=1)
             $busidx := 4
@@ -12151,36 +12101,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_snbt
             $fx_eq_hg := $fx_eq_hg_snbt
             $fx_eq_hb := $fx_eq_hb_snbt
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
             $fx_td_in := $fx_td_in_snbt
             $fx_td_atk := $fx_td_atk_snbt
             $fx_td_rel := $fx_td_rel_snbt
             $fx_td_out := $fx_td_out_snbt
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
             $fx_comp_tres := $fx_comp_tres_snbt
             $fx_comp_atk := $fx_comp_atk_snbt
             $fx_comp_rel := $fx_comp_rel_snbt
             $fx_comp_rat := $fx_comp_rat_snbt
             $fx_comp_mix := $fx_comp_mix_snbt
             $fx_comp_makeup := $fx_comp_makeup_snbt
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
+            call set_fx_text
         else
         if ($mix_tomhi_sel=1)
             $busidx := 5
@@ -12197,36 +12128,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_tomhi
             $fx_eq_hg := $fx_eq_hg_tomhi
             $fx_eq_hb := $fx_eq_hb_tomhi
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
             $fx_td_in := $fx_td_in_tomhi
             $fx_td_atk := $fx_td_atk_tomhi
             $fx_td_rel := $fx_td_rel_tomhi
             $fx_td_out := $fx_td_out_tomhi
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
             $fx_comp_tres := $fx_comp_tres_tomhi
             $fx_comp_atk := $fx_comp_atk_tomhi
             $fx_comp_rel := $fx_comp_rel_tomhi
             $fx_comp_rat := $fx_comp_rat_tomhi
             $fx_comp_mix := $fx_comp_mix_tomhi
             $fx_comp_makeup := $fx_comp_makeup_tomhi
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
+            call set_fx_text
         else
         if ($mix_tommid_sel=1)
             $busidx := 6
@@ -12243,36 +12155,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_tommid
             $fx_eq_hg := $fx_eq_hg_tommid
             $fx_eq_hb := $fx_eq_hb_tommid
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
             $fx_td_in := $fx_td_in_tommid
             $fx_td_atk := $fx_td_atk_tommid
             $fx_td_rel := $fx_td_rel_tommid
             $fx_td_out := $fx_td_out_tommid
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
             $fx_comp_tres := $fx_comp_tres_tommid
             $fx_comp_atk := $fx_comp_atk_tommid
             $fx_comp_rel := $fx_comp_rel_tommid
             $fx_comp_rat := $fx_comp_rat_tommid
             $fx_comp_mix := $fx_comp_mix_tommid
             $fx_comp_makeup := $fx_comp_makeup_tommid
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
+            call set_fx_text
         else
         if ($mix_tomlow_sel=1)
             $busidx := 7
@@ -12289,36 +12182,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_tomlow
             $fx_eq_hg := $fx_eq_hg_tomlow
             $fx_eq_hb := $fx_eq_hb_tomlow
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
             $fx_td_in := $fx_td_in_tomlow
             $fx_td_atk := $fx_td_atk_tomlow
             $fx_td_rel := $fx_td_rel_tomlow
             $fx_td_out := $fx_td_out_tomlow
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
             $fx_comp_tres := $fx_comp_tres_tomlow
             $fx_comp_atk := $fx_comp_atk_tomlow
             $fx_comp_rel := $fx_comp_rel_tomlow
             $fx_comp_rat := $fx_comp_rat_tomlow
             $fx_comp_mix := $fx_comp_mix_tomlow
             $fx_comp_makeup := $fx_comp_makeup_tomlow
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
+            call set_fx_text
         else
         if ($mix_ov_sel=1)
             $busidx := 8
@@ -12335,36 +12209,17 @@ on ui_control($menu_mixer)
             $fx_eq_hf := $fx_eq_hf_ov
             $fx_eq_hg := $fx_eq_hg_ov
             $fx_eq_hb := $fx_eq_hb_ov
-            set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
             $fx_td_in := $fx_td_in_ov
             $fx_td_atk := $fx_td_atk_ov
             $fx_td_rel := $fx_td_rel_ov
             $fx_td_out := $fx_td_out_ov
-            set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
             $fx_comp_tres := $fx_comp_tres_ov
             $fx_comp_atk := $fx_comp_atk_ov
             $fx_comp_rel := $fx_comp_rel_ov
             $fx_comp_rat := $fx_comp_rat_ov
             $fx_comp_mix := $fx_comp_mix_ov
             $fx_comp_makeup := $fx_comp_makeup_ov
-            set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-            set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
+            call set_fx_text
         else
         if ($mix_master_select=1)
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
@@ -14404,7 +14259,6 @@ on ui_control($mix_hh_solo)
     $busidx := 0
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_hh_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
         $fx_eq_lf := $fx_eq_lf_hh
@@ -14419,37 +14273,18 @@ on ui_control($mix_hh_solo)
         $fx_eq_hf := $fx_eq_hf_hh
         $fx_eq_hg := $fx_eq_hg_hh
         $fx_eq_hb := $fx_eq_hb_hh
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
         $fx_td_in := $fx_td_in_hh
         $fx_td_atk := $fx_td_atk_hh
         $fx_td_rel := $fx_td_rel_hh
         $fx_td_out := $fx_td_out_hh
         $fx_td_soft := $fx_td_soft_hh
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
         $fx_comp_tres := $fx_comp_tres_hh
         $fx_comp_atk := $fx_comp_atk_hh
         $fx_comp_rel := $fx_comp_rel_hh
         $fx_comp_rat := $fx_comp_rat_hh
         $fx_comp_mix := $fx_comp_mix_hh
         $fx_comp_makeup := $fx_comp_makeup_hh
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
+        call set_fx_text
     end if
 end on
 
@@ -14550,7 +14385,6 @@ on ui_control($mix_bdi_solo)
     $busidx := 1
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_bdi_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
         $fx_eq_lf := $fx_eq_lf_bdi
@@ -14565,37 +14399,18 @@ on ui_control($mix_bdi_solo)
         $fx_eq_hf := $fx_eq_hf_bdi
         $fx_eq_hg := $fx_eq_hg_bdi
         $fx_eq_hb := $fx_eq_hb_bdi
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
         $fx_td_in := $fx_td_in_bdi
         $fx_td_atk := $fx_td_atk_bdi
         $fx_td_rel := $fx_td_rel_bdi
         $fx_td_out := $fx_td_out_bdi
         $fx_td_soft := $fx_td_soft_bdi
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
         $fx_comp_tres := $fx_comp_tres_bdi
         $fx_comp_atk := $fx_comp_atk_bdi
         $fx_comp_rel := $fx_comp_rel_bdi
         $fx_comp_rat := $fx_comp_rat_bdi
         $fx_comp_mix := $fx_comp_mix_bdi
         $fx_comp_makeup := $fx_comp_makeup_bdi
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
+        call set_fx_text
     end if
 end on
 
@@ -14685,7 +14500,6 @@ on ui_control($mix_bdo_solo)
     $busidx := 2
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_bdo_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
         $fx_eq_lf := $fx_eq_lf_bdo
@@ -14700,37 +14514,18 @@ on ui_control($mix_bdo_solo)
         $fx_eq_hf := $fx_eq_hf_bdo
         $fx_eq_hg := $fx_eq_hg_bdo
         $fx_eq_hb := $fx_eq_hb_bdo
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
         $fx_td_in := $fx_td_in_bdo
         $fx_td_atk := $fx_td_atk_bdo
         $fx_td_rel := $fx_td_rel_bdo
         $fx_td_out := $fx_td_out_bdo
         $fx_td_soft := $fx_td_soft_bdo
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
         $fx_comp_tres := $fx_comp_tres_bdo
         $fx_comp_atk := $fx_comp_atk_bdo
         $fx_comp_rel := $fx_comp_rel_bdo
         $fx_comp_rat := $fx_comp_rat_bdo
         $fx_comp_mix := $fx_comp_mix_bdo
         $fx_comp_makeup := $fx_comp_makeup_bdo
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
+        call set_fx_text
     end if
 end on
 
@@ -14833,7 +14628,6 @@ on ui_control($mix_sntop_solo)
     $busidx := 3
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_sntop_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
         $fx_eq_lf := $fx_eq_lf_sntop
@@ -14848,37 +14642,18 @@ on ui_control($mix_sntop_solo)
         $fx_eq_hf := $fx_eq_hf_sntop
         $fx_eq_hg := $fx_eq_hg_sntop
         $fx_eq_hb := $fx_eq_hb_sntop
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
         $fx_td_in := $fx_td_in_sntop
         $fx_td_atk := $fx_td_atk_sntop
         $fx_td_rel := $fx_td_rel_sntop
         $fx_td_out := $fx_td_out_sntop
         $fx_td_soft := $fx_td_soft_sntop
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
         $fx_comp_tres := $fx_comp_tres_sntop
         $fx_comp_atk := $fx_comp_atk_sntop
         $fx_comp_rel := $fx_comp_rel_sntop
         $fx_comp_rat := $fx_comp_rat_sntop
         $fx_comp_mix := $fx_comp_mix_sntop
         $fx_comp_makeup := $fx_comp_makeup_sntop
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
+        call set_fx_text
     end if
 end on
 
@@ -14968,7 +14743,6 @@ on ui_control($mix_snbt_solo)
     $busidx := 4
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_snbt_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
         $fx_eq_lf := $fx_eq_lf_snbt
@@ -14983,37 +14757,18 @@ on ui_control($mix_snbt_solo)
         $fx_eq_hf := $fx_eq_hf_snbt
         $fx_eq_hg := $fx_eq_hg_snbt
         $fx_eq_hb := $fx_eq_hb_snbt
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
         $fx_td_in := $fx_td_in_snbt
         $fx_td_atk := $fx_td_atk_snbt
         $fx_td_rel := $fx_td_rel_snbt
         $fx_td_out := $fx_td_out_snbt
         $fx_td_soft := $fx_td_soft_snbt
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
         $fx_comp_tres := $fx_comp_tres_snbt
         $fx_comp_atk := $fx_comp_atk_snbt
         $fx_comp_rel := $fx_comp_rel_snbt
         $fx_comp_rat := $fx_comp_rat_snbt
         $fx_comp_mix := $fx_comp_mix_snbt
         $fx_comp_makeup := $fx_comp_makeup_snbt
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
+        call set_fx_text
     end if
 end on
 
@@ -15082,7 +14837,6 @@ on ui_control($mix_tomhi_solo)
     $busidx := 5
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_tomhi_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
         $fx_eq_lf := $fx_eq_lf_tomhi
@@ -15097,37 +14851,18 @@ on ui_control($mix_tomhi_solo)
         $fx_eq_hf := $fx_eq_hf_tomhi
         $fx_eq_hg := $fx_eq_hg_tomhi
         $fx_eq_hb := $fx_eq_hb_tomhi
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
         $fx_td_in := $fx_td_in_tomhi
         $fx_td_atk := $fx_td_atk_tomhi
         $fx_td_rel := $fx_td_rel_tomhi
         $fx_td_out := $fx_td_out_tomhi
         $fx_td_soft := $fx_td_soft_tomhi
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
         $fx_comp_tres := $fx_comp_tres_tomhi
         $fx_comp_atk := $fx_comp_atk_tomhi
         $fx_comp_rel := $fx_comp_rel_tomhi
         $fx_comp_rat := $fx_comp_rat_tomhi
         $fx_comp_mix := $fx_comp_mix_tomhi
         $fx_comp_makeup := $fx_comp_makeup_tomhi
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
+        call set_fx_text
     end if
 end on
 
@@ -15194,7 +14929,6 @@ on ui_control($mix_tommid_solo)
     $busidx := 6
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_tommid_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
         $fx_eq_lf := $fx_eq_lf_tommid
@@ -15209,37 +14943,18 @@ on ui_control($mix_tommid_solo)
         $fx_eq_hf := $fx_eq_hf_tommid
         $fx_eq_hg := $fx_eq_hg_tommid
         $fx_eq_hb := $fx_eq_hb_tommid
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
         $fx_td_in := $fx_td_in_tommid
         $fx_td_atk := $fx_td_atk_tommid
         $fx_td_rel := $fx_td_rel_tommid
         $fx_td_out := $fx_td_out_tommid
         $fx_td_soft := $fx_td_soft_tommid
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
         $fx_comp_tres := $fx_comp_tres_tommid
         $fx_comp_atk := $fx_comp_atk_tommid
         $fx_comp_rel := $fx_comp_rel_tommid
         $fx_comp_rat := $fx_comp_rat_tommid
         $fx_comp_mix := $fx_comp_mix_tommid
         $fx_comp_makeup := $fx_comp_makeup_tommid
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
+        call set_fx_text
     end if
 end on
 
@@ -15306,7 +15021,6 @@ on ui_control($mix_tomlow_solo)
     $busidx := 7
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_tomlow_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
         $fx_eq_lf := $fx_eq_lf_tomlow
@@ -15321,37 +15035,18 @@ on ui_control($mix_tomlow_solo)
         $fx_eq_hf := $fx_eq_hf_tomlow
         $fx_eq_hg := $fx_eq_hg_tomlow
         $fx_eq_hb := $fx_eq_hb_tomlow
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
         $fx_td_in := $fx_td_in_tomlow
         $fx_td_atk := $fx_td_atk_tomlow
         $fx_td_rel := $fx_td_rel_tomlow
         $fx_td_out := $fx_td_out_tomlow
         $fx_td_soft := $fx_td_soft_tomlow
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
         $fx_comp_tres := $fx_comp_tres_tomlow
         $fx_comp_atk := $fx_comp_atk_tomlow
         $fx_comp_rel := $fx_comp_rel_tomlow
         $fx_comp_rat := $fx_comp_rat_tomlow
         $fx_comp_mix := $fx_comp_mix_tomlow
         $fx_comp_makeup := $fx_comp_makeup_tomlow
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
+        call set_fx_text
     end if
 end on
 
@@ -15419,7 +15114,6 @@ on ui_control($mix_ov_solo)
     $busidx := 8
     call update_solo_status
     call fx_eq_td_comp_reset
-
     if ($mix_ov_solo=1)
         set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
         $fx_eq_lf := $fx_eq_lf_ov
@@ -15434,37 +15128,18 @@ on ui_control($mix_ov_solo)
         $fx_eq_hf := $fx_eq_hf_ov
         $fx_eq_hg := $fx_eq_hg_ov
         $fx_eq_hb := $fx_eq_hb_ov
-        set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
         $fx_td_in := $fx_td_in_ov
         $fx_td_atk := $fx_td_atk_ov
         $fx_td_rel := $fx_td_rel_ov
         $fx_td_out := $fx_td_out_ov
         $fx_td_soft := $fx_td_soft_ov
-        set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
         $fx_comp_tres := $fx_comp_tres_ov
         $fx_comp_atk := $fx_comp_atk_ov
         $fx_comp_rel := $fx_comp_rel_ov
         $fx_comp_rat := $fx_comp_rat_ov
         $fx_comp_mix := $fx_comp_mix_ov
         $fx_comp_makeup := $fx_comp_makeup_ov
-        set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-        set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
+        call set_fx_text
     end if
 end on
 
@@ -19417,37 +19092,18 @@ on ui_control($mix_hh_sel)
     $fx_eq_hf := $fx_eq_hf_hh
     $fx_eq_hg := $fx_eq_hg_hh
     $fx_eq_hb := $fx_eq_hb_hh
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_hh))
     $fx_td_in := $fx_td_in_hh
     $fx_td_atk := $fx_td_atk_hh
     $fx_td_rel := $fx_td_rel_hh
     $fx_td_out := $fx_td_out_hh
     $fx_td_soft := $fx_td_soft_hh
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_hh))
     $fx_comp_tres := $fx_comp_tres_hh
     $fx_comp_atk := $fx_comp_atk_hh
     $fx_comp_rel := $fx_comp_rel_hh
     $fx_comp_rat := $fx_comp_rat_hh
     $fx_comp_mix := $fx_comp_mix_hh
     $fx_comp_makeup := $fx_comp_makeup_hh
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_hh] := 1
         set_control_par(%solo_ui_ids[$instr_bus_hh],$CONTROL_PAR_VALUE,1)
@@ -19500,37 +19156,18 @@ on ui_control($mix_bdi_sel)
     $fx_eq_hf := $fx_eq_hf_bdi
     $fx_eq_hg := $fx_eq_hg_bdi
     $fx_eq_hb := $fx_eq_hb_bdi
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdi))
     $fx_td_in := $fx_td_in_bdi
     $fx_td_atk := $fx_td_atk_bdi
     $fx_td_rel := $fx_td_rel_bdi
     $fx_td_out := $fx_td_out_bdi
     $fx_td_soft := $fx_td_soft_bdi
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdi))
     $fx_comp_tres := $fx_comp_tres_bdi
     $fx_comp_atk := $fx_comp_atk_bdi
     $fx_comp_rel := $fx_comp_rel_bdi
     $fx_comp_rat := $fx_comp_rat_bdi
     $fx_comp_mix := $fx_comp_mix_bdi
     $fx_comp_makeup := $fx_comp_makeup_bdi
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
+    call set_fx_text
     if ($anysolo=1)
     %solo_arr[$instr_bus_bdi] := 1
     set_control_par(%solo_ui_ids[$instr_bus_bdi],$CONTROL_PAR_VALUE,1)
@@ -19583,37 +19220,18 @@ on ui_control($mix_bdo_sel)
     $fx_eq_hf := $fx_eq_hf_bdo
     $fx_eq_hg := $fx_eq_hg_bdo
     $fx_eq_hb := $fx_eq_hb_bdo
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_bdo))
     $fx_td_in := $fx_td_in_bdo
     $fx_td_atk := $fx_td_atk_bdo
     $fx_td_rel := $fx_td_rel_bdo
     $fx_td_out := $fx_td_out_bdo
     $fx_td_soft := $fx_td_soft_bdo
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_bdo))
     $fx_comp_tres := $fx_comp_tres_bdo
     $fx_comp_atk := $fx_comp_atk_bdo
     $fx_comp_rel := $fx_comp_rel_bdo
     $fx_comp_rat := $fx_comp_rat_bdo
     $fx_comp_mix := $fx_comp_mix_bdo
     $fx_comp_makeup := $fx_comp_makeup_bdo
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
+    call set_fx_text
     if ($anysolo=1)
     %solo_arr[$instr_bus_bdo] := 1
     set_control_par(%solo_ui_ids[$instr_bus_bdo],$CONTROL_PAR_VALUE,1)
@@ -19666,37 +19284,18 @@ on ui_control($mix_sntop_sel)
     $fx_eq_hf := $fx_eq_hf_sntop
     $fx_eq_hg := $fx_eq_hg_sntop
     $fx_eq_hb := $fx_eq_hb_sntop
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_sntop))
     $fx_td_in := $fx_td_in_sntop
     $fx_td_atk := $fx_td_atk_sntop
     $fx_td_rel := $fx_td_rel_sntop
     $fx_td_out := $fx_td_out_sntop
     $fx_td_soft := $fx_td_soft_sntop
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_sntop))
     $fx_comp_tres := $fx_comp_tres_sntop
     $fx_comp_atk := $fx_comp_atk_sntop
     $fx_comp_rel := $fx_comp_rel_sntop
     $fx_comp_rat := $fx_comp_rat_sntop
     $fx_comp_mix := $fx_comp_mix_sntop
     $fx_comp_makeup := $fx_comp_makeup_sntop
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_sntop] := 1
         set_control_par(%solo_ui_ids[$instr_bus_sntop],$CONTROL_PAR_VALUE,1)
@@ -19749,37 +19348,18 @@ on ui_control($mix_snbt_sel)
     $fx_eq_hf := $fx_eq_hf_snbt
     $fx_eq_hg := $fx_eq_hg_snbt
     $fx_eq_hb := $fx_eq_hb_snbt
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_snbt))
     $fx_td_in := $fx_td_in_snbt
     $fx_td_atk := $fx_td_atk_snbt
     $fx_td_rel := $fx_td_rel_snbt
     $fx_td_out := $fx_td_out_snbt
     $fx_td_soft := $fx_td_soft_snbt
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_snbt))
     $fx_comp_tres := $fx_comp_tres_snbt
     $fx_comp_atk := $fx_comp_atk_snbt
     $fx_comp_rel := $fx_comp_rel_snbt
     $fx_comp_rat := $fx_comp_rat_snbt
     $fx_comp_mix := $fx_comp_mix_snbt
     $fx_comp_makeup := $fx_comp_makeup_snbt
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_snbt] := 1
         set_control_par(%solo_ui_ids[$instr_bus_snbt],$CONTROL_PAR_VALUE,1)
@@ -19832,37 +19412,18 @@ on ui_control($mix_tomhi_sel)
     $fx_eq_hf := $fx_eq_hf_tomhi
     $fx_eq_hg := $fx_eq_hg_tomhi
     $fx_eq_hb := $fx_eq_hb_tomhi
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomhi))
     $fx_td_in := $fx_td_in_tomhi
     $fx_td_atk := $fx_td_atk_tomhi
     $fx_td_rel := $fx_td_rel_tomhi
     $fx_td_out := $fx_td_out_tomhi
     $fx_td_soft := $fx_td_soft_tomhi
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomhi))
     $fx_comp_tres := $fx_comp_tres_tomhi
     $fx_comp_atk := $fx_comp_atk_tomhi
     $fx_comp_rel := $fx_comp_rel_tomhi
     $fx_comp_rat := $fx_comp_rat_tomhi
     $fx_comp_mix := $fx_comp_mix_tomhi
     $fx_comp_makeup := $fx_comp_makeup_tomhi
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_tomhi] := 1
         set_control_par(%solo_ui_ids[$instr_bus_tomhi],$CONTROL_PAR_VALUE,1)
@@ -19915,37 +19476,18 @@ on ui_control($mix_tommid_sel)
     $fx_eq_hf := $fx_eq_hf_tommid
     $fx_eq_hg := $fx_eq_hg_tommid
     $fx_eq_hb := $fx_eq_hb_tommid
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tommid))
     $fx_td_in := $fx_td_in_tommid
     $fx_td_atk := $fx_td_atk_tommid
     $fx_td_rel := $fx_td_rel_tommid
     $fx_td_out := $fx_td_out_tommid
     $fx_td_soft := $fx_td_soft_tommid
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tommid))
     $fx_comp_tres := $fx_comp_tres_tommid
     $fx_comp_atk := $fx_comp_atk_tommid
     $fx_comp_rel := $fx_comp_rel_tommid
     $fx_comp_rat := $fx_comp_rat_tommid
     $fx_comp_mix := $fx_comp_mix_tommid
     $fx_comp_makeup := $fx_comp_makeup_tommid
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_tommid] := 1
         set_control_par(%solo_ui_ids[$instr_bus_tommid],$CONTROL_PAR_VALUE,1)
@@ -19998,37 +19540,18 @@ on ui_control($mix_tomlow_sel)
     $fx_eq_hf := $fx_eq_hf_tomlow
     $fx_eq_hg := $fx_eq_hg_tomlow
     $fx_eq_hb := $fx_eq_hb_tomlow
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_tomlow))
     $fx_td_in := $fx_td_in_tomlow
     $fx_td_atk := $fx_td_atk_tomlow
     $fx_td_rel := $fx_td_rel_tomlow
     $fx_td_out := $fx_td_out_tomlow
     $fx_td_soft := $fx_td_soft_tomlow
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_tomlow))
     $fx_comp_tres := $fx_comp_tres_tomlow
     $fx_comp_atk := $fx_comp_atk_tomlow
     $fx_comp_rel := $fx_comp_rel_tomlow
     $fx_comp_rat := $fx_comp_rat_tomlow
     $fx_comp_mix := $fx_comp_mix_tomlow
     $fx_comp_makeup := $fx_comp_makeup_tomlow
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_tomlow] := 1
         set_control_par(%solo_ui_ids[$instr_bus_tomlow],$CONTROL_PAR_VALUE,1)
@@ -20081,37 +19604,18 @@ on ui_control($mix_ov_sel)
     $fx_eq_hf := $fx_eq_hf_ov
     $fx_eq_hg := $fx_eq_hg_ov
     $fx_eq_hb := $fx_eq_hb_ov
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$instr_bus_ov))
     $fx_td_in := $fx_td_in_ov
     $fx_td_atk := $fx_td_atk_ov
     $fx_td_rel := $fx_td_rel_ov
     $fx_td_out := $fx_td_out_ov
     $fx_td_soft := $fx_td_soft_ov
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$instr_bus_ov))
     $fx_comp_tres := $fx_comp_tres_ov
     $fx_comp_atk := $fx_comp_atk_ov
     $fx_comp_rel := $fx_comp_rel_ov
     $fx_comp_rat := $fx_comp_rat_ov
     $fx_comp_mix := $fx_comp_mix_ov
     $fx_comp_makeup := $fx_comp_makeup_ov
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_ov))
+    call set_fx_text
     if ($anysolo=1)
         %solo_arr[$instr_bus_ov] := 1
         set_control_par(%solo_ui_ids[$instr_bus_ov],$CONTROL_PAR_VALUE,1)
@@ -20164,37 +19668,18 @@ on ui_control($mix_master_select)
     $fx_eq_hf := $fx_eq_hf_master
     $fx_eq_hg := $fx_eq_hg_master
     $fx_eq_hb := $fx_eq_hb_master
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,-1))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,-1))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,-1))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,-1))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,-1))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,-1))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,-1))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,-1))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,-1))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,-1))
     $fx_td_in := $fx_td_in_master
     $fx_td_atk := $fx_td_atk_master
     $fx_td_rel := $fx_td_rel_master
     $fx_td_out := $fx_td_out_master
     $fx_td_soft := $fx_td_soft_master
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1))
     $fx_comp_tres := $fx_comp_tres_master
     $fx_comp_atk := $fx_comp_atk_master
     $fx_comp_rel := $fx_comp_rel_master
     $fx_comp_rat := $fx_comp_rat_master
     $fx_comp_mix := $fx_comp_mix_master
     $fx_comp_makeup := $fx_comp_makeup_master
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,-1))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,-1))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,-1))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,-1))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,-1))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,-1))
+    call set_fx_text
     if ($anysolo=1)
         $anysolo := 0
         call update_all_volumes
