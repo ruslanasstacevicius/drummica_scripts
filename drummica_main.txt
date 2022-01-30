@@ -11893,6 +11893,7 @@ on ui_control($menu_mixer)
         end while
 
         if ($mix_hh_sel=1)
+            $busidx := 0
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
             $fx_eq_lf := $fx_eq_lf_hh
             $fx_eq_lg := $fx_eq_lg_hh
@@ -11938,6 +11939,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_hh))
         else
         if ($mix_bdi_sel=1)
+            $busidx := 1
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
             $fx_eq_lf := $fx_eq_lf_bdi
             $fx_eq_lg := $fx_eq_lg_bdi
@@ -11983,6 +11985,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdi))
         else
         if ($mix_bdo_sel=1)
+            $busidx := 2
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
             $fx_eq_lf := $fx_eq_lf_bdo
             $fx_eq_lg := $fx_eq_lg_bdo
@@ -12028,6 +12031,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_bdo))
         else
         if ($mix_sntop_sel=1)
+            $busidx := 3
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
             $fx_eq_lf := $fx_eq_lf_sntop
             $fx_eq_lg := $fx_eq_lg_sntop
@@ -12073,6 +12077,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_sntop))
         else
         if ($mix_snbt_sel=1)
+            $busidx := 4
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
             $fx_eq_lf := $fx_eq_lf_snbt
             $fx_eq_lg := $fx_eq_lg_snbt
@@ -12118,6 +12123,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_snbt))
         else
         if ($mix_tomhi_sel=1)
+            $busidx := 5
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
             $fx_eq_lf := $fx_eq_lf_tomhi
             $fx_eq_lg := $fx_eq_lg_tomhi
@@ -12163,6 +12169,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomhi))
         else
         if ($mix_tommid_sel=1)
+            $busidx := 6
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
             $fx_eq_lf := $fx_eq_lf_tommid
             $fx_eq_lg := $fx_eq_lg_tommid
@@ -12208,6 +12215,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tommid))
         else
         if ($mix_tomlow_sel=1)
+            $busidx := 7
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
             $fx_eq_lf := $fx_eq_lf_tomlow
             $fx_eq_lg := $fx_eq_lg_tomlow
@@ -12253,6 +12261,7 @@ on ui_control($menu_mixer)
             set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$instr_bus_tomlow))
         else
         if ($mix_ov_sel=1)
+            $busidx := 8
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
             $fx_eq_lf := $fx_eq_lf_ov
             $fx_eq_lg := $fx_eq_lg_ov
@@ -14828,6 +14837,7 @@ on ui_control($mix_hh_vol)
 end on
 
 on ui_control($mix_hh_solo)
+    $busidx := 0
     if (get_control_par(%solo_ui_ids[0],$CONTROL_PAR_VALUE)=1)
         %solo_arr[0] := 1
         $i := 0
@@ -15030,6 +15040,7 @@ on ui_control($mix_bd_link)
 end on
 
 on ui_control($mix_bdi_solo)
+    $busidx := 1
     if (get_control_par(%solo_ui_ids[1],$CONTROL_PAR_VALUE)=1)
         %solo_arr[1] := 1
         $i := 0
@@ -15221,6 +15232,7 @@ on ui_control($mix_bdo_vol)
 end on
 
 on ui_control($mix_bdo_solo)
+    $busidx := 2
     if (get_control_par(%solo_ui_ids[2],$CONTROL_PAR_VALUE)=1)
         %solo_arr[2] := 1
         $i := 0
@@ -15425,6 +15437,7 @@ on ui_control($mix_sn_link)
 end on
 
 on ui_control($mix_sntop_solo)
+    $busidx := 3
     if (get_control_par(%solo_ui_ids[3],$CONTROL_PAR_VALUE)=1)
         %solo_arr[3] := 1
         $i := 0
@@ -15616,6 +15629,7 @@ on ui_control($mix_snbt_vol)
 end on
 
 on ui_control($mix_snbt_solo)
+    $busidx := 4
     if (get_control_par(%solo_ui_ids[4],$CONTROL_PAR_VALUE)=1)
         %solo_arr[4] := 1
         $i := 0
@@ -15786,6 +15800,7 @@ on ui_control($mix_tomhi_vol)
 end on
 
 on ui_control($mix_tomhi_solo)
+    $busidx := 5
     if (get_control_par(%solo_ui_ids[5],$CONTROL_PAR_VALUE)=1)
         %solo_arr[5] := 1
         $i := 0
@@ -15954,6 +15969,7 @@ on ui_control($mix_tommid_vol)
 end on
 
 on ui_control($mix_tommid_solo)
+    $busidx := 6
     if (get_control_par(%solo_ui_ids[6],$CONTROL_PAR_VALUE)=1)
         %solo_arr[6] := 1
         $i := 0
@@ -16122,6 +16138,7 @@ on ui_control($mix_tomlow_vol)
 end on
 
 on ui_control($mix_tomlow_solo)
+    $busidx := 7
     if (get_control_par(%solo_ui_ids[7],$CONTROL_PAR_VALUE)=1)
         %solo_arr[7] := 1
         $i := 0
@@ -16291,6 +16308,7 @@ on ui_control($mix_ov_vol)
 end on
 
 on ui_control($mix_ov_solo)
+    $busidx := 8
     if (get_control_par(%solo_ui_ids[8],$CONTROL_PAR_VALUE)=1)
         %solo_arr[8] := 1
         $i := 0
@@ -20323,6 +20341,7 @@ on ui_control($mix_swap_R)
 end on
 
 on ui_control($mix_hh_sel)
+    $busidx := 0
     $mix_hh_sel := 1
     $i := 0
     while ($i<=9)
@@ -20405,6 +20424,7 @@ on ui_control($mix_hh_sel)
 end on
 
 on ui_control($mix_bdi_sel)
+    $busidx := 1
     $mix_bdi_sel := 1
     $i := 0
     while ($i<=9)
@@ -20487,6 +20507,7 @@ on ui_control($mix_bdi_sel)
 end on
 
 on ui_control($mix_bdo_sel)
+    $busidx := 2
     $mix_bdo_sel := 1
     $i := 0
     while ($i<=9)
@@ -20569,6 +20590,7 @@ on ui_control($mix_bdo_sel)
 end on
 
 on ui_control($mix_sntop_sel)
+    $busidx := 3
     $mix_sntop_sel := 1
     $i := 0
     while ($i<=9)
@@ -20651,6 +20673,7 @@ on ui_control($mix_sntop_sel)
 end on
 
 on ui_control($mix_snbt_sel)
+    $busidx := 4
     $mix_snbt_sel := 1
     $i := 0
     while ($i<=9)
@@ -20733,6 +20756,7 @@ on ui_control($mix_snbt_sel)
 end on
 
 on ui_control($mix_tomhi_sel)
+    $busidx := 5
     $mix_tomhi_sel := 1
     $i := 0
     while ($i<=9)
@@ -20815,6 +20839,7 @@ on ui_control($mix_tomhi_sel)
 end on
 
 on ui_control($mix_tommid_sel)
+    $busidx := 6
     $mix_tommid_sel := 1
     $i := 0
     while ($i<=9)
@@ -20897,6 +20922,7 @@ on ui_control($mix_tommid_sel)
 end on
 
 on ui_control($mix_tomlow_sel)
+    $busidx := 7
     $mix_tomlow_sel := 1
     $i := 0
     while ($i<=9)
@@ -20979,6 +21005,7 @@ on ui_control($mix_tomlow_sel)
 end on
 
 on ui_control($mix_ov_sel)
+    $busidx := 8
     $mix_ov_sel := 1
     $i := 0
     while ($i<=9)
@@ -21061,6 +21088,7 @@ on ui_control($mix_ov_sel)
 end on
 
 on ui_control($mix_master_select)
+    $busidx := -1
     $mix_master_select := 1
     $i := 0
     while ($i<=9)
