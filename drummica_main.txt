@@ -12513,65 +12513,9 @@ on ui_control($drums_hh_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[0],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[0] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[0],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[0],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[0] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-            inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
 
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+0)
-            set_control_par_str(%solo_ui_ids[0],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
-
+    $busidx := 0
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -12605,64 +12549,9 @@ on ui_control($drums_bdi_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[1],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[1] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[1],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+1)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[1],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[1] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+1)
-            set_control_par_str(%solo_ui_ids[1],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 1
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -12696,64 +12585,9 @@ on ui_control($drums_bdo_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[2],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[2] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[2],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[2],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+2)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[2],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[2] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+2)
-            set_control_par_str(%solo_ui_ids[2],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 2
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -12787,64 +12621,9 @@ on ui_control($drums_sntop_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[3],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[3] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[3],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[3],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[3] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+3)
-            set_control_par_str(%solo_ui_ids[3],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 3
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -12878,65 +12657,10 @@ on ui_control($drums_snbt_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[4],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[4] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[4],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[4],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+4)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[4],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[4] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+4)
-            set_control_par_str(%solo_ui_ids[4],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
-   call fx_eq_td_comp_reset
+    $busidx := 4
+    call update_solo_status
+    call fx_eq_td_comp_reset
 
 end on
 
@@ -12969,64 +12693,9 @@ on ui_control($drums_tomhi_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[5],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[5] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[5],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[5],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[5] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-               inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+5)
-            set_control_par_str(%solo_ui_ids[5],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 5
+    call update_solo_status
     call fx_eq_td_comp_reset
 
  end on
@@ -13060,64 +12729,9 @@ on ui_control($drums_tomhi_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[6],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[6] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[6],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[6],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[6] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+6)
-            set_control_par_str(%solo_ui_ids[6],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 6
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -13151,64 +12765,9 @@ on ui_control($drums_tomlow_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[7],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[7] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[7],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[7],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[7] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+7)
-            set_control_par_str(%solo_ui_ids[7],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 7
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
@@ -13242,64 +12801,9 @@ on ui_control($drums_ov_micthumb)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-    if (get_control_par(%solo_ui_ids[8],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[8] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[8],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[8],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[8] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+8)
-            set_control_par_str(%solo_ui_ids[8],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
 
+    $busidx := 8
+    call update_solo_status
     call fx_eq_td_comp_reset
 
 end on
