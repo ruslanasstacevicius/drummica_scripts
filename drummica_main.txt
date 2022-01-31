@@ -13,6 +13,15 @@ on init
     pgs_create_key(playnoteflag,1)
     pgs_create_key(MICS,12)
 
+    declare $wire_purge_status := 0
+
+    declare %wire_groups[38] := (3, 5 , 7, 9, 11, 57, 59, 61, 63, 97, 98, 19, 21, 23, 69, 71, 73, 75, 111, 112, ...
+                                25, 27, 29, 77, 79, 81, 83, 113, 114, 31, 33, 35, 85, 87, 89, 91, 115, 116)
+
+    declare %nowire_groups[30] := (4, 6, 8, 10, 12, 58, 60, 62, 64, 20, 22, 24, 70, 72, 74, 76, 26, 28, 30, ...
+                                 78, 80, 82, 84, 32, 34, 36, 86, 88, 90, 92)
+
+
     declare $current_preset := 1
     declare %default__preset[305] := (0, 0, 0, 0, 623, 111, 0, 2000, 63, 0, 2000, 0, 36, 2037, 0, 26, 1628, 24, 0, 2483, 77, 0, 2000, 0, 39, 3042, 0, 0, 1740, 127, 0, 2000, 63, 0, 2000, 0, 0, 2000, 0, 0, 2000, ...
     63, 27, 2447, 63, 0, 2521, 0, 0, 2000, 0, 0, 2000, 63, 0, 2000, 63, 0, 2000, 0, 0, 2000, 0, 0, 2000, 63, 0, 2000, 63, 0, 2000, 0, 0, 2000, 0, 0, 2000, 63, 0, 2000, 63, ...
@@ -16043,10 +16052,36 @@ on ui_control($mix_preset_up)
     if ($options_wires_snbtm>60)
         pgs_set_key_val(MICS,9,1)
         pgs_set_key_val(MICS,10,1)
+        if ($wire_purge_status = 0)
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 1
+        end if
     else
     if ($options_wires_snbtm<=60)
         pgs_set_key_val(MICS,9,0)
         pgs_set_key_val(MICS,10,0)
+        if ($wire_purge_status = 1)
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 0
+        end if
     end if
     end if
     set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
@@ -17379,10 +17414,36 @@ on ui_control($mix_preset_down)
     if ($options_wires_snbtm>60)
         pgs_set_key_val(MICS,9,1)
         pgs_set_key_val(MICS,10,1)
+        if ($wire_purge_status = 0)
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 1
+        end if
     else
     if ($options_wires_snbtm<=60)
         pgs_set_key_val(MICS,9,0)
         pgs_set_key_val(MICS,10,0)
+        if ($wire_purge_status = 1)
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 0
+        end if
     end if
     end if
     set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
@@ -21060,10 +21121,36 @@ on ui_control($options_wires_snbtm)
     if ($options_wires_snbtm>60)
         pgs_set_key_val(MICS,9,1)
         pgs_set_key_val(MICS,10,1)
+        if ($wire_purge_status = 0)
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 1
+        end if
     else
     if ($options_wires_snbtm<=60)
         pgs_set_key_val(MICS,9,0)
         pgs_set_key_val(MICS,10,0)
+        if ($wire_purge_status = 1)
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 0
+        end if
     end if
     end if
 end on
