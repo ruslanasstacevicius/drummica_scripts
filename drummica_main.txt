@@ -4349,6 +4349,1573 @@ on init
     read_persistent_var($drums_tomlow_mic_current)
     read_persistent_var($drums_ov_mic_current)
 
+
+    set_control_help($menu_beats,"A selection of beats in various styles.")
+    set_control_help($menu_drums,"Overview of the Drumkit and all microphones on it.")
+    set_control_help($menu_mixer,"Mixing console to adjust Volumes and Effects.")
+    set_control_help($menu_micsel,"Direct access to the current selected microphone.")
+    set_control_help($menu_option,"Options dialogue to change Output channels, Midi mappings, Velocity curve and Snare Bleed.")
+    set_control_help($drums_hh_micthumb,"Click to change the microphone on the HiHat.")
+    set_control_help($drums_bdi_micthumb,"Click to change the microphone on the Bassdrum (inside).")
+    set_control_help($drums_bdo_micthumb,"Click to change the microphone on the Bassdrum (outside).")
+    set_control_help($drums_sntop_micthumb,"Click to change the microphone on the Snare (top).")
+    set_control_help($drums_snbt_micthumb,"Click to change the microphone on the Snare (bottom).")
+    set_control_help($drums_tomhi_micthumb,"Click to change the microphone on the High Rack Tom.")
+    set_control_help($drums_tommid_micthumb,"Click to change the microphone on the Low Rack Tom.")
+    set_control_help($drums_tomlow_micthumb,"Click to change the microphone on the Floor Tom.")
+    set_control_help($drums_ov_micthumb,"Click to change the overhead microphones.")
+    set_control_help($mix_eq,"Click to switch to the Equalizer.")
+    set_control_help($mix_td,"Click to switch to the Transient Designer.")
+    set_control_help($mix_comp,"Click to switch to the Compressor.")
+    set_control_help($mix_load,"Click to load a preset.")
+    set_control_help($mix_save,"Click to slide a preset.")
+    set_control_help($mix_master_select,"Click to change EQ, Trasient Designer or Compressor for the Master Channel.")
+    set_control_help($mix_hh_vol,"Slide up/down to adjust the Volume for the HiHat Microphone.")
+    set_control_help($mix_bdi_vol,"Slide up/down to adjust the Volume for the BassDrum (inside) Microphone.")
+    set_control_help($mix_bdo_vol,"Slide up/down to adjust the Volume for the BassDrum (outside) Microphone.")
+    set_control_help($mix_sntop_vol,"Slide up/down to adjust the Volume for the Snare (top) Microphone.")
+    set_control_help($mix_snbt_vol,"Slide up/down to adjust the Volume for the Snare (bottom) Microphone.")
+    set_control_help($mix_tomhi_vol,"Slide up/down to adjust the Volume for the High Rack Tom Microphone.")
+    set_control_help($mix_tommid_vol,"Slide up/down to adjust the Volume for the Low Rack Tom Microphone.")
+    set_control_help($mix_tomlow_vol,"Slide up/down to adjust the Volume for the Floor Tom Microphone.")
+    set_control_help($mix_ov_vol,"Slide up/down to adjust the Volume for the Overhead Microphones.")
+    set_control_help($mix_rev_vol,"Slide up/down to adjust the Volume for the global Reverb.")
+    set_control_help($mix_hh_solo,"Click to hear the HiHat solo. Click a second time to hear all instruments again.")
+    set_control_help($mix_bdi_solo,"Click to hear the BassDrum (inside) solo.")
+    set_control_help($mix_bdo_solo,"Click to hear the BassDrum (outside) solo.")
+    set_control_help($mix_sntop_solo,"Click to hear the Snare (top) solo.")
+    set_control_help($mix_snbt_solo,"Click to hear the  Snare (bottom) solo.")
+    set_control_help($mix_tomhi_solo,"Click to hear the High Rack Tom solo.")
+    set_control_help($mix_tommid_solo,"Click to hear the Low Rack Tom solo.")
+    set_control_help($mix_tomlow_solo,"Click to hear the Floor Tom solo.")
+    set_control_help($mix_ov_solo,"Click to hear the Overhead microphones solo.")
+    set_control_help($mix_hh_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the HiHat.")
+    set_control_help($mix_bdi_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the BassDrum (inside).")
+    set_control_help($mix_bdo_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the BassDrum (outside).")
+    set_control_help($mix_sntop_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Snare (top).")
+    set_control_help($mix_snbt_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Snare (bottom).")
+    set_control_help($mix_tomhi_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the High Rack Tom.")
+    set_control_help($mix_tommid_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Low Rack Tom.")
+    set_control_help($mix_tomlow_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Floor Tom.")
+    set_control_help($mix_ov_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Overhead Microphones.")
+    set_control_help($mix_hh_pan,"Turn to level the HiHat between left and right channel.")
+    set_control_help($mix_bdi_pan,"Turn to level the BassDrum (inside) between left and right channel.")
+    set_control_help($mix_bdo_pan,"Turn to level the BassDrum (outside) between left and right channel.")
+    set_control_help($mix_sntop_pan,"Turn to level the Snare (top) between left and right channel.")
+    set_control_help($mix_snbt_pan,"Turn to level the Snare (bottom) between left and right channel.")
+    set_control_help($mix_tomhi_pan,"Turn to level the High Rack Tom between left and right channel.")
+    set_control_help($mix_tommid_pan,"Turn to level the Low Rack Tom between left and right channel.")
+    set_control_help($mix_tomlow_pan,"Turn to level the Floor Tom between left and right channel.")
+    set_control_help($mix_ov_pan,"Turn to level the Overhead microphone between left and right channel. (only when the 'Mono Button' is activated)")
+    set_control_help($mix_hh_ov,"Turn to adjust the amount of overhead signal for the HiHat.")
+    set_control_help($mix_bdi_ov,"Turn to adjust the amount of overhead signal for the BassDrum.")
+    set_control_help($mix_sntop_ov,"Turn to adjust the amount of overhead signal for the Snare.")
+    set_control_help($mix_tomhi_ov,"Turn to adjust the amount of overhead signal for the High Rack Tom.")
+    set_control_help($mix_tommid_ov,"Turn to adjust the amount of overhead signal for the Low Rack Tom.")
+    set_control_help($mix_tomlow_ov,"Turn to adjust the amount of overhead signal for the Floor Tom.")
+    set_control_help($mix_hh_rev,"Turn to adjust the reverb amount for the HiHat Channel.")
+    set_control_help($mix_bdi_rev,"Turn to adjust the reverb amount for the BassDrum (inside) Channel.")
+    set_control_help($mix_bdo_rev,"Turn to adjust the reverb amount for the BassDrum (outside) Channel.")
+    set_control_help($mix_sntop_rev,"Turn to adjust the reverb amount for the Snare (top) Channel.")
+    set_control_help($mix_snbt_rev,"Turn to adjust the reverb amount for the Snare (bottom) Channel.")
+    set_control_help($mix_tomhi_rev,"Turn to adjust the reverb amount for the High Rack Tom Channel.")
+    set_control_help($mix_tommid_rev,"Turn to adjust the reverb amount for the Low Rack Tom Channel.")
+    set_control_help($mix_tomlow_rev,"Turn to adjust the reverb amount for the Floor Tom Channel.")
+    set_control_help($mix_ov_rev,"Turn to adjust the reverb amount for the Overhead Channel.")
+    set_control_help($mix_hh_sel,"Click to select the HiHat Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_bdi_sel,"Click to select the BassDrum (inside) Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_bdo_sel,"Click to select the BassDrum (outside) Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_sntop_sel,"Click to select the Snare (top) Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_snbt_sel,"Click to select the Snare (bottom) Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_tomhi_sel,"Click to select the High Rack Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_tommid_sel,"Click to select the Low Rack Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_tomlow_sel,"Click to select the Floor Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_ov_sel,"Click to select the Overhead Channel in order to edit Equalizer, Transient Designer or Compressor.")
+    set_control_help($mix_ov_spread,"Turn to adjust the stereo width of the Overhead channel.")
+    set_control_help($mix_ov_mono,"Click to switch between stereo and mono mode for the Overhead channel.")
+    set_control_help($mix_rev_hp,"Turn to adjust the HighPass Frequency for the Reverb Channel. If you turn the knob completely to the left the HighPass is disabled.")
+    set_control_help($mix_rev_lp,"Turn to adjust the LowPass Frequency for the Reverb Channel. If you turn the knob completely to the right the LowPass is disabled.")
+    set_control_help($mix_rev_arrowup,"Click to switch to the next Room Type for the Reverb Channel.")
+    set_control_help($mix_rev_arrowdown,"Click to switch to the previous Room Type for the Reverb Channel")
+    set_control_help($mix_bd_link,"Click to link the Volume sliders of Bassdrum inside & outside.")
+    set_control_help($mix_sn_link,"Click to link the Volume sliders of Snare top & bottom.")
+    set_control_help($menu_play,"Click to Play the current loaded Midi Beat")
+    set_control_help($label_beat,"Drag & Drop the current selected beat directly into a Midi Track of your DAW.")
+    set_control_help($fx_eq_lf,"Turn to adjust the Highpass Frequency for the current selected channel.")
+    set_control_help($fx_eq_lg,"Turn to adjust the Highpass Gain for the current selected channel.")
+    set_control_help($fx_eq_lb,"Click to switch the mode of the Highpass between Bell and Cut for the current selected channel.")
+    set_control_help($fx_eq_lmf,"Turn to adjust the Lower Mids Frequency for the current selected channel.")
+    set_control_help($fx_eq_lmg,"Turn to adjust the Lower Mids Gain for the current selected channel.")
+    set_control_help($fx_eq_lmq,"Turn to adjust the Lower Mids Q-Factor for the current selected channel.")
+    set_control_help($fx_eq_hmf,"Turn to adjust the Higher Mids Frequency for the current selected channel.")
+    set_control_help($fx_eq_hmg,"Turn to adjust the Higher Mids Gain for the current selected channel.")
+    set_control_help($fx_eq_hmq,"Turn to adjust the Higher Mids Q-Factor for the current selected channel.")
+    set_control_help($fx_eq_hf,"Turn to adjust the Lowpass Frequency for the current selected channel.")
+    set_control_help($fx_eq_hg,"Turn to adjust the Lowpass Gain for the current selected channel.")
+    set_control_help($fx_eq_hb,"Click to switch the mode of the Lowpass between Bell and Cut for the current selected channel.")
+    set_control_help($fx_td_in,"Turn to adjust the Input Level of the Transient Designer for the current selected channel.")
+    set_control_help($fx_td_atk,"Turn to adjust the Attack of the Transient Designer for the current selected channel.")
+    set_control_help($fx_td_rel,"Turn to adjust the Release of the Transient Designer for the current selected channel.")
+    set_control_help($fx_td_out,"Turn to adjust the Output Level of the Transient Designer for the current selected channel.")
+    set_control_help($fx_comp_tres,"Turn to adjust the Treshold Level of the Compressor for the current selected channel.")
+    set_control_help($fx_comp_rat,"Turn to adjust the Compression Radio of the Compressor for the current selected channel.")
+    set_control_help($fx_comp_atk,"Turn to adjust the Attack of the Compressor for the current selected channel.")
+    set_control_help($fx_comp_rel,"Turn to adjust the Release of the Compressor for the current selected channel.")
+    set_control_help($fx_comp_makeup,"Turn to adjust the Make Up Level of the Compressor for the current selected channel.")
+    set_control_help($fx_comp_mix,"Turn to level between compressed und uncompressed signal for the current selected channel.")
+    set_control_help($fx_eq_reset,"Click to reset all parameters of the Equalizer. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Equalizer this button switches back to 'Reset'.")
+    set_control_help($fx_td_reset,"Click to reset all parameters of the Transient Designer. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Transient Designer this button switches back to 'Reset'.")
+    set_control_help($fx_td_soft,"Click to achieve a smoother sound for the Transient Designer.")
+    set_control_help($fx_comp_reset,"Click to reset all parameters of the Compressor. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Compressor this button switches back to 'Reset'.")
+    set_control_help($mic_gallery_select1,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
+    set_control_help($mic_gallery_select2,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
+    set_control_help($mic_gallery_select3,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
+    set_control_help($mic_gallery_select4,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
+    set_control_help($mic_0db,"Click to hear the current selected channel at a Volume of 0dB.")
+    set_control_help($mic_solo,"Click to hear the current selected channel solo.")
+    set_control_help($mic_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the current selected channel.")
+    set_control_help(%options_table_vel,"Click and draw to change the Velocity Curve.")
+    set_control_help($options_velcurve_linear,"Click to switch the Velocity Curve to Linear.")
+    set_control_help($options_velcurve_degressive,"Click to switch the Velocity Curve to Degressive.")
+    set_control_help($options_velcurve_progressive,"Click to switch the Velocity Curve to Progressive.")
+    set_control_help($options_wires_snbtm,"Turn to adjust the amount of Snare Bleed (How loud you hear the resonating snare wires when you hit a Tom or the BassDrum).  ")
+    set_control_help($options_credits,"Click to have a look at the people who created the Drum Mic'a")
+    set_control_help($options_mapping_gm,"Click to switch the Midi Mapping to 'General Midi'.")
+    set_control_help($options_mapping_vdrum1,"Click to switch the Midi Mapping to 'V-Drums TD-12'.")
+    set_control_help($options_mapping_vdrum2,"Click to switch the Midi Mapping to 'V-Drums TD-3/6'.")
+    set_control_help($options_mapping_ez,"Click to switch the Midi Mapping to 'EZ Drummer'.")
+    set_control_help($options_mapping_superior,"Click to switch the Midi Mapping to 'Superior Drummer'.")
+    set_control_help($options_mapping_addictive,"Click to switch the Midi Mapping to 'Addictive Drums'.")
+    set_control_help($options_mapping_bfd,"Click to switch the Midi Mapping to 'BFD'.")
+    set_control_help($mix_bdo_phase,"Click to switch the phase of the BassDrum (outside) channel.")
+    set_control_help($mix_snbt_phase,"Click to switch the phase of the Snare (bottom) channel.")
+
+end on {init}
+
+function load_file
+    $old_play := $menu_play
+    $processing_flag := 1
+    note_off($ALL_EVENTS)
+    fade_out($ALL_EVENTS,5000,1)
+    while ($play_flag=1)
+        wait(1000)
+    end while
+    $load_mf_id := load_midi_file(@file_path)
+    while ($load_mf_id # -1)
+        wait(1000)
+    end while
+    $i := 0
+    while ($i<=127)
+        %mapping_correct[$i] := pgs_get_key_val(CURRENTMAPPING,$i)
+        inc($i)
+    end while
+    mf_get_first($track_idx)
+    $count_1 := 0
+    while (mf_get_command() # 0)
+        %event_array_1[$count_1*5] := mf_get_pos()
+        %event_array_1[$count_1*5+1] := mf_get_command()
+        $note_mapped := %mapping_correct[mf_get_byte_one()]
+        %event_array_1[$count_1*5+2] := $note_mapped
+        mf_set_byte_one($note_mapped)
+        %event_array_1[$count_1*5+3] := mf_get_byte_two()
+        %event_array_1[$count_1*5+4] := -1
+        inc($count_1)
+        mf_get_next($track_idx)
+    end while
+    $mf_num_events := $count_1
+    mf_get_last($track_idx)
+    $mf_length_1 := ((mf_get_pos()-1)/960+1)*960
+    $count_1 := 0
+    while ($count_1<$mf_num_events)
+        if (%event_array_1[$count_1*5+1]=$MIDI_COMMAND_NOTE_ON and (%event_array_1[$count_1*5+3] # 0))
+            $count_2 := $count_1+1
+            while ($count_2<$mf_num_events)
+                if ((%event_array_1[$count_2*5+1]=$MIDI_COMMAND_NOTE_OFF or (%event_array_1[$count_2*5+1]=$MIDI_COMMAND_NOTE_ON and (%event_array_1[$count_2*5+3]=0))) and (%event_array_1[$count_2*5+2]=%event_array_1[$count_1*5+2]) and (%event_array_1[$count_2*5+4]=-1))
+                    %event_array_1[$count_1*5+4] := $count_2
+                    %event_array_1[$count_2*5+4] := $count_1
+                    if (%event_array_1[$count_1*5]=%event_array_1[$count_2*5])
+                        inc(%event_array_1[$count_2*5])
+                    end if
+                    $count_2 := $mf_num_events
+                end if
+                wait(10)
+                inc($count_2)
+            end while
+        end if
+        wait(1)
+        inc($count_1)
+    end while
+    $menu_play := $old_play
+    $processing_flag := 0
+end function
+
+function init_event_array
+    $count_1 := 0
+    while ($count_1<($mf_num_events*5+4))
+        %event_array_2[$count_1] := %event_array_1[$count_1]
+        wait(1)
+        inc($count_1)
+    end while
+    $mf_length_2 := $mf_length_1
+end function
+
+
+function reset_mic_0db
+    if ($mic_current=1 and (%vol_buffer[1]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=2 and (%vol_buffer[2]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=3 and (%vol_buffer[3]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=4 and (%vol_buffer[4]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=5 and (%vol_buffer[5]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=6 and (%vol_buffer[6]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=7 and (%vol_buffer[7]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=8 and (%vol_buffer[8]=0))
+        $mic_0db := 0
+    else
+    if ($mic_current=9 and (%vol_buffer[9]=0))
+        $mic_0db := 0
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+end function
+
+function update_mic_pictures
+    if ($mic_current=1)
+        $anz_mikros := 4
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_hh[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_hh[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_hh[3])
+        set_control_par_str(get_ui_id($mic_gallery_select4),$CONTROL_PAR_PICTURE,!pic_select1_hh[4])
+        if ($drums_hh_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_hh_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_hh_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_hh_mic_current=4)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[4])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 1
+        end if
+        end if
+        end if
+        end if
+        if ($mix_hh_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_hh_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[0]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[0] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_hh_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_hh_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=2)
+        $anz_mikros := 3
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_bdi[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_bdi[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_bdi[3])
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_bdi_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_bdi_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_bdi_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+        end if
+        end if
+        end if
+        if ($mix_bdi_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_bdi_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[1]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[1] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_bdi_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_bdi_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=3)
+        $anz_mikros := 2
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_bdo[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_bdo[2])
+        set_control_par(get_ui_id($mic_gallery_select3),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_bdo_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdo[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+        else
+        if ($drums_bdo_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdo[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+        end if
+        end if
+        if ($mix_bdo_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_bdo_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[2]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[2] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_bdo_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_bdo_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=4)
+        $anz_mikros := 3
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_sntop[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_sntop[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_sntop[3])
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_sntop_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_sntop_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_sntop_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+        end if
+        end if
+        end if
+        if ($mix_sntop_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_sntop_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[3]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[3] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_sntop_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_sntop_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=5)
+        $anz_mikros := 2
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_snbt[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_snbt[2])
+        set_control_par(get_ui_id($mic_gallery_select3),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_snbt_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_snbt[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+        else
+        if ($drums_snbt_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_snbt[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+        end if
+        end if
+        if ($mix_snbt_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_snbt_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[4]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[4] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_snbt_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_snbt_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=6)
+        $anz_mikros := 3
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[3])
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_tomhi_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tomhi_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tomhi_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+        end if
+        end if
+        end if
+        if ($mix_tomhi_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_tomhi_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[5]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[5] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_tomhi_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_tomhi_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=7)
+        $anz_mikros := 3
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tommid[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tommid[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tommid[3])
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_tommid_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tommid_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tommid_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+        end if
+        end if
+        end if
+        if ($mix_tommid_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_tommid_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[6]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[6] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_tommid_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_tommid_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=8)
+        $anz_mikros := 3
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[3])
+        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        if ($drums_tomlow_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tomlow_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+        else
+        if ($drums_tomlow_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+        end if
+        end if
+        end if
+        if ($mix_tomlow_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_tomlow_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[7]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[7] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_tomlow_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_tomlow_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    else
+    if ($mic_current=9)
+        $anz_mikros := 4
+        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_ov[1])
+        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_ov[2])
+        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_ov[3])
+        set_control_par_str(get_ui_id($mic_gallery_select4),$CONTROL_PAR_PICTURE,!pic_select1_ov[4])
+        if ($drums_ov_mic_current=1)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[1])
+            $mic_gallery_select1 := 1
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_ov_mic_current=2)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[2])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 1
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_ov_mic_current=3)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[3])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 1
+            $mic_gallery_select4 := 0
+        else
+        if ($drums_ov_mic_current=4)
+            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[4])
+            $mic_gallery_select1 := 0
+            $mic_gallery_select2 := 0
+            $mic_gallery_select3 := 0
+            $mic_gallery_select4 := 1
+        end if
+        end if
+        end if
+        end if
+        if ($mix_ov_solo=1)
+            $mic_solo := 1
+        else
+        if ($mix_ov_solo=0)
+            $mic_solo := 0
+            if ($anysolo # 0 and (%solo_arr[8]=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            else
+            if (%solo_arr[8] # 0 or ($anysolo=0))
+                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
+            end if
+            end if
+        end if
+        end if
+        if ($mix_ov_dry=1)
+            $mic_dry := 1
+        else
+        if ($mix_ov_dry=0)
+            $mic_dry := 0
+        end if
+        end if
+    end if {($mic_current=9)}
+    end if {($mic_current=8)}
+    end if {($mic_current=7)}
+    end if {($mic_current=6)}
+    end if {($mic_current=5)}
+    end if {($mic_current=4)}
+    end if {($mic_current=3)}
+    end if {($mic_current=2)}
+    end if {($mic_current=1)}
+end function
+
+function update_mic_fader_labels
+    if ($drums_hh_mic_current=1)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_hh_mic_current=2)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_hh_mic_current=3)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_hh_mic_current=4)
+        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
+        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    end if
+    if ($drums_bdi_mic_current=1)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_bdi_mic_current=2)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_bdi_mic_current=3)
+        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
+        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    if ($drums_bdo_mic_current=1)
+        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
+        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_bdo_mic_current=2)
+        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
+        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    if ($drums_sntop_mic_current=1)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_sntop_mic_current=2)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_sntop_mic_current=3)
+        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_snbt_mic_current=1)
+        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
+        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_snbt_mic_current=2)
+        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    if ($drums_tomhi_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomhi_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomhi_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_tommid_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tommid_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tommid_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_tomlow_mic_current=1)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomlow_mic_current=2)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_tomlow_mic_current=3)
+        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
+        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    end if
+    end if
+    end if
+    if ($drums_ov_mic_current=1)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    else
+    if ($drums_ov_mic_current=2)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_ov_mic_current=3)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
+    else
+    if ($drums_ov_mic_current=4)
+        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
+        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
+    end if
+    end if
+    end if
+    end if
+end function
+
+function fx_eq_td_comp_reset
+    if ($fx_eq_reset=1)
+        $fx_eq_reset := 0
+    end if
+    if ($fx_td_reset=1)
+        $fx_td_reset := 0
+    end if
+    if ($fx_comp_reset=1)
+        $fx_comp_reset := 0
+    end if
+end function
+
+function hide_all_controls
+    $i := 1
+    while ($i<=$id2)
+        set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id21)
+        set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id22)
+        set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id23)
+        set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id41)
+        set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id42)
+        set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id43)
+        set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id1)
+        set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id5)
+        set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id3)
+        set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+    $i := 1
+    while ($i<=$id6)
+        set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        inc($i)
+    end while
+end function
+
+function set_mic_pictures
+    if ($drums_hh_mic_current=1)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
+    else
+    if ($drums_hh_mic_current=2)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
+    else
+    if ($drums_hh_mic_current=3)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
+    else
+    if ($drums_hh_mic_current=4)
+        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
+    end if
+    end if
+    end if
+    end if
+    if ($drums_bdi_mic_current=1)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
+    else
+    if ($drums_bdi_mic_current=2)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
+    else
+    if ($drums_bdi_mic_current=3)
+        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
+    end if
+    end if
+    end if
+    if ($drums_bdo_mic_current=1)
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
+    else
+    if ($drums_bdo_mic_current=2)
+        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
+    end if
+    end if
+    if ($drums_sntop_mic_current=1)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
+    else
+    if ($drums_sntop_mic_current=2)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
+    else
+    if ($drums_sntop_mic_current=3)
+        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
+    end if
+    end if
+    end if
+    if ($drums_snbt_mic_current=1)
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
+    else
+    if ($drums_snbt_mic_current=2)
+        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
+    end if
+    end if
+    if ($drums_tomhi_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
+    else
+    if ($drums_tomhi_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
+    else
+    if ($drums_tomhi_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
+    end if
+    end if
+    end if
+    if ($drums_tommid_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
+    else
+    if ($drums_tommid_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
+    else
+    if ($drums_tommid_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
+    end if
+    end if
+    end if
+    if ($drums_tomlow_mic_current=1)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
+    else
+    if ($drums_tomlow_mic_current=2)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
+    else
+    if ($drums_tomlow_mic_current=3)
+        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
+    end if
+    end if
+    end if
+    if ($drums_ov_mic_current=1)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
+    else
+    if ($drums_ov_mic_current=2)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
+    else
+    if ($drums_ov_mic_current=3)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
+    else
+    if ($drums_ov_mic_current=4)
+        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
+    end if
+    end if
+    end if
+    end if
+end function
+
+function set_micthumb
+    if ($mix_hh_sel=1)
+        $drums_hh_micthumb := 1
+    else
+    if ($mix_bdi_sel=1)
+        $drums_bdi_micthumb := 1
+    else
+    if ($mix_bdo_sel=1)
+        $drums_bdo_micthumb := 1
+    else
+    if ($mix_sntop_sel=1)
+        $drums_sntop_micthumb := 1
+    else
+    if ($mix_snbt_sel=1)
+        $drums_snbt_micthumb := 1
+    else
+    if ($mix_tomhi_sel=1)
+        $drums_tomhi_micthumb := 1
+    else
+    if ($mix_tommid_sel=1)
+        $drums_tommid_micthumb := 1
+    else
+    if ($mix_tomlow_sel=1)
+        $drums_tomlow_micthumb := 1
+    else
+    if ($mix_ov_sel=1)
+        $drums_ov_micthumb := 1
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+end function
+
+function update_fx_contols
+    if ($mix_eq=1)
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+    else
+    if ($mix_td=1)
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+    else
+    if ($mix_comp=1)
+        $i := 1
+        while ($i<=$id23)
+            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id43)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id21)
+            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id41)
+            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id42)
+            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+        $i := 1
+        while ($i<=$id22)
+            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+            inc($i)
+        end while
+    end if
+    end if
+    end if
+end function
+
+function update_rev_send
+    if ($i=0)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+    else
+    if ($i=1)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
+    else
+    if ($i=2)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
+    else
+    if ($i=3)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
+    else
+    if ($i=4)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
+    else
+    if ($i=5)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
+    else
+    if ($i=6)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
+    else
+    if ($i=7)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+    else
+    if ($i=8)
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+end function
+
+function update_all_volumes
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_hh_vol*7874,-1,-1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_bdi_vol*7874,-1,-1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_bdo_vol*7874,-1,-1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_sntop_vol*7874,-1,-1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_snbt_vol*7874,-1,-1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_tomhi_vol*7874,-1,-1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_tommid_vol*7874,-1,-1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_tomlow_vol*7874,-1,-1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_VOLUME,$mix_ov_vol*7874,-1,-1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
+    $i := 53
+    while ($i<=56)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 57
+    while ($i<=64)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 65
+    while ($i<=68)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 69
+    while ($i<=76)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 77
+    while ($i<=84)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+    $i := 85
+    while ($i<=92)
+        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
+        inc($i)
+    end while
+end function
+
+function update_solo_status
+    {parameter $busidx}
+    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=1)
+        %solo_arr[$busidx] := 1
+        $i := 0
+        while ($i<=9)
+            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+            inc($i)
+        end while
+        set_control_par(%select_ui_ids[$busidx],$CONTROL_PAR_VALUE,1)
+        $i := 0
+        while ($i<=8)
+            if (%solo_arr[$i]=0)
+                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                if ($i<=8)
+                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+                end if
+            else
+            if (%solo_arr[$i]=1)
+                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$busidx],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$busidx)
+                $anysolo := 1
+                call update_rev_send
+            end if
+            end if
+            inc($i)
+        end while
+    else
+    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=0)
+        %solo_arr[$busidx] := 0
+        $help1 := 0
+        $i := 0
+        while ($i<=8)
+            if (%solo_arr[$i]=1)
+                inc($help1)
+            else
+            if (%solo_arr[$i]=0)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+            end if
+            end if
+            inc($i)
+        end while
+        if ($help1>0)
+            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$busidx)
+            set_control_par_str(%solo_ui_ids[$busidx],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+        else
+        if ($help1=0)
+            call update_all_volumes
+            $anysolo := 0
+            $i := 0
+            while ($i<=8)
+                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
+                inc($i)
+            end while
+        end if
+        end if
+    end if
+    end if
+end function
+
+function set_fx_text
+    {parameter $busidx}
+    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
+
+    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$busidx))
+
+    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$busidx))
+    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$busidx))
+end function
+
+function assign_fx_hh
+    $fx_eq_lf := $fx_eq_lf_hh
+    $fx_eq_lg := $fx_eq_lg_hh
+    $fx_eq_lb := $fx_eq_lb_hh
+    $fx_eq_lmf := $fx_eq_lmf_hh
+    $fx_eq_lmg := $fx_eq_lmg_hh
+    $fx_eq_lmq := $fx_eq_lmq_hh
+    $fx_eq_hmf := $fx_eq_hmf_hh
+    $fx_eq_hmg := $fx_eq_hmg_hh
+    $fx_eq_hmq := $fx_eq_hmq_hh
+    $fx_eq_hf := $fx_eq_hf_hh
+    $fx_eq_hg := $fx_eq_hg_hh
+    $fx_eq_hb := $fx_eq_hb_hh
+    $fx_td_in := $fx_td_in_hh
+    $fx_td_atk := $fx_td_atk_hh
+    $fx_td_rel := $fx_td_rel_hh
+    $fx_td_out := $fx_td_out_hh
+    $fx_comp_tres := $fx_comp_tres_hh
+    $fx_comp_atk := $fx_comp_atk_hh
+    $fx_comp_rel := $fx_comp_rel_hh
+    $fx_comp_rat := $fx_comp_rat_hh
+    $fx_comp_mix := $fx_comp_mix_hh
+    $fx_comp_makeup := $fx_comp_makeup_hh
+end function
+
+function assign_fx_bdi
+    $fx_eq_lf := $fx_eq_lf_bdi
+    $fx_eq_lg := $fx_eq_lg_bdi
+    $fx_eq_lb := $fx_eq_lb_bdi
+    $fx_eq_lmf := $fx_eq_lmf_bdi
+    $fx_eq_lmg := $fx_eq_lmg_bdi
+    $fx_eq_lmq := $fx_eq_lmq_bdi
+    $fx_eq_hmf := $fx_eq_hmf_bdi
+    $fx_eq_hmg := $fx_eq_hmg_bdi
+    $fx_eq_hmq := $fx_eq_hmq_bdi
+    $fx_eq_hf := $fx_eq_hf_bdi
+    $fx_eq_hg := $fx_eq_hg_bdi
+    $fx_eq_hb := $fx_eq_hb_bdi
+    $fx_td_in := $fx_td_in_bdi
+    $fx_td_atk := $fx_td_atk_bdi
+    $fx_td_rel := $fx_td_rel_bdi
+    $fx_td_out := $fx_td_out_bdi
+    $fx_comp_tres := $fx_comp_tres_bdi
+    $fx_comp_atk := $fx_comp_atk_bdi
+    $fx_comp_rel := $fx_comp_rel_bdi
+    $fx_comp_rat := $fx_comp_rat_bdi
+    $fx_comp_mix := $fx_comp_mix_bdi
+    $fx_comp_makeup := $fx_comp_makeup_bdi
+end function
+
+function assign_fx_bdo
+    $fx_eq_lf := $fx_eq_lf_bdo
+    $fx_eq_lg := $fx_eq_lg_bdo
+    $fx_eq_lb := $fx_eq_lb_bdo
+    $fx_eq_lmf := $fx_eq_lmf_bdo
+    $fx_eq_lmg := $fx_eq_lmg_bdo
+    $fx_eq_lmq := $fx_eq_lmq_bdo
+    $fx_eq_hmf := $fx_eq_hmf_bdo
+    $fx_eq_hmg := $fx_eq_hmg_bdo
+    $fx_eq_hmq := $fx_eq_hmq_bdo
+    $fx_eq_hf := $fx_eq_hf_bdo
+    $fx_eq_hg := $fx_eq_hg_bdo
+    $fx_eq_hb := $fx_eq_hb_bdo
+    $fx_td_in := $fx_td_in_bdo
+    $fx_td_atk := $fx_td_atk_bdo
+    $fx_td_rel := $fx_td_rel_bdo
+    $fx_td_out := $fx_td_out_bdo
+    $fx_comp_tres := $fx_comp_tres_bdo
+    $fx_comp_atk := $fx_comp_atk_bdo
+    $fx_comp_rel := $fx_comp_rel_bdo
+    $fx_comp_rat := $fx_comp_rat_bdo
+    $fx_comp_mix := $fx_comp_mix_bdo
+    $fx_comp_makeup := $fx_comp_makeup_bdo
+end function
+
+function assign_fx_sntop
+    $fx_eq_lf := $fx_eq_lf_sntop
+    $fx_eq_lg := $fx_eq_lg_sntop
+    $fx_eq_lb := $fx_eq_lb_sntop
+    $fx_eq_lmf := $fx_eq_lmf_sntop
+    $fx_eq_lmg := $fx_eq_lmg_sntop
+    $fx_eq_lmq := $fx_eq_lmq_sntop
+    $fx_eq_hmf := $fx_eq_hmf_sntop
+    $fx_eq_hmg := $fx_eq_hmg_sntop
+    $fx_eq_hmq := $fx_eq_hmq_sntop
+    $fx_eq_hf := $fx_eq_hf_sntop
+    $fx_eq_hg := $fx_eq_hg_sntop
+    $fx_eq_hb := $fx_eq_hb_sntop
+    $fx_td_in := $fx_td_in_sntop
+    $fx_td_atk := $fx_td_atk_sntop
+    $fx_td_rel := $fx_td_rel_sntop
+    $fx_td_out := $fx_td_out_sntop
+    $fx_comp_tres := $fx_comp_tres_sntop
+    $fx_comp_atk := $fx_comp_atk_sntop
+    $fx_comp_rel := $fx_comp_rel_sntop
+    $fx_comp_rat := $fx_comp_rat_sntop
+    $fx_comp_mix := $fx_comp_mix_sntop
+    $fx_comp_makeup := $fx_comp_makeup_sntop
+end function
+
+function assign_fx_snbt
+    $fx_eq_lf := $fx_eq_lf_snbt
+    $fx_eq_lg := $fx_eq_lg_snbt
+    $fx_eq_lb := $fx_eq_lb_snbt
+    $fx_eq_lmf := $fx_eq_lmf_snbt
+    $fx_eq_lmg := $fx_eq_lmg_snbt
+    $fx_eq_lmq := $fx_eq_lmq_snbt
+    $fx_eq_hmf := $fx_eq_hmf_snbt
+    $fx_eq_hmg := $fx_eq_hmg_snbt
+    $fx_eq_hmq := $fx_eq_hmq_snbt
+    $fx_eq_hf := $fx_eq_hf_snbt
+    $fx_eq_hg := $fx_eq_hg_snbt
+    $fx_eq_hb := $fx_eq_hb_snbt
+    $fx_td_in := $fx_td_in_snbt
+    $fx_td_atk := $fx_td_atk_snbt
+    $fx_td_rel := $fx_td_rel_snbt
+    $fx_td_out := $fx_td_out_snbt
+    $fx_comp_tres := $fx_comp_tres_snbt
+    $fx_comp_atk := $fx_comp_atk_snbt
+    $fx_comp_rel := $fx_comp_rel_snbt
+    $fx_comp_rat := $fx_comp_rat_snbt
+    $fx_comp_mix := $fx_comp_mix_snbt
+    $fx_comp_makeup := $fx_comp_makeup_snbt
+end function
+
+function assign_fx_tomhi
+    $fx_eq_lf := $fx_eq_lf_tomhi
+    $fx_eq_lg := $fx_eq_lg_tomhi
+    $fx_eq_lb := $fx_eq_lb_tomhi
+    $fx_eq_lmf := $fx_eq_lmf_tomhi
+    $fx_eq_lmg := $fx_eq_lmg_tomhi
+    $fx_eq_lmq := $fx_eq_lmq_tomhi
+    $fx_eq_hmf := $fx_eq_hmf_tomhi
+    $fx_eq_hmg := $fx_eq_hmg_tomhi
+    $fx_eq_hmq := $fx_eq_hmq_tomhi
+    $fx_eq_hf := $fx_eq_hf_tomhi
+    $fx_eq_hg := $fx_eq_hg_tomhi
+    $fx_eq_hb := $fx_eq_hb_tomhi
+    $fx_td_in := $fx_td_in_tomhi
+    $fx_td_atk := $fx_td_atk_tomhi
+    $fx_td_rel := $fx_td_rel_tomhi
+    $fx_td_out := $fx_td_out_tomhi
+    $fx_comp_tres := $fx_comp_tres_tomhi
+    $fx_comp_atk := $fx_comp_atk_tomhi
+    $fx_comp_rel := $fx_comp_rel_tomhi
+    $fx_comp_rat := $fx_comp_rat_tomhi
+    $fx_comp_mix := $fx_comp_mix_tomhi
+    $fx_comp_makeup := $fx_comp_makeup_tomhi
+end function
+
+function assign_fx_tommid
+    $fx_eq_lf := $fx_eq_lf_tommid
+    $fx_eq_lg := $fx_eq_lg_tommid
+    $fx_eq_lb := $fx_eq_lb_tommid
+    $fx_eq_lmf := $fx_eq_lmf_tommid
+    $fx_eq_lmg := $fx_eq_lmg_tommid
+    $fx_eq_lmq := $fx_eq_lmq_tommid
+    $fx_eq_hmf := $fx_eq_hmf_tommid
+    $fx_eq_hmg := $fx_eq_hmg_tommid
+    $fx_eq_hmq := $fx_eq_hmq_tommid
+    $fx_eq_hf := $fx_eq_hf_tommid
+    $fx_eq_hg := $fx_eq_hg_tommid
+    $fx_eq_hb := $fx_eq_hb_tommid
+    $fx_td_in := $fx_td_in_tommid
+    $fx_td_atk := $fx_td_atk_tommid
+    $fx_td_rel := $fx_td_rel_tommid
+    $fx_td_out := $fx_td_out_tommid
+    $fx_comp_tres := $fx_comp_tres_tommid
+    $fx_comp_atk := $fx_comp_atk_tommid
+    $fx_comp_rel := $fx_comp_rel_tommid
+    $fx_comp_rat := $fx_comp_rat_tommid
+    $fx_comp_mix := $fx_comp_mix_tommid
+    $fx_comp_makeup := $fx_comp_makeup_tommid
+end function
+
+function assign_fx_tomlow
+    $fx_eq_lf := $fx_eq_lf_tomlow
+    $fx_eq_lg := $fx_eq_lg_tomlow
+    $fx_eq_lb := $fx_eq_lb_tomlow
+    $fx_eq_lmf := $fx_eq_lmf_tomlow
+    $fx_eq_lmg := $fx_eq_lmg_tomlow
+    $fx_eq_lmq := $fx_eq_lmq_tomlow
+    $fx_eq_hmf := $fx_eq_hmf_tomlow
+    $fx_eq_hmg := $fx_eq_hmg_tomlow
+    $fx_eq_hmq := $fx_eq_hmq_tomlow
+    $fx_eq_hf := $fx_eq_hf_tomlow
+    $fx_eq_hg := $fx_eq_hg_tomlow
+    $fx_eq_hb := $fx_eq_hb_tomlow
+    $fx_td_in := $fx_td_in_tomlow
+    $fx_td_atk := $fx_td_atk_tomlow
+    $fx_td_rel := $fx_td_rel_tomlow
+    $fx_td_out := $fx_td_out_tomlow
+    $fx_comp_tres := $fx_comp_tres_tomlow
+    $fx_comp_atk := $fx_comp_atk_tomlow
+    $fx_comp_rel := $fx_comp_rel_tomlow
+    $fx_comp_rat := $fx_comp_rat_tomlow
+    $fx_comp_mix := $fx_comp_mix_tomlow
+    $fx_comp_makeup := $fx_comp_makeup_tomlow
+end function
+
+function assign_fx_ov
+    $fx_eq_lf := $fx_eq_lf_ov
+    $fx_eq_lg := $fx_eq_lg_ov
+    $fx_eq_lb := $fx_eq_lb_ov
+    $fx_eq_lmf := $fx_eq_lmf_ov
+    $fx_eq_lmg := $fx_eq_lmg_ov
+    $fx_eq_lmq := $fx_eq_lmq_ov
+    $fx_eq_hmf := $fx_eq_hmf_ov
+    $fx_eq_hmg := $fx_eq_hmg_ov
+    $fx_eq_hmq := $fx_eq_hmq_ov
+    $fx_eq_hf := $fx_eq_hf_ov
+    $fx_eq_hg := $fx_eq_hg_ov
+    $fx_eq_hb := $fx_eq_hb_ov
+    $fx_td_in := $fx_td_in_ov
+    $fx_td_atk := $fx_td_atk_ov
+    $fx_td_rel := $fx_td_rel_ov
+    $fx_td_out := $fx_td_out_ov
+    $fx_comp_tres := $fx_comp_tres_ov
+    $fx_comp_atk := $fx_comp_atk_ov
+    $fx_comp_rel := $fx_comp_rel_ov
+    $fx_comp_rat := $fx_comp_rat_ov
+    $fx_comp_mix := $fx_comp_mix_ov
+    $fx_comp_makeup := $fx_comp_makeup_ov
+end function
+
+function assign_fx_master
+    $fx_eq_lf := $fx_eq_lf_master
+    $fx_eq_lg := $fx_eq_lg_master
+    $fx_eq_lb := $fx_eq_lb_master
+    $fx_eq_lmf := $fx_eq_lmf_master
+    $fx_eq_lmg := $fx_eq_lmg_master
+    $fx_eq_lmq := $fx_eq_lmq_master
+    $fx_eq_hmf := $fx_eq_hmf_master
+    $fx_eq_hmg := $fx_eq_hmg_master
+    $fx_eq_hmq := $fx_eq_hmq_master
+    $fx_eq_hf := $fx_eq_hf_master
+    $fx_eq_hg := $fx_eq_hg_master
+    $fx_eq_hb := $fx_eq_hb_master
+    $fx_td_in := $fx_td_in_master
+    $fx_td_atk := $fx_td_atk_master
+    $fx_td_rel := $fx_td_rel_master
+    $fx_td_out := $fx_td_out_master
+    $fx_td_soft := $fx_td_soft_master
+    $fx_comp_tres := $fx_comp_tres_master
+    $fx_comp_atk := $fx_comp_atk_master
+    $fx_comp_rel := $fx_comp_rel_master
+    $fx_comp_rat := $fx_comp_rat_master
+    $fx_comp_mix := $fx_comp_mix_master
+    $fx_comp_makeup := $fx_comp_makeup_master
+end function
+
+on persistence_changed
     if ($menu_drums=1)
 
         set_skin_offset(0)
@@ -10447,146 +12014,6 @@ on init
     end if {-($menu_mixer=1)}
     end if {-($menu_drums=1)}
 
-    set_control_help($menu_beats,"A selection of beats in various styles.")
-    set_control_help($menu_drums,"Overview of the Drumkit and all microphones on it.")
-    set_control_help($menu_mixer,"Mixing console to adjust Volumes and Effects.")
-    set_control_help($menu_micsel,"Direct access to the current selected microphone.")
-    set_control_help($menu_option,"Options dialogue to change Output channels, Midi mappings, Velocity curve and Snare Bleed.")
-    set_control_help($drums_hh_micthumb,"Click to change the microphone on the HiHat.")
-    set_control_help($drums_bdi_micthumb,"Click to change the microphone on the Bassdrum (inside).")
-    set_control_help($drums_bdo_micthumb,"Click to change the microphone on the Bassdrum (outside).")
-    set_control_help($drums_sntop_micthumb,"Click to change the microphone on the Snare (top).")
-    set_control_help($drums_snbt_micthumb,"Click to change the microphone on the Snare (bottom).")
-    set_control_help($drums_tomhi_micthumb,"Click to change the microphone on the High Rack Tom.")
-    set_control_help($drums_tommid_micthumb,"Click to change the microphone on the Low Rack Tom.")
-    set_control_help($drums_tomlow_micthumb,"Click to change the microphone on the Floor Tom.")
-    set_control_help($drums_ov_micthumb,"Click to change the overhead microphones.")
-    set_control_help($mix_eq,"Click to switch to the Equalizer.")
-    set_control_help($mix_td,"Click to switch to the Transient Designer.")
-    set_control_help($mix_comp,"Click to switch to the Compressor.")
-    set_control_help($mix_load,"Click to load a preset.")
-    set_control_help($mix_save,"Click to slide a preset.")
-    set_control_help($mix_master_select,"Click to change EQ, Trasient Designer or Compressor for the Master Channel.")
-    set_control_help($mix_hh_vol,"Slide up/down to adjust the Volume for the HiHat Microphone.")
-    set_control_help($mix_bdi_vol,"Slide up/down to adjust the Volume for the BassDrum (inside) Microphone.")
-    set_control_help($mix_bdo_vol,"Slide up/down to adjust the Volume for the BassDrum (outside) Microphone.")
-    set_control_help($mix_sntop_vol,"Slide up/down to adjust the Volume for the Snare (top) Microphone.")
-    set_control_help($mix_snbt_vol,"Slide up/down to adjust the Volume for the Snare (bottom) Microphone.")
-    set_control_help($mix_tomhi_vol,"Slide up/down to adjust the Volume for the High Rack Tom Microphone.")
-    set_control_help($mix_tommid_vol,"Slide up/down to adjust the Volume for the Low Rack Tom Microphone.")
-    set_control_help($mix_tomlow_vol,"Slide up/down to adjust the Volume for the Floor Tom Microphone.")
-    set_control_help($mix_ov_vol,"Slide up/down to adjust the Volume for the Overhead Microphones.")
-    set_control_help($mix_rev_vol,"Slide up/down to adjust the Volume for the global Reverb.")
-    set_control_help($mix_hh_solo,"Click to hear the HiHat solo. Click a second time to hear all instruments again.")
-    set_control_help($mix_bdi_solo,"Click to hear the BassDrum (inside) solo.")
-    set_control_help($mix_bdo_solo,"Click to hear the BassDrum (outside) solo.")
-    set_control_help($mix_sntop_solo,"Click to hear the Snare (top) solo.")
-    set_control_help($mix_snbt_solo,"Click to hear the  Snare (bottom) solo.")
-    set_control_help($mix_tomhi_solo,"Click to hear the High Rack Tom solo.")
-    set_control_help($mix_tommid_solo,"Click to hear the Low Rack Tom solo.")
-    set_control_help($mix_tomlow_solo,"Click to hear the Floor Tom solo.")
-    set_control_help($mix_ov_solo,"Click to hear the Overhead microphones solo.")
-    set_control_help($mix_hh_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the HiHat.")
-    set_control_help($mix_bdi_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the BassDrum (inside).")
-    set_control_help($mix_bdo_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the BassDrum (outside).")
-    set_control_help($mix_sntop_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Snare (top).")
-    set_control_help($mix_snbt_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Snare (bottom).")
-    set_control_help($mix_tomhi_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the High Rack Tom.")
-    set_control_help($mix_tommid_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Low Rack Tom.")
-    set_control_help($mix_tomlow_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Floor Tom.")
-    set_control_help($mix_ov_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the Overhead Microphones.")
-    set_control_help($mix_hh_pan,"Turn to level the HiHat between left and right channel.")
-    set_control_help($mix_bdi_pan,"Turn to level the BassDrum (inside) between left and right channel.")
-    set_control_help($mix_bdo_pan,"Turn to level the BassDrum (outside) between left and right channel.")
-    set_control_help($mix_sntop_pan,"Turn to level the Snare (top) between left and right channel.")
-    set_control_help($mix_snbt_pan,"Turn to level the Snare (bottom) between left and right channel.")
-    set_control_help($mix_tomhi_pan,"Turn to level the High Rack Tom between left and right channel.")
-    set_control_help($mix_tommid_pan,"Turn to level the Low Rack Tom between left and right channel.")
-    set_control_help($mix_tomlow_pan,"Turn to level the Floor Tom between left and right channel.")
-    set_control_help($mix_ov_pan,"Turn to level the Overhead microphone between left and right channel. (only when the 'Mono Button' is activated)")
-    set_control_help($mix_hh_ov,"Turn to adjust the amount of overhead signal for the HiHat.")
-    set_control_help($mix_bdi_ov,"Turn to adjust the amount of overhead signal for the BassDrum.")
-    set_control_help($mix_sntop_ov,"Turn to adjust the amount of overhead signal for the Snare.")
-    set_control_help($mix_tomhi_ov,"Turn to adjust the amount of overhead signal for the High Rack Tom.")
-    set_control_help($mix_tommid_ov,"Turn to adjust the amount of overhead signal for the Low Rack Tom.")
-    set_control_help($mix_tomlow_ov,"Turn to adjust the amount of overhead signal for the Floor Tom.")
-    set_control_help($mix_hh_rev,"Turn to adjust the reverb amount for the HiHat Channel.")
-    set_control_help($mix_bdi_rev,"Turn to adjust the reverb amount for the BassDrum (inside) Channel.")
-    set_control_help($mix_bdo_rev,"Turn to adjust the reverb amount for the BassDrum (outside) Channel.")
-    set_control_help($mix_sntop_rev,"Turn to adjust the reverb amount for the Snare (top) Channel.")
-    set_control_help($mix_snbt_rev,"Turn to adjust the reverb amount for the Snare (bottom) Channel.")
-    set_control_help($mix_tomhi_rev,"Turn to adjust the reverb amount for the High Rack Tom Channel.")
-    set_control_help($mix_tommid_rev,"Turn to adjust the reverb amount for the Low Rack Tom Channel.")
-    set_control_help($mix_tomlow_rev,"Turn to adjust the reverb amount for the Floor Tom Channel.")
-    set_control_help($mix_ov_rev,"Turn to adjust the reverb amount for the Overhead Channel.")
-    set_control_help($mix_hh_sel,"Click to select the HiHat Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_bdi_sel,"Click to select the BassDrum (inside) Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_bdo_sel,"Click to select the BassDrum (outside) Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_sntop_sel,"Click to select the Snare (top) Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_snbt_sel,"Click to select the Snare (bottom) Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_tomhi_sel,"Click to select the High Rack Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_tommid_sel,"Click to select the Low Rack Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_tomlow_sel,"Click to select the Floor Tom Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_ov_sel,"Click to select the Overhead Channel in order to edit Equalizer, Transient Designer or Compressor.")
-    set_control_help($mix_ov_spread,"Turn to adjust the stereo width of the Overhead channel.")
-    set_control_help($mix_ov_mono,"Click to switch between stereo and mono mode for the Overhead channel.")
-    set_control_help($mix_rev_hp,"Turn to adjust the HighPass Frequency for the Reverb Channel. If you turn the knob completely to the left the HighPass is disabled.")
-    set_control_help($mix_rev_lp,"Turn to adjust the LowPass Frequency for the Reverb Channel. If you turn the knob completely to the right the LowPass is disabled.")
-    set_control_help($mix_rev_arrowup,"Click to switch to the next Room Type for the Reverb Channel.")
-    set_control_help($mix_rev_arrowdown,"Click to switch to the previous Room Type for the Reverb Channel")
-    set_control_help($mix_bd_link,"Click to link the Volume sliders of Bassdrum inside & outside.")
-    set_control_help($mix_sn_link,"Click to link the Volume sliders of Snare top & bottom.")
-    set_control_help($menu_play,"Click to Play the current loaded Midi Beat")
-    set_control_help($label_beat,"Drag & Drop the current selected beat directly into a Midi Track of your DAW.")
-    set_control_help($fx_eq_lf,"Turn to adjust the Highpass Frequency for the current selected channel.")
-    set_control_help($fx_eq_lg,"Turn to adjust the Highpass Gain for the current selected channel.")
-    set_control_help($fx_eq_lb,"Click to switch the mode of the Highpass between Bell and Cut for the current selected channel.")
-    set_control_help($fx_eq_lmf,"Turn to adjust the Lower Mids Frequency for the current selected channel.")
-    set_control_help($fx_eq_lmg,"Turn to adjust the Lower Mids Gain for the current selected channel.")
-    set_control_help($fx_eq_lmq,"Turn to adjust the Lower Mids Q-Factor for the current selected channel.")
-    set_control_help($fx_eq_hmf,"Turn to adjust the Higher Mids Frequency for the current selected channel.")
-    set_control_help($fx_eq_hmg,"Turn to adjust the Higher Mids Gain for the current selected channel.")
-    set_control_help($fx_eq_hmq,"Turn to adjust the Higher Mids Q-Factor for the current selected channel.")
-    set_control_help($fx_eq_hf,"Turn to adjust the Lowpass Frequency for the current selected channel.")
-    set_control_help($fx_eq_hg,"Turn to adjust the Lowpass Gain for the current selected channel.")
-    set_control_help($fx_eq_hb,"Click to switch the mode of the Lowpass between Bell and Cut for the current selected channel.")
-    set_control_help($fx_td_in,"Turn to adjust the Input Level of the Transient Designer for the current selected channel.")
-    set_control_help($fx_td_atk,"Turn to adjust the Attack of the Transient Designer for the current selected channel.")
-    set_control_help($fx_td_rel,"Turn to adjust the Release of the Transient Designer for the current selected channel.")
-    set_control_help($fx_td_out,"Turn to adjust the Output Level of the Transient Designer for the current selected channel.")
-    set_control_help($fx_comp_tres,"Turn to adjust the Treshold Level of the Compressor for the current selected channel.")
-    set_control_help($fx_comp_rat,"Turn to adjust the Compression Radio of the Compressor for the current selected channel.")
-    set_control_help($fx_comp_atk,"Turn to adjust the Attack of the Compressor for the current selected channel.")
-    set_control_help($fx_comp_rel,"Turn to adjust the Release of the Compressor for the current selected channel.")
-    set_control_help($fx_comp_makeup,"Turn to adjust the Make Up Level of the Compressor for the current selected channel.")
-    set_control_help($fx_comp_mix,"Turn to level between compressed und uncompressed signal for the current selected channel.")
-    set_control_help($fx_eq_reset,"Click to reset all parameters of the Equalizer. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Equalizer this button switches back to 'Reset'.")
-    set_control_help($fx_td_reset,"Click to reset all parameters of the Transient Designer. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Transient Designer this button switches back to 'Reset'.")
-    set_control_help($fx_td_soft,"Click to achieve a smoother sound for the Transient Designer.")
-    set_control_help($fx_comp_reset,"Click to reset all parameters of the Compressor. After the reset the button displays 'Last edit' which lets you jump back to your previous configuration. As soon as you change any parameter of the Compressor this button switches back to 'Reset'.")
-    set_control_help($mic_gallery_select1,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
-    set_control_help($mic_gallery_select2,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
-    set_control_help($mic_gallery_select3,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
-    set_control_help($mic_gallery_select4,"Click to switch the microphone for the current selected channel. Click a second time to jump back to the Drumset Overview.")
-    set_control_help($mic_0db,"Click to hear the current selected channel at a Volume of 0dB.")
-    set_control_help($mic_solo,"Click to hear the current selected channel solo.")
-    set_control_help($mic_dry,"Click to mute EQ, Transient Designer, Compressor and Reverb for the current selected channel.")
-    set_control_help(%options_table_vel,"Click and draw to change the Velocity Curve.")
-    set_control_help($options_velcurve_linear,"Click to switch the Velocity Curve to Linear.")
-    set_control_help($options_velcurve_degressive,"Click to switch the Velocity Curve to Degressive.")
-    set_control_help($options_velcurve_progressive,"Click to switch the Velocity Curve to Progressive.")
-    set_control_help($options_wires_snbtm,"Turn to adjust the amount of Snare Bleed (How loud you hear the resonating snare wires when you hit a Tom or the BassDrum).  ")
-    set_control_help($options_credits,"Click to have a look at the people who created the Drum Mic'a")
-    set_control_help($options_mapping_gm,"Click to switch the Midi Mapping to 'General Midi'.")
-    set_control_help($options_mapping_vdrum1,"Click to switch the Midi Mapping to 'V-Drums TD-12'.")
-    set_control_help($options_mapping_vdrum2,"Click to switch the Midi Mapping to 'V-Drums TD-3/6'.")
-    set_control_help($options_mapping_ez,"Click to switch the Midi Mapping to 'EZ Drummer'.")
-    set_control_help($options_mapping_superior,"Click to switch the Midi Mapping to 'Superior Drummer'.")
-    set_control_help($options_mapping_addictive,"Click to switch the Midi Mapping to 'Addictive Drums'.")
-    set_control_help($options_mapping_bfd,"Click to switch the Midi Mapping to 'BFD'.")
-    set_control_help($mix_bdo_phase,"Click to switch the phase of the BassDrum (outside) channel.")
-    set_control_help($mix_snbt_phase,"Click to switch the phase of the Snare (bottom) channel.")
-
     if ($mix_bd_link=1)
         $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
     else
@@ -10596,1430 +12023,7 @@ on init
     end if
     end if
 
-end on {init}
-
-function load_file
-    $old_play := $menu_play
-    $processing_flag := 1
-    note_off($ALL_EVENTS)
-    fade_out($ALL_EVENTS,5000,1)
-    while ($play_flag=1)
-        wait(1000)
-    end while
-    $load_mf_id := load_midi_file(@file_path)
-    while ($load_mf_id # -1)
-        wait(1000)
-    end while
-    $i := 0
-    while ($i<=127)
-        %mapping_correct[$i] := pgs_get_key_val(CURRENTMAPPING,$i)
-        inc($i)
-    end while
-    mf_get_first($track_idx)
-    $count_1 := 0
-    while (mf_get_command() # 0)
-        %event_array_1[$count_1*5] := mf_get_pos()
-        %event_array_1[$count_1*5+1] := mf_get_command()
-        $note_mapped := %mapping_correct[mf_get_byte_one()]
-        %event_array_1[$count_1*5+2] := $note_mapped
-        mf_set_byte_one($note_mapped)
-        %event_array_1[$count_1*5+3] := mf_get_byte_two()
-        %event_array_1[$count_1*5+4] := -1
-        inc($count_1)
-        mf_get_next($track_idx)
-    end while
-    $mf_num_events := $count_1
-    mf_get_last($track_idx)
-    $mf_length_1 := ((mf_get_pos()-1)/960+1)*960
-    $count_1 := 0
-    while ($count_1<$mf_num_events)
-        if (%event_array_1[$count_1*5+1]=$MIDI_COMMAND_NOTE_ON and (%event_array_1[$count_1*5+3] # 0))
-            $count_2 := $count_1+1
-            while ($count_2<$mf_num_events)
-                if ((%event_array_1[$count_2*5+1]=$MIDI_COMMAND_NOTE_OFF or (%event_array_1[$count_2*5+1]=$MIDI_COMMAND_NOTE_ON and (%event_array_1[$count_2*5+3]=0))) and (%event_array_1[$count_2*5+2]=%event_array_1[$count_1*5+2]) and (%event_array_1[$count_2*5+4]=-1))
-                    %event_array_1[$count_1*5+4] := $count_2
-                    %event_array_1[$count_2*5+4] := $count_1
-                    if (%event_array_1[$count_1*5]=%event_array_1[$count_2*5])
-                        inc(%event_array_1[$count_2*5])
-                    end if
-                    $count_2 := $mf_num_events
-                end if
-                wait(10)
-                inc($count_2)
-            end while
-        end if
-        wait(1)
-        inc($count_1)
-    end while
-    $menu_play := $old_play
-    $processing_flag := 0
-end function
-
-function init_event_array
-    $count_1 := 0
-    while ($count_1<($mf_num_events*5+4))
-        %event_array_2[$count_1] := %event_array_1[$count_1]
-        wait(1)
-        inc($count_1)
-    end while
-    $mf_length_2 := $mf_length_1
-end function
-
-
-function reset_mic_0db
-    if ($mic_current=1 and (%vol_buffer[1]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=2 and (%vol_buffer[2]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=3 and (%vol_buffer[3]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=4 and (%vol_buffer[4]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=5 and (%vol_buffer[5]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=6 and (%vol_buffer[6]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=7 and (%vol_buffer[7]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=8 and (%vol_buffer[8]=0))
-        $mic_0db := 0
-    else
-    if ($mic_current=9 and (%vol_buffer[9]=0))
-        $mic_0db := 0
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-end function
-
-function update_mic_pictures
-    if ($mic_current=1)
-        $anz_mikros := 4
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_hh[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_hh[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_hh[3])
-        set_control_par_str(get_ui_id($mic_gallery_select4),$CONTROL_PAR_PICTURE,!pic_select1_hh[4])
-        if ($drums_hh_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_hh_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_hh_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_hh_mic_current=4)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_hh[4])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 1
-        end if
-        end if
-        end if
-        end if
-        if ($mix_hh_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_hh_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[0]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[0] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_hh_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_hh_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=2)
-        $anz_mikros := 3
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_bdi[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_bdi[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_bdi[3])
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_bdi_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_bdi_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_bdi_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdi[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-        end if
-        end if
-        end if
-        if ($mix_bdi_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_bdi_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[1]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[1] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_bdi_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_bdi_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=3)
-        $anz_mikros := 2
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_bdo[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_bdo[2])
-        set_control_par(get_ui_id($mic_gallery_select3),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_bdo_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdo[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-        else
-        if ($drums_bdo_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_bdo[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-        end if
-        end if
-        if ($mix_bdo_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_bdo_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[2]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[2] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_bdo_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_bdo_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=4)
-        $anz_mikros := 3
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_sntop[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_sntop[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_sntop[3])
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_sntop_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_sntop_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_sntop_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_sntop[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-        end if
-        end if
-        end if
-        if ($mix_sntop_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_sntop_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[3]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[3] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_sntop_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_sntop_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=5)
-        $anz_mikros := 2
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_snbt[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_snbt[2])
-        set_control_par(get_ui_id($mic_gallery_select3),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_snbt_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_snbt[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-        else
-        if ($drums_snbt_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_snbt[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-        end if
-        end if
-        if ($mix_snbt_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_snbt_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[4]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[4] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_snbt_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_snbt_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=6)
-        $anz_mikros := 3
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tomhi[3])
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_tomhi_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tomhi_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tomhi_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomhi[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-        end if
-        end if
-        end if
-        if ($mix_tomhi_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_tomhi_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[5]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[5] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_tomhi_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_tomhi_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=7)
-        $anz_mikros := 3
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tommid[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tommid[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tommid[3])
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_tommid_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tommid_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tommid_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tommid[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-        end if
-        end if
-        end if
-        if ($mix_tommid_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_tommid_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[6]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[6] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_tommid_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_tommid_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=8)
-        $anz_mikros := 3
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_tomlow[3])
-        set_control_par(get_ui_id($mic_gallery_select4),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        if ($drums_tomlow_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tomlow_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-        else
-        if ($drums_tomlow_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_tomlow[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-        end if
-        end if
-        end if
-        if ($mix_tomlow_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_tomlow_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[7]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[7] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_tomlow_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_tomlow_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    else
-    if ($mic_current=9)
-        $anz_mikros := 4
-        set_control_par_str(get_ui_id($mic_gallery_select1),$CONTROL_PAR_PICTURE,!pic_select1_ov[1])
-        set_control_par_str(get_ui_id($mic_gallery_select2),$CONTROL_PAR_PICTURE,!pic_select1_ov[2])
-        set_control_par_str(get_ui_id($mic_gallery_select3),$CONTROL_PAR_PICTURE,!pic_select1_ov[3])
-        set_control_par_str(get_ui_id($mic_gallery_select4),$CONTROL_PAR_PICTURE,!pic_select1_ov[4])
-        if ($drums_ov_mic_current=1)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[1])
-            $mic_gallery_select1 := 1
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_ov_mic_current=2)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[2])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 1
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_ov_mic_current=3)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[3])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 1
-            $mic_gallery_select4 := 0
-        else
-        if ($drums_ov_mic_current=4)
-            set_control_par_str(get_ui_id($mic_img_current),$CONTROL_PAR_PICTURE,!pic_close_ov[4])
-            $mic_gallery_select1 := 0
-            $mic_gallery_select2 := 0
-            $mic_gallery_select3 := 0
-            $mic_gallery_select4 := 1
-        end if
-        end if
-        end if
-        end if
-        if ($mix_ov_solo=1)
-            $mic_solo := 1
-        else
-        if ($mix_ov_solo=0)
-            $mic_solo := 0
-            if ($anysolo # 0 and (%solo_arr[8]=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if (%solo_arr[8] # 0 or ($anysolo=0))
-                set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_solo")
-            end if
-            end if
-        end if
-        end if
-        if ($mix_ov_dry=1)
-            $mic_dry := 1
-        else
-        if ($mix_ov_dry=0)
-            $mic_dry := 0
-        end if
-        end if
-    end if {($mic_current=9)}
-    end if {($mic_current=8)}
-    end if {($mic_current=7)}
-    end if {($mic_current=6)}
-    end if {($mic_current=5)}
-    end if {($mic_current=4)}
-    end if {($mic_current=3)}
-    end if {($mic_current=2)}
-    end if {($mic_current=1)}
-end function
-
-function update_mic_fader_labels
-    if ($drums_hh_mic_current=1)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_hh_mic_current=2)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=3)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh8040")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_hh_mic_current=4)
-        set_control_par_str(get_ui_id($mix_hh_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mk4")
-        set_control_par_str(get_ui_id($mix_hh_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
-    if ($drums_bdi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e901")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_bdi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_bdi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e902")
-        set_control_par_str(get_ui_id($mix_bdi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    if ($drums_bdo_mic_current=1)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_tlm1070r")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_bdo_mic_current=2)
-        set_control_par_str(get_ui_id($mix_bdo_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_d01")
-        set_control_par_str(get_ui_id($mix_bdo_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_sntop_mic_current=1)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md441")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=2)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_sntop_mic_current=3)
-        set_control_par_str(get_ui_id($mix_sntop_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_sntop_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_snbt_mic_current=1)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e906")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_snbt_mic_current=2)
-        set_control_par_str(get_ui_id($mix_snbt_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_snbt_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    if ($drums_tomhi_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomhi_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomhi_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomhi_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tommid_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tommid_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tommid_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tommid_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_tomlow_mic_current=1)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e904")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=2)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_md421")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_tomlow_mic_current=3)
-        set_control_par_str(get_ui_id($mix_tomlow_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_u87")
-        set_control_par_str(get_ui_id($mix_tomlow_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    end if
-    end if
-    end if
-    if ($drums_ov_mic_current=1)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_e914")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    else
-    if ($drums_ov_mic_current=2)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mic_km184")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=3)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_usm69i")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_neumann")
-    else
-    if ($drums_ov_mic_current=4)
-        set_control_par_str(get_ui_id($mix_ov_miclabel),$CONTROL_PAR_PICTURE,"dm_label_mix_mkh800")
-        set_control_par_str(get_ui_id($mix_ov_vol),$CONTROL_PAR_PICTURE,"mixer_fader_sennheiser")
-    end if
-    end if
-    end if
-    end if
-end function
-
-function fx_eq_td_comp_reset
-    if ($fx_eq_reset=1)
-        $fx_eq_reset := 0
-    end if
-    if ($fx_td_reset=1)
-        $fx_td_reset := 0
-    end if
-    if ($fx_comp_reset=1)
-        $fx_comp_reset := 0
-    end if
-end function
-
-function hide_all_controls
-    $i := 1
-    while ($i<=$id2)
-        set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id21)
-        set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id22)
-        set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id23)
-        set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id41)
-        set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id42)
-        set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id43)
-        set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id1)
-        set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id5)
-        set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id3)
-        set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-    $i := 1
-    while ($i<=$id6)
-        set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        inc($i)
-    end while
-end function
-
-function set_mic_pictures
-    if ($drums_hh_mic_current=1)
-        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[1])
-    else
-    if ($drums_hh_mic_current=2)
-        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[2])
-    else
-    if ($drums_hh_mic_current=3)
-        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[3])
-    else
-    if ($drums_hh_mic_current=4)
-        set_control_par_str(get_ui_id($drums_hh_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_hh[4])
-    end if
-    end if
-    end if
-    end if
-    if ($drums_bdi_mic_current=1)
-        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[1])
-    else
-    if ($drums_bdi_mic_current=2)
-        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[2])
-    else
-    if ($drums_bdi_mic_current=3)
-        set_control_par_str(get_ui_id($drums_bdi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdi[3])
-    end if
-    end if
-    end if
-    if ($drums_bdo_mic_current=1)
-        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[1])
-    else
-    if ($drums_bdo_mic_current=2)
-        set_control_par_str(get_ui_id($drums_bdo_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_bdo[2])
-    end if
-    end if
-    if ($drums_sntop_mic_current=1)
-        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[1])
-    else
-    if ($drums_sntop_mic_current=2)
-        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[2])
-    else
-    if ($drums_sntop_mic_current=3)
-        set_control_par_str(get_ui_id($drums_sntop_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_sntop[3])
-    end if
-    end if
-    end if
-    if ($drums_snbt_mic_current=1)
-        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[1])
-    else
-    if ($drums_snbt_mic_current=2)
-        set_control_par_str(get_ui_id($drums_snbt_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_snbt[2])
-    end if
-    end if
-    if ($drums_tomhi_mic_current=1)
-        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[1])
-    else
-    if ($drums_tomhi_mic_current=2)
-        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[2])
-    else
-    if ($drums_tomhi_mic_current=3)
-        set_control_par_str(get_ui_id($drums_tomhi_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomhi[3])
-    end if
-    end if
-    end if
-    if ($drums_tommid_mic_current=1)
-        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[1])
-    else
-    if ($drums_tommid_mic_current=2)
-        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[2])
-    else
-    if ($drums_tommid_mic_current=3)
-        set_control_par_str(get_ui_id($drums_tommid_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tommid[3])
-    end if
-    end if
-    end if
-    if ($drums_tomlow_mic_current=1)
-        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[1])
-    else
-    if ($drums_tomlow_mic_current=2)
-        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[2])
-    else
-    if ($drums_tomlow_mic_current=3)
-        set_control_par_str(get_ui_id($drums_tomlow_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_tomlow[3])
-    end if
-    end if
-    end if
-    if ($drums_ov_mic_current=1)
-        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[1])
-    else
-    if ($drums_ov_mic_current=2)
-        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[2])
-    else
-    if ($drums_ov_mic_current=3)
-        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[3])
-    else
-    if ($drums_ov_mic_current=4)
-        set_control_par_str(get_ui_id($drums_ov_micthumb),$CONTROL_PAR_PICTURE,!pic_thumb_ov[4])
-    end if
-    end if
-    end if
-    end if
-end function
-
-function set_micthumb
-    if ($mix_hh_sel=1)
-        $drums_hh_micthumb := 1
-    else
-    if ($mix_bdi_sel=1)
-        $drums_bdi_micthumb := 1
-    else
-    if ($mix_bdo_sel=1)
-        $drums_bdo_micthumb := 1
-    else
-    if ($mix_sntop_sel=1)
-        $drums_sntop_micthumb := 1
-    else
-    if ($mix_snbt_sel=1)
-        $drums_snbt_micthumb := 1
-    else
-    if ($mix_tomhi_sel=1)
-        $drums_tomhi_micthumb := 1
-    else
-    if ($mix_tommid_sel=1)
-        $drums_tommid_micthumb := 1
-    else
-    if ($mix_tomlow_sel=1)
-        $drums_tomlow_micthumb := 1
-    else
-    if ($mix_ov_sel=1)
-        $drums_ov_micthumb := 1
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-end function
-
-function update_fx_contols
-    if ($mix_eq=1)
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_td=1)
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    else
-    if ($mix_comp=1)
-        $i := 1
-        while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-        $i := 1
-        while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-        end while
-    end if
-    end if
-    end if
-end function
-
-function update_rev_send
-    if ($i=0)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-    else
-    if ($i=1)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-    else
-    if ($i=2)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-    else
-    if ($i=3)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-    else
-    if ($i=4)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-    else
-    if ($i=5)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-    else
-    if ($i=6)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-    else
-    if ($i=7)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-    else
-    if ($i=8)
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-end function
-
-function update_all_volumes
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_hh_vol*7874,-1,-1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_bdi_vol*7874,-1,-1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_bdo_vol*7874,-1,-1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_sntop_vol*7874,-1,-1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_snbt_vol*7874,-1,-1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_tomhi_vol*7874,-1,-1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_tommid_vol*7874,-1,-1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_tomlow_vol*7874,-1,-1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_VOLUME,$mix_ov_vol*7874,-1,-1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    $i := 53
-    while ($i<=56)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_hh_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 57
-    while ($i<=64)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_bdi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 65
-    while ($i<=68)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_sntop_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 69
-    while ($i<=76)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomhi_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 77
-    while ($i<=84)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tommid_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-    $i := 85
-    while ($i<=92)
-        set_engine_par($ENGINE_PAR_VOLUME,1000*$mix_ov_vol/127*($mix_tomlow_ov*7874)/1000,$i,-1,-1)
-        inc($i)
-    end while
-end function
-
-function update_solo_status
-    {parameter $busidx}
-    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[$busidx] := 1
-        $i := 0
-        while ($i<=9)
-            set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            inc($i)
-        end while
-        set_control_par(%select_ui_ids[$busidx],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$busidx],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$busidx)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
-            inc($i)
-        end while
-    else
-    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[$busidx] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$busidx)
-            set_control_par_str(%solo_ui_ids[$busidx],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
-    end if
-    end if
-end function
-
-function set_fx_text
-    {parameter $busidx}
-    set_text($fx_eq_lf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_lg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_lmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_lmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_lmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_hmf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_hmg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_hmq_val,get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_hf_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_eq_hg_val,get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$busidx))
-
-    set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$busidx))
-
-    set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_comp_atk_val,get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_comp_rel_val,get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_comp_rat_val,"1:" & get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_comp_mix_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$busidx))
-    set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$busidx))
-end function
-
-function assign_fx_hh
-    $fx_eq_lf := $fx_eq_lf_hh
-    $fx_eq_lg := $fx_eq_lg_hh
-    $fx_eq_lb := $fx_eq_lb_hh
-    $fx_eq_lmf := $fx_eq_lmf_hh
-    $fx_eq_lmg := $fx_eq_lmg_hh
-    $fx_eq_lmq := $fx_eq_lmq_hh
-    $fx_eq_hmf := $fx_eq_hmf_hh
-    $fx_eq_hmg := $fx_eq_hmg_hh
-    $fx_eq_hmq := $fx_eq_hmq_hh
-    $fx_eq_hf := $fx_eq_hf_hh
-    $fx_eq_hg := $fx_eq_hg_hh
-    $fx_eq_hb := $fx_eq_hb_hh
-    $fx_td_in := $fx_td_in_hh
-    $fx_td_atk := $fx_td_atk_hh
-    $fx_td_rel := $fx_td_rel_hh
-    $fx_td_out := $fx_td_out_hh
-    $fx_comp_tres := $fx_comp_tres_hh
-    $fx_comp_atk := $fx_comp_atk_hh
-    $fx_comp_rel := $fx_comp_rel_hh
-    $fx_comp_rat := $fx_comp_rat_hh
-    $fx_comp_mix := $fx_comp_mix_hh
-    $fx_comp_makeup := $fx_comp_makeup_hh
-end function
-
-function assign_fx_bdi
-    $fx_eq_lf := $fx_eq_lf_bdi
-    $fx_eq_lg := $fx_eq_lg_bdi
-    $fx_eq_lb := $fx_eq_lb_bdi
-    $fx_eq_lmf := $fx_eq_lmf_bdi
-    $fx_eq_lmg := $fx_eq_lmg_bdi
-    $fx_eq_lmq := $fx_eq_lmq_bdi
-    $fx_eq_hmf := $fx_eq_hmf_bdi
-    $fx_eq_hmg := $fx_eq_hmg_bdi
-    $fx_eq_hmq := $fx_eq_hmq_bdi
-    $fx_eq_hf := $fx_eq_hf_bdi
-    $fx_eq_hg := $fx_eq_hg_bdi
-    $fx_eq_hb := $fx_eq_hb_bdi
-    $fx_td_in := $fx_td_in_bdi
-    $fx_td_atk := $fx_td_atk_bdi
-    $fx_td_rel := $fx_td_rel_bdi
-    $fx_td_out := $fx_td_out_bdi
-    $fx_comp_tres := $fx_comp_tres_bdi
-    $fx_comp_atk := $fx_comp_atk_bdi
-    $fx_comp_rel := $fx_comp_rel_bdi
-    $fx_comp_rat := $fx_comp_rat_bdi
-    $fx_comp_mix := $fx_comp_mix_bdi
-    $fx_comp_makeup := $fx_comp_makeup_bdi
-end function
-
-function assign_fx_bdo
-    $fx_eq_lf := $fx_eq_lf_bdo
-    $fx_eq_lg := $fx_eq_lg_bdo
-    $fx_eq_lb := $fx_eq_lb_bdo
-    $fx_eq_lmf := $fx_eq_lmf_bdo
-    $fx_eq_lmg := $fx_eq_lmg_bdo
-    $fx_eq_lmq := $fx_eq_lmq_bdo
-    $fx_eq_hmf := $fx_eq_hmf_bdo
-    $fx_eq_hmg := $fx_eq_hmg_bdo
-    $fx_eq_hmq := $fx_eq_hmq_bdo
-    $fx_eq_hf := $fx_eq_hf_bdo
-    $fx_eq_hg := $fx_eq_hg_bdo
-    $fx_eq_hb := $fx_eq_hb_bdo
-    $fx_td_in := $fx_td_in_bdo
-    $fx_td_atk := $fx_td_atk_bdo
-    $fx_td_rel := $fx_td_rel_bdo
-    $fx_td_out := $fx_td_out_bdo
-    $fx_comp_tres := $fx_comp_tres_bdo
-    $fx_comp_atk := $fx_comp_atk_bdo
-    $fx_comp_rel := $fx_comp_rel_bdo
-    $fx_comp_rat := $fx_comp_rat_bdo
-    $fx_comp_mix := $fx_comp_mix_bdo
-    $fx_comp_makeup := $fx_comp_makeup_bdo
-end function
-
-function assign_fx_sntop
-    $fx_eq_lf := $fx_eq_lf_sntop
-    $fx_eq_lg := $fx_eq_lg_sntop
-    $fx_eq_lb := $fx_eq_lb_sntop
-    $fx_eq_lmf := $fx_eq_lmf_sntop
-    $fx_eq_lmg := $fx_eq_lmg_sntop
-    $fx_eq_lmq := $fx_eq_lmq_sntop
-    $fx_eq_hmf := $fx_eq_hmf_sntop
-    $fx_eq_hmg := $fx_eq_hmg_sntop
-    $fx_eq_hmq := $fx_eq_hmq_sntop
-    $fx_eq_hf := $fx_eq_hf_sntop
-    $fx_eq_hg := $fx_eq_hg_sntop
-    $fx_eq_hb := $fx_eq_hb_sntop
-    $fx_td_in := $fx_td_in_sntop
-    $fx_td_atk := $fx_td_atk_sntop
-    $fx_td_rel := $fx_td_rel_sntop
-    $fx_td_out := $fx_td_out_sntop
-    $fx_comp_tres := $fx_comp_tres_sntop
-    $fx_comp_atk := $fx_comp_atk_sntop
-    $fx_comp_rel := $fx_comp_rel_sntop
-    $fx_comp_rat := $fx_comp_rat_sntop
-    $fx_comp_mix := $fx_comp_mix_sntop
-    $fx_comp_makeup := $fx_comp_makeup_sntop
-end function
-
-function assign_fx_snbt
-    $fx_eq_lf := $fx_eq_lf_snbt
-    $fx_eq_lg := $fx_eq_lg_snbt
-    $fx_eq_lb := $fx_eq_lb_snbt
-    $fx_eq_lmf := $fx_eq_lmf_snbt
-    $fx_eq_lmg := $fx_eq_lmg_snbt
-    $fx_eq_lmq := $fx_eq_lmq_snbt
-    $fx_eq_hmf := $fx_eq_hmf_snbt
-    $fx_eq_hmg := $fx_eq_hmg_snbt
-    $fx_eq_hmq := $fx_eq_hmq_snbt
-    $fx_eq_hf := $fx_eq_hf_snbt
-    $fx_eq_hg := $fx_eq_hg_snbt
-    $fx_eq_hb := $fx_eq_hb_snbt
-    $fx_td_in := $fx_td_in_snbt
-    $fx_td_atk := $fx_td_atk_snbt
-    $fx_td_rel := $fx_td_rel_snbt
-    $fx_td_out := $fx_td_out_snbt
-    $fx_comp_tres := $fx_comp_tres_snbt
-    $fx_comp_atk := $fx_comp_atk_snbt
-    $fx_comp_rel := $fx_comp_rel_snbt
-    $fx_comp_rat := $fx_comp_rat_snbt
-    $fx_comp_mix := $fx_comp_mix_snbt
-    $fx_comp_makeup := $fx_comp_makeup_snbt
-end function
-
-function assign_fx_tomhi
-    $fx_eq_lf := $fx_eq_lf_tomhi
-    $fx_eq_lg := $fx_eq_lg_tomhi
-    $fx_eq_lb := $fx_eq_lb_tomhi
-    $fx_eq_lmf := $fx_eq_lmf_tomhi
-    $fx_eq_lmg := $fx_eq_lmg_tomhi
-    $fx_eq_lmq := $fx_eq_lmq_tomhi
-    $fx_eq_hmf := $fx_eq_hmf_tomhi
-    $fx_eq_hmg := $fx_eq_hmg_tomhi
-    $fx_eq_hmq := $fx_eq_hmq_tomhi
-    $fx_eq_hf := $fx_eq_hf_tomhi
-    $fx_eq_hg := $fx_eq_hg_tomhi
-    $fx_eq_hb := $fx_eq_hb_tomhi
-    $fx_td_in := $fx_td_in_tomhi
-    $fx_td_atk := $fx_td_atk_tomhi
-    $fx_td_rel := $fx_td_rel_tomhi
-    $fx_td_out := $fx_td_out_tomhi
-    $fx_comp_tres := $fx_comp_tres_tomhi
-    $fx_comp_atk := $fx_comp_atk_tomhi
-    $fx_comp_rel := $fx_comp_rel_tomhi
-    $fx_comp_rat := $fx_comp_rat_tomhi
-    $fx_comp_mix := $fx_comp_mix_tomhi
-    $fx_comp_makeup := $fx_comp_makeup_tomhi
-end function
-
-function assign_fx_tommid
-    $fx_eq_lf := $fx_eq_lf_tommid
-    $fx_eq_lg := $fx_eq_lg_tommid
-    $fx_eq_lb := $fx_eq_lb_tommid
-    $fx_eq_lmf := $fx_eq_lmf_tommid
-    $fx_eq_lmg := $fx_eq_lmg_tommid
-    $fx_eq_lmq := $fx_eq_lmq_tommid
-    $fx_eq_hmf := $fx_eq_hmf_tommid
-    $fx_eq_hmg := $fx_eq_hmg_tommid
-    $fx_eq_hmq := $fx_eq_hmq_tommid
-    $fx_eq_hf := $fx_eq_hf_tommid
-    $fx_eq_hg := $fx_eq_hg_tommid
-    $fx_eq_hb := $fx_eq_hb_tommid
-    $fx_td_in := $fx_td_in_tommid
-    $fx_td_atk := $fx_td_atk_tommid
-    $fx_td_rel := $fx_td_rel_tommid
-    $fx_td_out := $fx_td_out_tommid
-    $fx_comp_tres := $fx_comp_tres_tommid
-    $fx_comp_atk := $fx_comp_atk_tommid
-    $fx_comp_rel := $fx_comp_rel_tommid
-    $fx_comp_rat := $fx_comp_rat_tommid
-    $fx_comp_mix := $fx_comp_mix_tommid
-    $fx_comp_makeup := $fx_comp_makeup_tommid
-end function
-
-function assign_fx_tomlow
-    $fx_eq_lf := $fx_eq_lf_tomlow
-    $fx_eq_lg := $fx_eq_lg_tomlow
-    $fx_eq_lb := $fx_eq_lb_tomlow
-    $fx_eq_lmf := $fx_eq_lmf_tomlow
-    $fx_eq_lmg := $fx_eq_lmg_tomlow
-    $fx_eq_lmq := $fx_eq_lmq_tomlow
-    $fx_eq_hmf := $fx_eq_hmf_tomlow
-    $fx_eq_hmg := $fx_eq_hmg_tomlow
-    $fx_eq_hmq := $fx_eq_hmq_tomlow
-    $fx_eq_hf := $fx_eq_hf_tomlow
-    $fx_eq_hg := $fx_eq_hg_tomlow
-    $fx_eq_hb := $fx_eq_hb_tomlow
-    $fx_td_in := $fx_td_in_tomlow
-    $fx_td_atk := $fx_td_atk_tomlow
-    $fx_td_rel := $fx_td_rel_tomlow
-    $fx_td_out := $fx_td_out_tomlow
-    $fx_comp_tres := $fx_comp_tres_tomlow
-    $fx_comp_atk := $fx_comp_atk_tomlow
-    $fx_comp_rel := $fx_comp_rel_tomlow
-    $fx_comp_rat := $fx_comp_rat_tomlow
-    $fx_comp_mix := $fx_comp_mix_tomlow
-    $fx_comp_makeup := $fx_comp_makeup_tomlow
-end function
-
-function assign_fx_ov
-    $fx_eq_lf := $fx_eq_lf_ov
-    $fx_eq_lg := $fx_eq_lg_ov
-    $fx_eq_lb := $fx_eq_lb_ov
-    $fx_eq_lmf := $fx_eq_lmf_ov
-    $fx_eq_lmg := $fx_eq_lmg_ov
-    $fx_eq_lmq := $fx_eq_lmq_ov
-    $fx_eq_hmf := $fx_eq_hmf_ov
-    $fx_eq_hmg := $fx_eq_hmg_ov
-    $fx_eq_hmq := $fx_eq_hmq_ov
-    $fx_eq_hf := $fx_eq_hf_ov
-    $fx_eq_hg := $fx_eq_hg_ov
-    $fx_eq_hb := $fx_eq_hb_ov
-    $fx_td_in := $fx_td_in_ov
-    $fx_td_atk := $fx_td_atk_ov
-    $fx_td_rel := $fx_td_rel_ov
-    $fx_td_out := $fx_td_out_ov
-    $fx_comp_tres := $fx_comp_tres_ov
-    $fx_comp_atk := $fx_comp_atk_ov
-    $fx_comp_rel := $fx_comp_rel_ov
-    $fx_comp_rat := $fx_comp_rat_ov
-    $fx_comp_mix := $fx_comp_mix_ov
-    $fx_comp_makeup := $fx_comp_makeup_ov
-end function
-
-function assign_fx_master
-    $fx_eq_lf := $fx_eq_lf_master
-    $fx_eq_lg := $fx_eq_lg_master
-    $fx_eq_lb := $fx_eq_lb_master
-    $fx_eq_lmf := $fx_eq_lmf_master
-    $fx_eq_lmg := $fx_eq_lmg_master
-    $fx_eq_lmq := $fx_eq_lmq_master
-    $fx_eq_hmf := $fx_eq_hmf_master
-    $fx_eq_hmg := $fx_eq_hmg_master
-    $fx_eq_hmq := $fx_eq_hmq_master
-    $fx_eq_hf := $fx_eq_hf_master
-    $fx_eq_hg := $fx_eq_hg_master
-    $fx_eq_hb := $fx_eq_hb_master
-    $fx_td_in := $fx_td_in_master
-    $fx_td_atk := $fx_td_atk_master
-    $fx_td_rel := $fx_td_rel_master
-    $fx_td_out := $fx_td_out_master
-    $fx_td_soft := $fx_td_soft_master
-    $fx_comp_tres := $fx_comp_tres_master
-    $fx_comp_atk := $fx_comp_atk_master
-    $fx_comp_rel := $fx_comp_rel_master
-    $fx_comp_rat := $fx_comp_rat_master
-    $fx_comp_mix := $fx_comp_mix_master
-    $fx_comp_makeup := $fx_comp_makeup_master
-end function
+end on {persistence_changed}
 
 on ui_control($menu_output_hh)
     set_engine_par($ENGINE_PAR_OUTPUT_CHANNEL,$menu_output_hh,-1,-1,$NI_BUS_OFFSET+0)
