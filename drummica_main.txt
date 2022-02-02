@@ -7250,41 +7250,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_bdi_sel=1)
@@ -7836,41 +7802,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_bdo_sel=1)
@@ -8421,41 +8353,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_sntop_sel=1)
@@ -9009,41 +8907,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_snbt_sel=1)
@@ -9600,41 +9464,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_tomhi_sel=1)
@@ -10191,41 +10021,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_tommid_sel=1)
@@ -10782,41 +10578,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_tomlow_sel=1)
@@ -11373,41 +11135,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         else
         if ($mix_ov_sel=1)
@@ -11963,41 +11691,7 @@ on persistence_changed
             end if {($mic_current=2)}
             end if {($mic_current=1)}
 
-            if ($mic_current=1 and (%vol_buffer[1]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=2 and (%vol_buffer[2]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=3 and (%vol_buffer[3]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=4 and (%vol_buffer[4]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=5 and (%vol_buffer[5]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=6 and (%vol_buffer[6]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=7 and (%vol_buffer[7]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=8 and (%vol_buffer[8]=0))
-                $mic_0db := 0
-            else
-            if ($mic_current=9 and (%vol_buffer[9]=0))
-                $mic_0db := 0
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
-            end if
+            call reset_mic_0db
 
         end if {($mix_ov_sel=1)}
         end if {($mix_tomlow_sel=1)}
