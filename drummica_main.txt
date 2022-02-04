@@ -6188,61 +6188,7 @@ on persistence_changed
     else
     if ($menu_micsel=1)
         if ($mix_hh_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 1
             set_skin_offset(602)
             $i := 1
@@ -6740,61 +6686,7 @@ on persistence_changed
         else
         if ($mix_bdi_sel=1)
 
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 2
             set_skin_offset(602)
             $i := 1
@@ -7291,61 +7183,7 @@ on persistence_changed
 
         else
         if ($mix_bdo_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 3
             set_skin_offset(602)
             $i := 1
@@ -7842,61 +7680,7 @@ on persistence_changed
 
         else
         if ($mix_sntop_sel=1)
-            $i := 1
-            while ($i<=$id2)
-            set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-            set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-            set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-            set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-            set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-            set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-            set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-            set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-            set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-            set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-            set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-            inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 4
             set_skin_offset(602)
             $i := 1
@@ -8396,61 +8180,7 @@ on persistence_changed
 
         else
         if ($mix_snbt_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 5
             set_skin_offset(602)
             $i := 1
@@ -8953,61 +8683,7 @@ on persistence_changed
 
         else
         if ($mix_tomhi_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 6
             set_skin_offset(602)
             $i := 1
@@ -9510,61 +9186,7 @@ on persistence_changed
 
         else
         if ($mix_tommid_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 7
             set_skin_offset(602)
             $i := 1
@@ -10067,61 +9689,7 @@ on persistence_changed
 
         else
         if ($mix_tomlow_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 8
             set_skin_offset(602)
             $i := 1
@@ -10624,61 +10192,7 @@ on persistence_changed
 
         else
         if ($mix_ov_sel=1)
-            $i := 1
-            while ($i<=$id2)
-                set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id5)
-                set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id6)
-                set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-                inc($i)
-            end while
+            call hide_all_controls
             $mic_current := 9
             set_skin_offset(602)
             $i := 1
