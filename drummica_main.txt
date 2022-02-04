@@ -6212,6 +6212,44 @@ on persistence_changed
         set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
     end if
     end if
+    {wires}
+    set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
+    set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*6174,98,-1,-1)
+    if ($options_wires_snbtm>60)
+        pgs_set_key_val(MICS,9,1)
+        pgs_set_key_val(MICS,10,1)
+        if ($wire_purge_status = 0)
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 1
+        end if
+    else
+    if ($options_wires_snbtm<=60)
+        pgs_set_key_val(MICS,9,0)
+        pgs_set_key_val(MICS,10,0)
+        if ($wire_purge_status = 1)
+            $i := 0
+            while($i < 38)
+                purge_group(%wire_groups[$i], 0)
+                inc($i)
+            end while
+            $i := 0
+            while($i < 30)
+                purge_group(%nowire_groups[$i], 1)
+                inc($i)
+            end while
+            $wire_purge_status := 0
+        end if
+    end if
+    end if
 end on {persistence_changed}
 
 on ui_control($menu_output_hh)
