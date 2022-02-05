@@ -5384,7 +5384,7 @@ function set_micthumb
     end if
 end function
 
-function update_fx_contols
+function update_fx_controls
     if ($mix_eq=1)
         $i := 1
         while ($i<=$id21)
@@ -6013,46 +6013,8 @@ on persistence_changed
         end if {($mix_hh_sel=1)}
 
         call update_mic_fader_labels
+        call update_fx_controls
 
-        if ($mix_eq=1)
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
-        if ($mix_td=1)
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
-        if ($mix_comp=1)
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
         if ($mix_ov_mono=0)
             set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
         else
@@ -6537,46 +6499,8 @@ on ui_control($menu_mixer)
         end if {($mix_hh_sel=1)}
 
         call update_mic_fader_labels
+        call update_fx_controls
 
-        if ($mix_eq=1)
-            $i := 1
-            while ($i<=$id21)
-                set_control_par(%ui_id21[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id41)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id41[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
-        if ($mix_td=1)
-            $i := 1
-            while ($i<=$id22)
-                set_control_par(%ui_id22[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id42)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id42[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
-        if ($mix_comp=1)
-            $i := 1
-            while ($i<=$id23)
-                set_control_par(%ui_id23[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            $i := 1
-            while ($i<=$id43)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                set_control_par(%ui_id43[$i],$CONTROL_PAR_HIDE,$HIDE_PART_BG)
-                inc($i)
-            end while
-        end if
         if ($mix_ov_mono=0)
             set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
         else
@@ -6595,10 +6519,10 @@ on ui_control($menu_drums)
     $i := 0
     while ($i<=4)
     if ($i # 3)
-    set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
     end if
-    set_control_par(%menu_ui_ids[3],$CONTROL_PAR_VALUE,1)
-    inc($i)
+        set_control_par(%menu_ui_ids[3],$CONTROL_PAR_VALUE,1)
+        inc($i)
     end while
     $drums_hh_micthumb := 0
     if ($menu_drums=1)
@@ -12793,7 +12717,7 @@ on ui_control($mix_hh_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
     call assign_fx_hh
@@ -12835,7 +12759,7 @@ on ui_control($mix_bdi_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
     call assign_fx_bdi
@@ -12877,7 +12801,7 @@ on ui_control($mix_bdo_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
     call assign_fx_bdo
@@ -12919,7 +12843,7 @@ on ui_control($mix_sntop_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
     call assign_fx_sntop
@@ -12961,7 +12885,7 @@ on ui_control($mix_snbt_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
     call assign_fx_snbt
@@ -13003,7 +12927,7 @@ on ui_control($mix_tomhi_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
     call assign_fx_tomhi
@@ -13045,7 +12969,7 @@ on ui_control($mix_tommid_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
     call assign_fx_tommid
@@ -13087,7 +13011,7 @@ on ui_control($mix_tomlow_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
     call assign_fx_tomlow
@@ -13129,7 +13053,7 @@ on ui_control($mix_ov_sel)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
     call assign_fx_ov
@@ -13171,7 +13095,7 @@ on ui_control($mix_master_select)
         inc($i)
     end while
 
-    call update_fx_contols
+    call update_fx_controls
 
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
     call assign_fx_master
