@@ -5932,6 +5932,17 @@ function change_mapping
     end if
 end function
 
+function highlight_menu_micsel
+    $i := 0
+    while ($i<=4)
+        if ($i # 1)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
+        inc($i)
+    end while
+end function
+
 on persistence_changed
     if ($menu_drums=1)
         set_skin_offset(0)
@@ -6281,14 +6292,7 @@ on ui_control($menu_option)
 end on
 
 on ui_control($menu_micsel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     if ($menu_micsel=1)
         if ($mix_hh_sel=1)
             call hide_all_controls
@@ -6535,9 +6539,9 @@ end on
 on ui_control($menu_drums)
     $i := 0
     while ($i<=4)
-    if ($i # 3)
-        set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-    end if
+        if ($i # 3)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
         set_control_par(%menu_ui_ids[3],$CONTROL_PAR_VALUE,1)
         inc($i)
     end while
@@ -6583,14 +6587,7 @@ on ui_control($menu_beats)
 end on
 
 on ui_control($drums_hh_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 1
     $mix_hh_sel := 1
@@ -6600,33 +6597,21 @@ on ui_control($drums_hh_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_hh_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 0
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_bdi_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 2
     $mix_bdi_sel := 1
@@ -6636,33 +6621,21 @@ on ui_control($drums_bdi_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_bdi_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 1
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_bdo_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 3
     $mix_bdo_sel := 1
@@ -6672,33 +6645,21 @@ on ui_control($drums_bdo_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_bdo_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 2
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_sntop_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 4
     $mix_sntop_sel := 1
@@ -6708,33 +6669,21 @@ on ui_control($drums_sntop_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_sntop_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 3
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_snbt_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-        set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 5
     $mix_snbt_sel := 1
@@ -6744,33 +6693,21 @@ on ui_control($drums_snbt_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_snbt_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 4
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_tomhi_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 6
     $mix_tomhi_sel := 1
@@ -6780,33 +6717,21 @@ on ui_control($drums_tomhi_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_tomhi_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 5
     call update_solo_status
     call fx_eq_td_comp_reset
-
  end on
 
  on ui_control($drums_tommid_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 7
     $mix_tommid_sel := 1
@@ -6816,33 +6741,21 @@ on ui_control($drums_tomhi_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_tommid_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 6
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_tomlow_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 8
     $mix_tomlow_sel := 1
@@ -6852,33 +6765,21 @@ on ui_control($drums_tomlow_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_tomlow_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 7
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($drums_ov_micthumb)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 9
     $mix_ov_sel := 1
@@ -6888,22 +6789,17 @@ on ui_control($drums_ov_micthumb)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
     $mix_ov_sel := 1
-
     $i := 0
     while ($i<=9)
         set_control_par(%select_ui_ids[$i],$CONTROL_PAR_VALUE,0)
         inc($i)
     end while
-
     $busidx := 8
     call update_solo_status
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mic_gallery_select1)
@@ -9291,14 +9187,7 @@ on ui_control($mix_rev_arrowdown)
 end on
 
 on ui_control($mix_hh_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 1
     set_skin_offset(602)
@@ -9307,22 +9196,12 @@ on ui_control($mix_hh_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_bdi_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 2
     set_skin_offset(602)
@@ -9331,21 +9210,12 @@ on ui_control($mix_bdi_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_bdo_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 3
     set_skin_offset(602)
@@ -9354,21 +9224,12 @@ on ui_control($mix_bdo_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_sntop_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 4
     set_skin_offset(602)
@@ -9377,21 +9238,12 @@ on ui_control($mix_sntop_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_snbt_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 5
     set_skin_offset(602)
@@ -9400,21 +9252,12 @@ on ui_control($mix_snbt_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_tomhi_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 6
     set_skin_offset(602)
@@ -9423,21 +9266,12 @@ on ui_control($mix_tomhi_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_tommid_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 7
     set_skin_offset(602)
@@ -9446,22 +9280,12 @@ on ui_control($mix_tommid_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_tomlow_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 8
     set_skin_offset(602)
@@ -9470,21 +9294,12 @@ on ui_control($mix_tomlow_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_ov_miclabel)
-    $i := 0
-    while ($i<=4)
-        if ($i # 1)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
+    call highlight_menu_micsel
     call hide_all_controls
     $mic_current := 9
     set_skin_offset(602)
@@ -9493,10 +9308,8 @@ on ui_control($mix_ov_miclabel)
         set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
         inc($i)
     end while
-
     call update_mic_pictures
     call reset_mic_0db
-
 end on
 
 on ui_control($mix_preset_up)
