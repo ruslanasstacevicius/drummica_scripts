@@ -5915,6 +5915,23 @@ function assign_fx_master
     $fx_comp_makeup := $fx_comp_makeup_master
 end function
 
+function change_mapping
+    if (get_control_par(%mapping_ui_ids[$new_mapping],$CONTROL_PAR_VALUE)=1)
+        $i := 1
+        while ($i<=7)
+            if ($i # $new_mapping)
+                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+            end if
+            inc($i)
+        end while
+        set_control_par(%mapping_ui_ids[$new_mapping],$CONTROL_PAR_VALUE,1)
+        pgs_set_key_val(MAPPINGS,0,$new_mapping)
+        call load_file
+    else
+        set_control_par(%mapping_ui_ids[$new_mapping],$CONTROL_PAR_VALUE,1)
+    end if
+end function
+
 on persistence_changed
     if ($menu_drums=1)
         set_skin_offset(0)
@@ -15319,129 +15336,32 @@ on ui_control($options_credits)
 end on
 
 on ui_control($options_mapping_gm)
-    if (get_control_par(%mapping_ui_ids[1],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 1)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[1],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 1
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[1],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 1
+    call change_mapping
 end on
-
 on ui_control($options_mapping_vdrum1)
-    if (get_control_par(%mapping_ui_ids[2],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 2)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[2],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 2
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[2],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 2
+    call change_mapping
 end on
-
 on ui_control($options_mapping_vdrum2)
-    if (get_control_par(%mapping_ui_ids[3],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 3)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[3],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 3
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[3],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 3
+    call change_mapping
 end on
-
 on ui_control($options_mapping_ez)
-    if (get_control_par(%mapping_ui_ids[4],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 4)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[4],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 4
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[4],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 4
+    call change_mapping
 end on
-
 on ui_control($options_mapping_superior)
-    if (get_control_par(%mapping_ui_ids[5],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 5)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[5],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 5
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[5],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 5
+    call change_mapping
 end on
-
 on ui_control($options_mapping_addictive)
-    if (get_control_par(%mapping_ui_ids[6],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 6)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[6],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 6
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[6],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 6
+    call change_mapping
 end on
-
 on ui_control($options_mapping_bfd)
-    if (get_control_par(%mapping_ui_ids[7],$CONTROL_PAR_VALUE)=1)
-        $i := 1
-        while ($i<=7)
-            if ($i # 7)
-                set_control_par(%mapping_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-            end if
-            inc($i)
-        end while
-        set_control_par(%mapping_ui_ids[7],$CONTROL_PAR_VALUE,1)
-        $new_mapping := 7
-        pgs_set_key_val(MAPPINGS,0,$new_mapping)
-        call load_file
-    else
-        set_control_par(%mapping_ui_ids[7],$CONTROL_PAR_VALUE,1)
-    end if
+    $new_mapping := 7
+    call change_mapping
 end on
 
 on ui_control($credits)
