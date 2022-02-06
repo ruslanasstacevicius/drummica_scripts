@@ -6072,113 +6072,40 @@ on persistence_changed
         set_control_par(get_ui_id($credits),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
     else
     if ($menu_micsel=1)
-        if ($mix_hh_sel=1)
-            call hide_all_controls
-            $mic_current := 1
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
-        else
-        if ($mix_bdi_sel=1)
-            call hide_all_controls
-            $mic_current := 2
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
-        else
-        if ($mix_bdo_sel=1)
-            call hide_all_controls
-            $mic_current := 3
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
-        else
-        if ($mix_sntop_sel=1)
-            call hide_all_controls
-            $mic_current := 4
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
+        call hide_all_controls
+        set_skin_offset(602)
+        $i := 1
+        while ($i<=$id3)
             set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
+        end while
+        if ($mix_hh_sel=1)
+            $mic_current := 1
+        else
+        if ($mix_bdi_sel=1)
+            $mic_current := 2
+        else
+        if ($mix_bdo_sel=1)
+            $mic_current := 3
+        else
+        if ($mix_sntop_sel=1)
+            $mic_current := 4
         else
         if ($mix_snbt_sel=1)
-            call hide_all_controls
             $mic_current := 5
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tomhi_sel=1)
-            call hide_all_controls
             $mic_current := 6
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tommid_sel=1)
-            call hide_all_controls
             $mic_current := 7
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tomlow_sel=1)
-            call hide_all_controls
             $mic_current := 8
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
-        if ($mix_ov_sel=1)
-            call hide_all_controls
+        if ($mix_ov_sel=1 or $mix_ov_sel=0)
+            {if master selected or nothing selected show overheads mic page}
             $mic_current := 9
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         end if {($mix_ov_sel=1)}
         end if {($mix_tomlow_sel=1)}
         end if {($mix_tommid_sel=1)}
@@ -6188,6 +6115,8 @@ on persistence_changed
         end if {($mix_bdo_sel=1)}
         end if {($mix_bdi_sel=1)}
         end if {($mix_hh_sel=1)}
+        call update_mic_pictures
+        call reset_mic_0db
     end if {-($menu_micsel=1)}
     end if {-($menu_option=1)}
     end if {-($menu_beats=1)}
@@ -6294,134 +6223,40 @@ end on
 on ui_control($menu_micsel)
     call highlight_menu_micsel
     if ($menu_micsel=1)
+        call hide_all_controls
+        set_skin_offset(602)
+        $i := 1
+        while ($i<=$id3)
+            set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+            inc($i)
+        end while
         if ($mix_hh_sel=1)
-            call hide_all_controls
             $mic_current := 1
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_bdi_sel=1)
-            call hide_all_controls
             $mic_current := 2
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_bdo_sel=1)
-            call hide_all_controls
             $mic_current := 3
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_sntop_sel=1)
-            call hide_all_controls
             $mic_current := 4
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_snbt_sel=1)
-            call hide_all_controls
             $mic_current := 5
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tomhi_sel=1)
-            call hide_all_controls
             $mic_current := 6
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tommid_sel=1)
-            call hide_all_controls
             $mic_current := 7
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
         if ($mix_tomlow_sel=1)
-            call hide_all_controls
             $mic_current := 8
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
         else
-        if ($mix_ov_sel=1)
-            call hide_all_controls
+        if ($mix_ov_sel=1 or $mix_ov_sel=0 or $mix_master_select=1)
+            {if master selected or nothing selected display overheads page}
             $mic_current := 9
-            set_skin_offset(602)
-            $i := 1
-            while ($i<=$id3)
-                set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call update_mic_pictures
-            call reset_mic_0db
-        else
-        if ($mix_master_select=1)
-            call hide_all_controls
-            set_skin_offset(0)
-            $i := 1
-            while ($i<=$id1)
-                set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-                inc($i)
-            end while
-            call set_mic_pictures
-            $drums_hh_micthumb := 0
-            $drums_bdi_micthumb := 0
-            $drums_bdo_micthumb := 0
-            $drums_sntop_micthumb := 0
-            $drums_snbt_micthumb := 0
-            $drums_tomhi_micthumb := 0
-            $drums_tommid_micthumb := 0
-            $drums_tomlow_micthumb := 0
-            $drums_ov_micthumb := 0
-            call set_micthumb
-        end if {($mix_master_select=1)}
         end if {($mix_ov_sel=1)}
         end if {($mix_tomlow_sel=1)}
         end if {($mix_tommid_sel=1)}
@@ -6431,6 +6266,8 @@ on ui_control($menu_micsel)
         end if {($mix_bdo_sel=1)}
         end if {($mix_bdi_sel=1)}
         end if {($mix_hh_sel=1)}
+        call update_mic_pictures
+        call reset_mic_0db
     end if {-($menu_micsel=1)}
 end on
 
