@@ -4,7 +4,8 @@ Changelog:
 
 - code reduction by moving repeated blocks into function calls
 - fix: show correct reverb channel labels when changing mixer presets
-- change: make GM mapping compatible with NI Studio Drummer mapping
+- change: make GM mapping preset compatible with NI Studio Drummer mapping
 - change: save some RAM by unloading unused wire/non-wire samples based on Bleed volume position
-- fix: properly restore wires bleed status on instroment load
-- change: Mic Sel menu shows Overheads page if Master channel is selected (previously Drums overview was shown in Mic Sel)
+- fix: properly restore wires bleed setting on instrument load
+- change: shows Overheads page in Mic Sel menu if Master channel is selected (previously Drums overview was shown in Mic Sel)
+- change: attach two channel meters to all mixer channels, single channel meters could not show levels when panned right
