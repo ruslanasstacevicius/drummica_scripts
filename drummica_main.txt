@@ -13,6 +13,24 @@ on init
     pgs_create_key(playnoteflag,1)
     pgs_create_key(MICS,12)
 
+
+    {
+    Originally script used two instances of Transient Master to implement missing $ENGINE_PAR_TR_SMOOTH parameter
+    in some cases it didn't work properly: GUI could show "soft" status of other mixer channel than selected
+    Transient Master $ENGINE_PAR_TR_SMOOTH parameter became available in Kontakt version 5.7.0 and now can be handled
+    using set_engine_par()
+    Redundant Transient Master in slot 3 is bypassed and instance in slot 2 used for all settings
+    }
+    $i := 0
+    while ($i<9)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,2,$NI_BUS_OFFSET+$i)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,3,$NI_BUS_OFFSET+$i)
+        inc($i)
+    end while
+    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,2,-1)
+    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,3,-1)
+
+
     declare $wire_purge_status := 0
 
     declare %wire_groups[38] := (3, 5 , 7, 9, 11, 57, 59, 61, 63, 97, 98, 19, 21, 23, 69, 71, 73, 75, 111, 112, ...
@@ -5777,6 +5795,7 @@ function set_fx_text
     set_text($fx_td_in_val,get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$busidx))
     set_text($fx_td_atk_val,get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$busidx))
     set_text($fx_td_rel_val,get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$busidx))
+    $fx_td_soft := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
     set_text($fx_td_out_val,get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$busidx))
 
     set_text($fx_comp_tres_val,get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$busidx))
@@ -5803,6 +5822,7 @@ function assign_fx_hh
     $fx_td_in := $fx_td_in_hh
     $fx_td_atk := $fx_td_atk_hh
     $fx_td_rel := $fx_td_rel_hh
+    $fx_td_soft := $fx_td_soft_hh
     $fx_td_out := $fx_td_out_hh
     $fx_comp_tres := $fx_comp_tres_hh
     $fx_comp_atk := $fx_comp_atk_hh
@@ -5828,6 +5848,7 @@ function assign_fx_bdi
     $fx_td_in := $fx_td_in_bdi
     $fx_td_atk := $fx_td_atk_bdi
     $fx_td_rel := $fx_td_rel_bdi
+    $fx_td_soft := $fx_td_soft_bdi
     $fx_td_out := $fx_td_out_bdi
     $fx_comp_tres := $fx_comp_tres_bdi
     $fx_comp_atk := $fx_comp_atk_bdi
@@ -5853,6 +5874,7 @@ function assign_fx_bdo
     $fx_td_in := $fx_td_in_bdo
     $fx_td_atk := $fx_td_atk_bdo
     $fx_td_rel := $fx_td_rel_bdo
+    $fx_td_soft := $fx_td_soft_bdo
     $fx_td_out := $fx_td_out_bdo
     $fx_comp_tres := $fx_comp_tres_bdo
     $fx_comp_atk := $fx_comp_atk_bdo
@@ -5878,6 +5900,7 @@ function assign_fx_sntop
     $fx_td_in := $fx_td_in_sntop
     $fx_td_atk := $fx_td_atk_sntop
     $fx_td_rel := $fx_td_rel_sntop
+    $fx_td_soft := $fx_td_soft_sntop
     $fx_td_out := $fx_td_out_sntop
     $fx_comp_tres := $fx_comp_tres_sntop
     $fx_comp_atk := $fx_comp_atk_sntop
@@ -5903,6 +5926,7 @@ function assign_fx_snbt
     $fx_td_in := $fx_td_in_snbt
     $fx_td_atk := $fx_td_atk_snbt
     $fx_td_rel := $fx_td_rel_snbt
+    $fx_td_soft := $fx_td_soft_snbt
     $fx_td_out := $fx_td_out_snbt
     $fx_comp_tres := $fx_comp_tres_snbt
     $fx_comp_atk := $fx_comp_atk_snbt
@@ -5928,6 +5952,7 @@ function assign_fx_tomhi
     $fx_td_in := $fx_td_in_tomhi
     $fx_td_atk := $fx_td_atk_tomhi
     $fx_td_rel := $fx_td_rel_tomhi
+    $fx_td_soft := $fx_td_soft_tomhi
     $fx_td_out := $fx_td_out_tomhi
     $fx_comp_tres := $fx_comp_tres_tomhi
     $fx_comp_atk := $fx_comp_atk_tomhi
@@ -5953,6 +5978,7 @@ function assign_fx_tommid
     $fx_td_in := $fx_td_in_tommid
     $fx_td_atk := $fx_td_atk_tommid
     $fx_td_rel := $fx_td_rel_tommid
+    $fx_td_soft := $fx_td_soft_tommid
     $fx_td_out := $fx_td_out_tommid
     $fx_comp_tres := $fx_comp_tres_tommid
     $fx_comp_atk := $fx_comp_atk_tommid
@@ -5978,6 +6004,7 @@ function assign_fx_tomlow
     $fx_td_in := $fx_td_in_tomlow
     $fx_td_atk := $fx_td_atk_tomlow
     $fx_td_rel := $fx_td_rel_tomlow
+    $fx_td_soft := $fx_td_soft_tomlow
     $fx_td_out := $fx_td_out_tomlow
     $fx_comp_tres := $fx_comp_tres_tomlow
     $fx_comp_atk := $fx_comp_atk_tomlow
@@ -6003,6 +6030,7 @@ function assign_fx_ov
     $fx_td_in := $fx_td_in_ov
     $fx_td_atk := $fx_td_atk_ov
     $fx_td_rel := $fx_td_rel_ov
+    $fx_td_soft := $fx_td_soft_ov
     $fx_td_out := $fx_td_out_ov
     $fx_comp_tres := $fx_comp_tres_ov
     $fx_comp_atk := $fx_comp_atk_ov
@@ -6028,6 +6056,7 @@ function assign_fx_master
     $fx_td_in := $fx_td_in_master
     $fx_td_atk := $fx_td_atk_master
     $fx_td_rel := $fx_td_rel_master
+    $fx_td_soft := $fx_td_soft_master
     $fx_td_out := $fx_td_out_master
     $fx_td_soft := $fx_td_soft_master
     $fx_comp_tres := $fx_comp_tres_master
@@ -6066,120 +6095,233 @@ function highlight_menu_micsel
     end while
 end function
 
-function fx_td_soft_switch
-    if ($fx_td_soft_hh=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_hh=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+0)
-    if ($fx_td_soft_bdi=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_bdi=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+1)
-    if ($fx_td_soft_bdo=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_bdo=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+2)
-    if ($fx_td_soft_sntop=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_sntop=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+3)
-    if ($fx_td_soft_snbt=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_snbt=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+4)
-    if ($fx_td_soft_tomhi=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_tomhi=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+5)
-    if ($fx_td_soft_tommid=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_tommid=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+6)
-    if ($fx_td_soft_tomlow=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_tomlow=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+7)
-    if ($fx_td_soft_ov=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_ov=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+8)
-    if ($fx_td_soft_master=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft_master=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,-1)
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,-1)
+function fx_set_engine_par
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_hh*250,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_hh,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_hh*250,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_ov*250,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_ov*250,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_master*250,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_master*250,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_master*250,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_master*7874,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_master*250,-1,1,-1)
+    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_master*7874,-1,1,-1)
+
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,2,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,2,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,2,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_hh,-1,2,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,2,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,2,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,2,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,2,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_bdi,-1,2,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,2,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,2,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,2,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,2,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_bdo,-1,2,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,2,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,2,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,2,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,2,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_sntop,-1,2,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,2,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,2,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,2,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,2,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_snbt,-1,2,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,2,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_tomhi,-1,2,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,2,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,2,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,2,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_tommid,-1,2,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,2,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_tomlow,-1,2,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,2,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,2,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,2,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_ov,-1,2,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,2,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
+    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
+    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
+    set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft_master,-1,2,-1)
+    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
+
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_hh*250,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_hh*7874,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_hh*7874,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_hh*7874,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_hh*250,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_hh*7874,-1,4,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdi*250,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdi*250,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdo*250,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdo*250,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_sntop*250,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_sntop*250,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_snbt*250,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_snbt*250,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tommid*250,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tommid*250,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_ov*250,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_ov*7874,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_ov*7874,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_ov*7874,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_ov*250,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_ov*7874,-1,4,$NI_BUS_OFFSET+8)
+    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_master*250,-1,4,-1)
+    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_master*7874,-1,4,-1)
+    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_master*7874,-1,4,-1)
+    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_master*7874,-1,4,-1)
+    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_master*250,-1,4,-1)
+    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_master*7874,-1,4,-1)
 end function
 
 on persistence_changed
+    {call fx_set_engine_par}
     if ($menu_drums=1)
         set_skin_offset(0)
         $i := 1
@@ -6209,60 +6351,70 @@ on persistence_changed
         if ($mix_hh_sel=1)
             $busidx := 0
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
+            $fx_td_soft_hh := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_hh
             call set_fx_text
         else
         if ($mix_bdi_sel=1)
             $busidx := 1
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
+            $fx_td_soft_bdi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_bdi
             call set_fx_text
         else
         if ($mix_bdo_sel=1)
             $busidx := 2
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
+            $fx_td_soft_bdo := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_bdo
             call set_fx_text
         else
         if ($mix_sntop_sel=1)
             $busidx := 3
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
+            $fx_td_soft_sntop := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_sntop
             call set_fx_text
         else
         if ($mix_snbt_sel=1)
             $busidx := 4
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
+            $fx_td_soft_snbt := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_snbt
             call set_fx_text
         else
         if ($mix_tomhi_sel=1)
             $busidx := 5
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
+            $fx_td_soft_tomhi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tomhi
             call set_fx_text
         else
         if ($mix_tommid_sel=1)
             $busidx := 6
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
+            $fx_td_soft_tommid := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tommid
             call set_fx_text
         else
         if ($mix_tomlow_sel=1)
             $busidx := 7
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
+            $fx_td_soft_tomlow := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tomlow
             call set_fx_text
         else
         if ($mix_ov_sel=1)
             $busidx := 8
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
+            $fx_td_soft_ov := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_ov
             call set_fx_text
         else
         if ($mix_master_select=1)
             $busidx := -1025
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
+            $fx_td_soft_master := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_master
             call set_fx_text
         end if {($mix_master_select=1)}
@@ -6528,59 +6680,72 @@ on ui_control($menu_mixer)
         if ($mix_hh_sel=1)
             $busidx := 0
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
+            $fx_td_soft_hh := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_hh
             call set_fx_text
         else
         if ($mix_bdi_sel=1)
             $busidx := 1
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
+            $fx_td_soft_bdi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_bdi
             call set_fx_text
         else
         if ($mix_bdo_sel=1)
             $busidx := 2
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
+            $fx_td_soft_bdo := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_bdo
             call set_fx_text
         else
         if ($mix_sntop_sel=1)
             $busidx := 3
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
+            $fx_td_soft_sntop := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_sntop
             call set_fx_text
         else
         if ($mix_snbt_sel=1)
             $busidx := 4
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
+            $fx_td_soft_snbt := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_snbt
             call set_fx_text
         else
         if ($mix_tomhi_sel=1)
             $busidx := 5
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
+            $fx_td_soft_tomhi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tomhi
             call set_fx_text
         else
         if ($mix_tommid_sel=1)
             $busidx := 6
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
+            $fx_td_soft_tommid := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tommid
             call set_fx_text
         else
         if ($mix_tomlow_sel=1)
             $busidx := 7
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
+            $fx_td_soft_tomlow := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_tomlow
             call set_fx_text
         else
         if ($mix_ov_sel=1)
             $busidx := 8
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
+            $fx_td_soft_ov := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
             call assign_fx_ov
             call set_fx_text
         else
         if ($mix_master_select=1)
+            $busidx := -1025
             set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
+            $fx_td_soft_master := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+            call assign_fx_master
+            call set_fx_text
         end if {($mix_master_select=1)}
         end if {($mix_ov_sel=1)}
         end if {($mix_tomlow_sel=1)}
@@ -10000,262 +10165,9 @@ on ui_control($mix_preset_up)
         end if
     end if
     end if
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_hh,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,3,-1)
-    call fx_td_soft_switch
 
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_hh*250,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_hh*250,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_ov*250,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_ov*250,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_master*250,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_master*250,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_master*7874,-1,4,-1)
+    call fx_set_engine_par
+
     if ($mix_hh_sel=1)
         $help1 := 0
         call assign_fx_hh
@@ -11198,262 +11110,9 @@ on ui_control($mix_preset_down)
         end if
     end if
     end if
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_hh,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_master*250,-1,1,-1)
-    set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_master*7874,-1,1,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,2,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,2,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,3,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,3,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-    set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,3,-1)
-    set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,3,-1)
-    call fx_td_soft_switch
 
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_hh*250,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_hh*250,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_ov*250,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_ov*250,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-    set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_master*250,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_master*7874,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_master*250,-1,4,-1)
-    set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_master*7874,-1,4,-1)
+    call fx_set_engine_par
+
     if ($mix_hh_sel=1)
         $help1 := 0
         call assign_fx_hh
@@ -13072,71 +12731,51 @@ on ui_control($fx_td_in)
         $fx_td_in_hh := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+0)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+0)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+0)
     end if
     if ($mix_bdi_sel=1)
         $fx_td_in_bdi := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+1)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+1)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+1)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+1)
     end if
     if ($mix_bdo_sel=1)
         $fx_td_in_bdo := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+2)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+2)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+2)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+2)
     end if
     if ($mix_sntop_sel=1)
         $fx_td_in_sntop := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+3)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+3)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+3)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+3)
     end if
     if ($mix_snbt_sel=1)
         $fx_td_in_snbt := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+4)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+4)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+4)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+4)
     end if
     if ($mix_tomhi_sel=1)
         $fx_td_in_tomhi := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+5)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+5)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+5)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+5)
     end if
     if ($mix_tommid_sel=1)
         $fx_td_in_tommid := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+6)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+6)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+6)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+6)
     end if
     if ($mix_tomlow_sel=1)
         $fx_td_in_tomlow := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+7)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+7)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+7)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+7)
     end if
     if ($mix_ov_sel=1)
         $fx_td_in_ov := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+8)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+8)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,$NI_BUS_OFFSET+8)
     end if
     if ($mix_master_select=1)
         $fx_td_in_master := $fx_td_in
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,-1)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,-1)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,3,-1)
     end if
     set_text($fx_td_in_val,@fx_td_in_str)
 end on
@@ -13150,71 +12789,51 @@ on ui_control($fx_td_atk)
         $fx_td_atk_hh := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+0)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+0)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+0)
     end if
     if ($mix_bdi_sel=1)
         $fx_td_atk_bdi := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+1)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+1)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+1)
     end if
     if ($mix_bdo_sel=1)
         $fx_td_atk_bdo := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+2)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+2)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+2)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+2)
     end if
     if ($mix_sntop_sel=1)
         $fx_td_atk_sntop := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+3)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+3)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+3)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+3)
     end if
     if ($mix_snbt_sel=1)
         $fx_td_atk_snbt := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+4)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+4)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+4)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+4)
     end if
     if ($mix_tomhi_sel=1)
         $fx_td_atk_tomhi := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+5)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+5)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+5)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+5)
     end if
     if ($mix_tommid_sel=1)
         $fx_td_atk_tommid := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+6)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+6)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+6)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+6)
     end if
     if ($mix_tomlow_sel=1)
         $fx_td_atk_tomlow := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+7)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+7)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+7)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+7)
     end if
     if ($mix_ov_sel=1)
         $fx_td_atk_ov := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+8)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+8)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,$NI_BUS_OFFSET+8)
     end if
     if ($mix_master_select=1)
         $fx_td_atk_master := $fx_td_atk
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,-1)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,-1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,3,-1)
     end if
     set_text($fx_td_atk_val,@fx_td_atk_str)
 end on
@@ -13229,71 +12848,51 @@ on ui_control($fx_td_rel)
         $fx_td_rel_hh := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+0)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+0)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+0)
     end if
     if ($mix_bdi_sel=1)
         $fx_td_rel_bdi := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+1)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+1)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+1)
     end if
     if ($mix_bdo_sel=1)
         $fx_td_rel_bdo := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+2)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+2)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+2)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+2)
     end if
     if ($mix_sntop_sel=1)
         $fx_td_rel_sntop := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+3)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+3)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+3)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+3)
     end if
     if ($mix_snbt_sel=1)
         $fx_td_rel_snbt := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+4)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+4)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+4)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+4)
     end if
     if ($mix_tomhi_sel=1)
         $fx_td_rel_tomhi := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+5)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+5)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+5)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+5)
     end if
     if ($mix_tommid_sel=1)
         $fx_td_rel_tommid := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+6)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+6)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+6)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+6)
     end if
     if ($mix_tomlow_sel=1)
         $fx_td_rel_tomlow := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+7)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+7)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+7)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+7)
     end if
     if ($mix_ov_sel=1)
         $fx_td_rel_ov := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+8)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+8)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,$NI_BUS_OFFSET+8)
     end if
     if ($mix_master_select=1)
         $fx_td_rel_master := $fx_td_rel
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,-1)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,-1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,3,-1)
     end if
     set_text($fx_td_rel_val,@fx_td_rel_str)
 end on
@@ -13309,138 +12908,99 @@ on ui_control($fx_td_out)
         $fx_td_out_hh := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+0)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+0)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+0)
     end if
     if ($mix_bdi_sel=1)
         $fx_td_out_bdi := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+1)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+1)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+1)
     end if
     if ($mix_bdo_sel=1)
         $fx_td_out_bdo := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+2)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+2)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+2)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+2)
     end if
     if ($mix_sntop_sel=1)
         $fx_td_out_sntop := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+3)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+3)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+3)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+3)
     end if
     if ($mix_snbt_sel=1)
         $fx_td_out_snbt := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+4)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+4)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+4)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+4)
     end if
     if ($mix_tomhi_sel=1)
         $fx_td_out_tomhi := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+5)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+5)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+5)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+5)
     end if
     if ($mix_tommid_sel=1)
         $fx_td_out_tommid := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+6)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+6)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+6)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+6)
     end if
     if ($mix_tomlow_sel=1)
         $fx_td_out_tomlow := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+7)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+7)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+7)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+7)
     end if
     if ($mix_ov_sel=1)
         $fx_td_out_ov := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+8)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+8)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,$NI_BUS_OFFSET+8)
     end if
     if ($mix_master_select=1)
         $fx_td_out_master := $fx_td_out
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,-1)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,-1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,3,-1)
     end if
     set_text($fx_td_out_val,@fx_td_out_str)
 end on
 
 on ui_control($fx_td_soft)
     set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
-    if ($fx_td_soft=1)
-        $help1 := 0
-        $help2 := 1
-    else
-    if ($fx_td_soft=0)
-        $help1 := 1
-        $help2 := 0
-    end if
-    end if
     if ($fx_td_reset=1)
         $fx_td_reset := 0
     end if
     if ($mix_hh_sel=1)
         $fx_td_soft_hh := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+0)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+0)
     end if
     if ($mix_bdi_sel=1)
         $fx_td_soft_bdi := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+1)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+1)
     end if
     if ($mix_bdo_sel=1)
         $fx_td_soft_bdo := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+2)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+2)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+2)
     end if
     if ($mix_sntop_sel=1)
         $fx_td_soft_sntop := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+3)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+3)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+3)
     end if
     if ($mix_snbt_sel=1)
         $fx_td_soft_snbt := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+4)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+4)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+4)
     end if
     if ($mix_tomhi_sel=1)
         $fx_td_soft_tomhi := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+5)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+5)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+5)
     end if
     if ($mix_tommid_sel=1)
         $fx_td_soft_tommid := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+6)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+6)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+6)
     end if
     if ($mix_tomlow_sel=1)
         $fx_td_soft_tomlow := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+7)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+7)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+7)
     end if
     if ($mix_ov_sel=1)
         $fx_td_soft_ov := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+8)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+8)
     end if
     if ($mix_master_select=1)
         $fx_td_soft_master := $fx_td_soft
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,2,-1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,-1)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,-1)
     end if
 end on
 
@@ -14269,35 +13829,25 @@ on ui_control($fx_td_reset)
 
     if ($help1=-1)
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,-1)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
+         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,-1)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1)
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,-1)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,-1)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,-1)
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,-1)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,-1)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help3,-1,2,-1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,2,-1)
     else
     if ($help1 # -1)
         set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,2,$NI_BUS_OFFSET+$help1)
-        set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in*250,-1,3,$NI_BUS_OFFSET+$help1)
         @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$help1)
         set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,2,$NI_BUS_OFFSET+$help1)
-        set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk*250,-1,3,$NI_BUS_OFFSET+$help1)
         @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$help1)
         set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,2,$NI_BUS_OFFSET+$help1)
-        set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel*250,-1,3,$NI_BUS_OFFSET+$help1)
         @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$help1)
+        set_engine_par($ENGINE_PAR_TR_SMOOTH,$fx_td_soft,-1,2,$NI_BUS_OFFSET+$help1)
         set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,2,$NI_BUS_OFFSET+$help1)
-        set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out*250,-1,3,$NI_BUS_OFFSET+$help1)
         @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$help1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help3,-1,2,$NI_BUS_OFFSET+0)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help2,-1,3,$NI_BUS_OFFSET+0)
     end if
     end if
 
@@ -15149,262 +14699,7 @@ on async_complete
             end if
             end if
 
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_hh,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_hh*250,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_hh*7874,-1,1,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdi*250,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdi*7874,-1,1,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_bdo*250,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_bdo*7874,-1,1,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_sntop*250,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_sntop*7874,-1,1,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_snbt*250,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_snbt*7874,-1,1,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomhi*250,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomhi*7874,-1,1,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tommid*250,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tommid*7874,-1,1,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_tomlow*250,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_tomlow*7874,-1,1,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_ov*250,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_ov*7874,-1,1,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SEQ_LF_FREQ,$fx_eq_lf_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_LF_GAIN,$fx_eq_lg_master*250,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_LF_BELL,$fx_eq_lb_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_FREQ,$fx_eq_lmf_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_GAIN,$fx_eq_lmg_master*250,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_LMF_Q,$fx_eq_lmq_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_FREQ,$fx_eq_hmf_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_GAIN,$fx_eq_hmg_master*250,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_HMF_Q,$fx_eq_hmq_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_HF_GAIN,$fx_eq_hg_master*250,-1,1,-1)
-            set_engine_par($ENGINE_PAR_SEQ_HF_FREQ,$fx_eq_hf_master*7874,-1,1,-1)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,2,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,2,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,2,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,2,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,2,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,2,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,2,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,2,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,2,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,2,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,2,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,2,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,2,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,2,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,2,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_hh*250,-1,3,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_hh*250,-1,3,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_hh*250,-1,3,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_hh*250,-1,3,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdi*250,-1,3,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_bdo*250,-1,3,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_sntop*250,-1,3,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_snbt*250,-1,3,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomhi*250,-1,3,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tommid*250,-1,3,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_tomlow*250,-1,3,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_ov*250,-1,3,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_ov*250,-1,3,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_ov*250,-1,3,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_ov*250,-1,3,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,2,-1)
-            set_engine_par($ENGINE_PAR_TR_INPUT,$fx_td_in_master*250,-1,3,-1)
-            set_engine_par($ENGINE_PAR_TR_ATTACK,$fx_td_atk_master*250,-1,3,-1)
-            set_engine_par($ENGINE_PAR_TR_SUSTAIN,$fx_td_rel_master*250,-1,3,-1)
-            set_engine_par($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,$fx_td_out_master*250,-1,3,-1)
-            call fx_td_soft_switch
-
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_hh*250,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_hh*250,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_hh*7874,-1,4,$NI_BUS_OFFSET+0)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdi*250,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdi*7874,-1,4,$NI_BUS_OFFSET+1)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_bdo*250,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_bdo*7874,-1,4,$NI_BUS_OFFSET+2)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_sntop*250,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_sntop*7874,-1,4,$NI_BUS_OFFSET+3)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_snbt*250,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_snbt*7874,-1,4,$NI_BUS_OFFSET+4)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomhi*250,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomhi*7874,-1,4,$NI_BUS_OFFSET+5)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tommid*250,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tommid*7874,-1,4,$NI_BUS_OFFSET+6)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_tomlow*250,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_tomlow*7874,-1,4,$NI_BUS_OFFSET+7)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_ov*250,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_ov*250,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_ov*7874,-1,4,$NI_BUS_OFFSET+8)
-            set_engine_par($ENGINE_PAR_SCOMP_THRESHOLD,$fx_comp_tres_master*250,-1,4,-1)
-            set_engine_par($ENGINE_PAR_SCOMP_RATIO,$fx_comp_rat_master*7874,-1,4,-1)
-            set_engine_par($ENGINE_PAR_SCOMP_ATTACK,$fx_comp_atk_master*7874,-1,4,-1)
-            set_engine_par($ENGINE_PAR_SCOMP_RELEASE,$fx_comp_rel_master*7874,-1,4,-1)
-            set_engine_par($ENGINE_PAR_SCOMP_MAKEUP,$fx_comp_makeup_master*250,-1,4,-1)
-            set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_master*7874,-1,4,-1)
+            call fx_set_engine_par
 
             if ($mix_hh_sel=1)
                 $help1 := 0

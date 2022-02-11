@@ -9,3 +9,4 @@ Changelog:
 - fix: properly restore wires bleed setting on instrument load
 - change: shows Overheads page in Mic Sel menu if Master channel is selected (previously Drums overview was shown in Mic Sel)
 - change: attach two channel meters to all mixer channels, single channel meters could not show levels when panned right
+- fix: Transient Master Soft button status not updated properly
