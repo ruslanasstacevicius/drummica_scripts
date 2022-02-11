@@ -6320,6 +6320,910 @@ function fx_set_engine_par
     set_engine_par($ENGINE_PAR_SCOMP_MIX,$fx_comp_mix_master*7874,-1,4,-1)
 end function
 
+function load_preset
+    $i := 0
+    while ($i<=8)
+        %solo_arr[$i] := 0
+        set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
+        if (get_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE)=1)
+            set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        inc($i)
+    end while
+
+    call update_all_volumes
+
+    $anysolo := 0
+
+    call fx_eq_td_comp_reset
+
+    if ($current_preset=1)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %default__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_default")
+            inc($i)
+        end while
+    else
+    if ($current_preset=2)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %preset_rock[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock")
+            inc($i)
+        end while
+    else
+    if ($current_preset=3)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %preset_lofi[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi")
+            inc($i)
+        end while
+    else
+    if ($current_preset=4)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %preset_fx01[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_fx1")
+            inc($i)
+        end while
+    else
+    if ($current_preset=5)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %deftones__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_deftones")
+            inc($i)
+        end while
+    else
+    if ($current_preset=6)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %demolofi__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_ambient")
+            inc($i)
+        end while
+    else
+    if ($current_preset=7)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %funkh__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_funkh")
+            inc($i)
+        end while
+    else
+    if ($current_preset=8)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %jazzfunk__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_jazzfunk")
+            inc($i)
+        end while
+    else
+    if ($current_preset=9)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %limpbizkit__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_limp")
+            inc($i)
+        end while
+    else
+    if ($current_preset=10)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %lofi2__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi2")
+            inc($i)
+        end while
+    else
+    if ($current_preset=11)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %metal1__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal")
+            inc($i)
+        end while
+    else
+    if ($current_preset=12)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %metal2__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal2")
+            inc($i)
+        end while
+    else
+    if ($current_preset=13)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %modernrock__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernrock")
+            inc($i)
+        end while
+    else
+    if ($current_preset=14)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %chili__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_redhotchillipeppers")
+            inc($i)
+        end while
+    else
+    if ($current_preset=15)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %postrock__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_postrock")
+            inc($i)
+        end while
+    else
+    if ($current_preset=16)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %progressive__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_progressiverock")
+            inc($i)
+        end while
+    else
+    if ($current_preset=17)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %rockj__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock2")
+            inc($i)
+        end while
+    else
+    if ($current_preset=18)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %triphop__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_triphop")
+            inc($i)
+        end while
+    else
+    if ($current_preset=19)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %winehouse__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_winehouse")
+            inc($i)
+        end while
+    else
+    if ($current_preset=20)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %posthardcore__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_posthardcore")
+            inc($i)
+        end while
+    else
+    if ($current_preset=21)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %normalj__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_normal")
+            inc($i)
+        end while
+    else
+    if ($current_preset=22)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %phat__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_phat")
+            inc($i)
+        end while
+    else
+    if ($current_preset=23)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %dirtyblues__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dirtyblues")
+            inc($i)
+        end while
+    else
+    if ($current_preset=24)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %dnb__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dnb")
+            inc($i)
+        end while
+    else
+    if ($current_preset=25)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %prodigy__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_prodigy")
+            inc($i)
+        end while
+    else
+    if ($current_preset=26)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %cranked__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_cranked")
+            inc($i)
+        end while
+    else
+    if ($current_preset=27)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %claustro__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_claustro")
+            inc($i)
+        end while
+    else
+    if ($current_preset=28)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %modernsoul__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernsoul")
+            inc($i)
+        end while
+    else
+    if ($current_preset=29)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %chemical1__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical1")
+            inc($i)
+        end while
+    else
+    if ($current_preset=30)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %chemical2__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical2")
+            inc($i)
+        end while
+    else
+    if ($current_preset=31)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %dub__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dub")
+            inc($i)
+        end while
+    else
+    if ($current_preset=32)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %oasis__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_oasis")
+            inc($i)
+        end while
+    else
+    if ($current_preset=33)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %hifi__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_hifi")
+            inc($i)
+        end while
+    else
+    if ($current_preset=34)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %natural__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_natural")
+            inc($i)
+        end while
+    else
+    if ($current_preset=35)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %extreme__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_extreme")
+            inc($i)
+        end while
+    else
+    if ($current_preset=36)
+        $i := 0
+        while ($i<=304)
+            %save[$i] := %init__preset[$i]
+            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_init")
+            inc($i)
+        end while
+    end if {36}
+    end if {35}
+    end if {34}
+    end if {33}
+    end if {32}
+    end if {31}
+    end if {30}
+    end if {29}
+    end if {28}
+    end if {27}
+    end if {26}
+    end if {25}
+    end if {24}
+    end if {23}
+    end if {22}
+    end if {21}
+    end if {20}
+    end if {19}
+    end if {18}
+    end if {17}
+    end if {16}
+    end if {15}
+    end if {14}
+    end if {13}
+    end if {12}
+    end if {11}
+    end if {10}
+    end if { 9}
+    end if { 8}
+    end if { 7}
+    end if { 6}
+    end if { 5}
+    end if { 4}
+    end if { 3}
+    end if { 2}
+    end if { 1}
+
+    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_inactive")
+    $fx_eq_lf_hh := %save[0]
+    $fx_eq_lg_hh := %save[1]
+    $fx_eq_lb_hh := %save[2]
+    $fx_eq_lmf_hh := %save[3]
+    $fx_eq_lmg_hh := %save[4]
+    $fx_eq_lmq_hh := %save[5]
+    $fx_eq_hmf_hh := %save[6]
+    $fx_eq_hmg_hh := %save[7]
+    $fx_eq_hmq_hh := %save[8]
+    $fx_eq_hf_hh := %save[9]
+    $fx_eq_hg_hh := %save[10]
+    $fx_eq_hb_hh := %save[11]
+    $fx_eq_lf_bdi := %save[12]
+    $fx_eq_lg_bdi := %save[13]
+    $fx_eq_lb_bdi := %save[14]
+    $fx_eq_lmf_bdi := %save[15]
+    $fx_eq_lmg_bdi := %save[16]
+    $fx_eq_lmq_bdi := %save[17]
+    $fx_eq_hmf_bdi := %save[18]
+    $fx_eq_hmg_bdi := %save[19]
+    $fx_eq_hmq_bdi := %save[20]
+    $fx_eq_hf_bdi := %save[21]
+    $fx_eq_hg_bdi := %save[22]
+    $fx_eq_hb_bdi := %save[23]
+    $fx_eq_lf_bdo := %save[24]
+    $fx_eq_lg_bdo := %save[25]
+    $fx_eq_lb_bdo := %save[26]
+    $fx_eq_lmf_bdo := %save[27]
+    $fx_eq_lmg_bdo := %save[28]
+    $fx_eq_lmq_bdo := %save[29]
+    $fx_eq_hmf_bdo := %save[30]
+    $fx_eq_hmg_bdo := %save[31]
+    $fx_eq_hmq_bdo := %save[32]
+    $fx_eq_hf_bdo := %save[33]
+    $fx_eq_hg_bdo := %save[34]
+    $fx_eq_hb_bdo := %save[35]
+    $fx_eq_lf_sntop := %save[36]
+    $fx_eq_lg_sntop := %save[37]
+    $fx_eq_lb_sntop := %save[38]
+    $fx_eq_lmf_sntop := %save[39]
+    $fx_eq_lmg_sntop := %save[40]
+    $fx_eq_lmq_sntop := %save[41]
+    $fx_eq_hmf_sntop := %save[42]
+    $fx_eq_hmg_sntop := %save[43]
+    $fx_eq_hmq_sntop := %save[44]
+    $fx_eq_hf_sntop := %save[45]
+    $fx_eq_hg_sntop := %save[46]
+    $fx_eq_hb_sntop := %save[47]
+    $fx_eq_lf_snbt := %save[48]
+    $fx_eq_lg_snbt := %save[49]
+    $fx_eq_lb_snbt := %save[50]
+    $fx_eq_lmf_snbt := %save[51]
+    $fx_eq_lmg_snbt := %save[52]
+    $fx_eq_lmq_snbt := %save[53]
+    $fx_eq_hmf_snbt := %save[54]
+    $fx_eq_hmg_snbt := %save[55]
+    $fx_eq_hmq_snbt := %save[56]
+    $fx_eq_hf_snbt := %save[57]
+    $fx_eq_hg_snbt := %save[58]
+    $fx_eq_hb_snbt := %save[59]
+    $fx_eq_lf_tomhi := %save[60]
+    $fx_eq_lg_tomhi := %save[61]
+    $fx_eq_lb_tomhi := %save[62]
+    $fx_eq_lmf_tomhi := %save[63]
+    $fx_eq_lmg_tomhi := %save[64]
+    $fx_eq_lmq_tomhi := %save[65]
+    $fx_eq_hmf_tomhi := %save[66]
+    $fx_eq_hmg_tomhi := %save[67]
+    $fx_eq_hmq_tomhi := %save[68]
+    $fx_eq_hf_tomhi := %save[69]
+    $fx_eq_hg_tomhi := %save[70]
+    $fx_eq_hb_tomhi := %save[71]
+    $fx_eq_lf_tommid := %save[72]
+    $fx_eq_lg_tommid := %save[73]
+    $fx_eq_lb_tommid := %save[74]
+    $fx_eq_lmf_tommid := %save[75]
+    $fx_eq_lmg_tommid := %save[76]
+    $fx_eq_lmq_tommid := %save[77]
+    $fx_eq_hmf_tommid := %save[78]
+    $fx_eq_hmg_tommid := %save[79]
+    $fx_eq_hmq_tommid := %save[80]
+    $fx_eq_hf_tommid := %save[81]
+    $fx_eq_hg_tommid := %save[82]
+    $fx_eq_hb_tommid := %save[83]
+    $fx_eq_lf_tomlow := %save[84]
+    $fx_eq_lg_tomlow := %save[85]
+    $fx_eq_lb_tomlow := %save[86]
+    $fx_eq_lmf_tomlow := %save[87]
+    $fx_eq_lmg_tomlow := %save[88]
+    $fx_eq_lmq_tomlow := %save[89]
+    $fx_eq_hmf_tomlow := %save[90]
+    $fx_eq_hmg_tomlow := %save[91]
+    $fx_eq_hmq_tomlow := %save[92]
+    $fx_eq_hf_tomlow := %save[93]
+    $fx_eq_hg_tomlow := %save[94]
+    $fx_eq_hb_tomlow := %save[95]
+    $fx_eq_lf_ov := %save[96]
+    $fx_eq_lg_ov := %save[97]
+    $fx_eq_lb_ov := %save[98]
+    $fx_eq_lmf_ov := %save[99]
+    $fx_eq_lmg_ov := %save[100]
+    $fx_eq_lmq_ov := %save[101]
+    $fx_eq_hmf_ov := %save[102]
+    $fx_eq_hmg_ov := %save[103]
+    $fx_eq_hmq_ov := %save[104]
+    $fx_eq_hf_ov := %save[105]
+    $fx_eq_hg_ov := %save[106]
+    $fx_eq_hb_ov := %save[107]
+    $fx_eq_lf_master := %save[108]
+    $fx_eq_lg_master := %save[109]
+    $fx_eq_lb_master := %save[110]
+    $fx_eq_lmf_master := %save[111]
+    $fx_eq_lmg_master := %save[112]
+    $fx_eq_lmq_master := %save[113]
+    $fx_eq_hmf_master := %save[114]
+    $fx_eq_hmg_master := %save[115]
+    $fx_eq_hmq_master := %save[116]
+    $fx_eq_hf_master := %save[117]
+    $fx_eq_hg_master := %save[118]
+    $fx_eq_hb_master := %save[119]
+    $fx_td_in_hh := %save[120]
+    $fx_td_atk_hh := %save[121]
+    $fx_td_rel_hh := %save[122]
+    $fx_td_out_hh := %save[123]
+    $fx_td_in_bdi := %save[124]
+    $fx_td_atk_bdi := %save[125]
+    $fx_td_rel_bdi := %save[126]
+    $fx_td_out_bdi := %save[127]
+    $fx_td_in_bdo := %save[128]
+    $fx_td_atk_bdo := %save[129]
+    $fx_td_rel_bdo := %save[130]
+    $fx_td_out_bdo := %save[131]
+    $fx_td_in_sntop := %save[132]
+    $fx_td_atk_sntop := %save[133]
+    $fx_td_rel_sntop := %save[134]
+    $fx_td_out_sntop := %save[135]
+    $fx_td_in_snbt := %save[136]
+    $fx_td_atk_snbt := %save[137]
+    $fx_td_rel_snbt := %save[138]
+    $fx_td_out_snbt := %save[139]
+    $fx_td_in_tomhi := %save[140]
+    $fx_td_atk_tomhi := %save[141]
+    $fx_td_rel_tomhi := %save[142]
+    $fx_td_out_tomhi := %save[143]
+    $fx_td_in_tommid := %save[144]
+    $fx_td_atk_tommid := %save[145]
+    $fx_td_rel_tommid := %save[146]
+    $fx_td_out_tommid := %save[147]
+    $fx_td_in_tomlow := %save[148]
+    $fx_td_atk_tomlow := %save[149]
+    $fx_td_rel_tomlow := %save[150]
+    $fx_td_out_tomlow := %save[151]
+    $fx_td_atk_ov := %save[152]
+    $fx_td_atk_ov := %save[153]
+    $fx_td_rel_ov := %save[154]
+    $fx_td_out_ov := %save[155]
+    $fx_td_in_master := %save[156]
+    $fx_td_atk_master := %save[157]
+    $fx_td_rel_master := %save[158]
+    $fx_td_out_master := %save[159]
+    $fx_comp_tres_hh := %save[160]
+    $fx_comp_atk_hh := %save[161]
+    $fx_comp_rel_hh := %save[162]
+    $fx_comp_rat_hh := %save[163]
+    $fx_comp_mix_hh := %save[164]
+    $fx_comp_makeup_hh := %save[165]
+    $fx_comp_tres_bdi := %save[166]
+    $fx_comp_atk_bdi := %save[167]
+    $fx_comp_rel_bdi := %save[168]
+    $fx_comp_rat_bdi := %save[169]
+    $fx_comp_mix_bdi := %save[170]
+    $fx_comp_makeup_bdi := %save[171]
+    $fx_comp_tres_bdo := %save[172]
+    $fx_comp_atk_bdo := %save[173]
+    $fx_comp_rel_bdo := %save[174]
+    $fx_comp_rat_bdo := %save[175]
+    $fx_comp_mix_bdo := %save[176]
+    $fx_comp_makeup_bdo := %save[177]
+    $fx_comp_tres_sntop := %save[178]
+    $fx_comp_atk_sntop := %save[179]
+    $fx_comp_rel_sntop := %save[180]
+    $fx_comp_rat_sntop := %save[181]
+    $fx_comp_mix_sntop := %save[182]
+    $fx_comp_makeup_sntop := %save[299]
+    $fx_comp_tres_snbt := %save[183]
+    $fx_comp_atk_snbt := %save[184]
+    $fx_comp_rel_snbt := %save[185]
+    $fx_comp_rat_snbt := %save[186]
+    $fx_comp_mix_snbt := %save[187]
+    $fx_comp_makeup_snbt := %save[188]
+    $fx_comp_tres_tomhi := %save[189]
+    $fx_comp_atk_tomhi := %save[190]
+    $fx_comp_rel_tomhi := %save[191]
+    $fx_comp_rat_tomhi := %save[192]
+    $fx_comp_mix_tomhi := %save[193]
+    $fx_comp_makeup_tomhi := %save[194]
+    $fx_comp_tres_tommid := %save[195]
+    $fx_comp_atk_tommid := %save[196]
+    $fx_comp_rel_tommid := %save[197]
+    $fx_comp_rat_tommid := %save[198]
+    $fx_comp_mix_tommid := %save[199]
+    $fx_comp_makeup_tommid := %save[200]
+    $fx_comp_tres_tomlow := %save[201]
+    $fx_comp_atk_tomlow := %save[202]
+    $fx_comp_rel_tomlow := %save[203]
+    $fx_comp_rat_tomlow := %save[204]
+    $fx_comp_mix_tomlow := %save[205]
+    $fx_comp_makeup_tomlow := %save[206]
+    $fx_comp_tres_ov := %save[207]
+    $fx_comp_atk_ov := %save[208]
+    $fx_comp_rel_ov := %save[209]
+    $fx_comp_rat_ov := %save[210]
+    $fx_comp_mix_ov := %save[211]
+    $fx_comp_makeup_ov := %save[212]
+    $fx_comp_tres_master := %save[213]
+    $fx_comp_atk_master := %save[214]
+    $fx_comp_rel_master := %save[215]
+    $fx_comp_rat_master := %save[216]
+    $fx_comp_mix_master := %save[217]
+    $fx_comp_makeup_master := %save[218]
+    while ($mix_hh_vol # %save[230] or ($mix_bdi_vol # %save[231]) or ($mix_bdo_vol # %save[232]) or ($mix_sntop_vol # %save[233]) or ($mix_snbt_vol # %save[234]) or ($mix_tomhi_vol # %save[235]) or ($mix_tommid_vol # %save[236]) or ($mix_tomlow_vol # %save[237]) or ($mix_ov_vol # %save[238]) or ($mix_rev_vol # %save[239]))
+        if ($mix_hh_vol<%save[230])
+            inc($mix_hh_vol)
+        else
+        if ($mix_hh_vol>%save[230])
+            dec($mix_hh_vol)
+        end if
+        end if
+        if ($mix_bdi_vol<%save[231])
+            inc($mix_bdi_vol)
+        else
+        if ($mix_bdi_vol>%save[231])
+            dec($mix_bdi_vol)
+        end if
+        end if
+        if ($mix_bdo_vol<%save[232])
+            inc($mix_bdo_vol)
+        else
+        if ($mix_bdo_vol>%save[232])
+            dec($mix_bdo_vol)
+        end if
+        end if
+        if ($mix_sntop_vol<%save[233])
+            inc($mix_sntop_vol)
+        else
+        if ($mix_sntop_vol>%save[233])
+            dec($mix_sntop_vol)
+        end if
+        end if
+        if ($mix_snbt_vol<%save[234])
+            inc($mix_snbt_vol)
+        else
+        if ($mix_snbt_vol>%save[234])
+            dec($mix_snbt_vol)
+        end if
+        end if
+        if ($mix_tomhi_vol<%save[235])
+            inc($mix_tomhi_vol)
+        else
+        if ($mix_tomhi_vol>%save[235])
+            dec($mix_tomhi_vol)
+        end if
+        end if
+        if ($mix_tommid_vol<%save[236])
+            inc($mix_tommid_vol)
+        else
+        if ($mix_tommid_vol>%save[236])
+            dec($mix_tommid_vol)
+        end if
+        end if
+        if ($mix_tomlow_vol<%save[237])
+            inc($mix_tomlow_vol)
+        else
+        if ($mix_tomlow_vol>%save[237])
+            dec($mix_tomlow_vol)
+        end if
+        end if
+        if ($mix_ov_vol<%save[238])
+            inc($mix_ov_vol)
+        else
+        if ($mix_ov_vol>%save[238])
+            dec($mix_ov_vol)
+        end if
+        end if
+        if ($mix_rev_vol<%save[239])
+            inc($mix_rev_vol)
+        else
+        if ($mix_rev_vol>%save[239])
+            dec($mix_rev_vol)
+        end if
+        end if
+        wait(2000)
+    end while
+    $mix_hh_pan := %save[240]
+    $mix_bdi_pan := %save[241]
+    $mix_bdo_pan := %save[242]
+    $mix_sntop_pan := %save[243]
+    $mix_snbt_pan := %save[244]
+    $mix_tomhi_pan := %save[245]
+    $mix_tommid_pan := %save[246]
+    $mix_tomlow_pan := %save[247]
+    $mix_ov_pan := %save[248]
+    $mix_ov_spread := %save[249]
+    $mix_ov_mono := %save[250]
+    $mix_hh_ov := %save[251]
+    $mix_bdi_ov := %save[252]
+    $mix_sntop_ov := %save[254]
+    $mix_tomhi_ov := %save[256]
+    $mix_tommid_ov := %save[257]
+    $mix_tomlow_ov := %save[258]
+    $mix_hh_rev := %save[259]
+    $mix_bdi_rev := %save[260]
+    $mix_bdo_rev := %save[261]
+    $mix_sntop_rev := %save[262]
+    $mix_snbt_rev := %save[263]
+    $mix_tomhi_rev := %save[264]
+    $mix_tommid_rev := %save[265]
+    $mix_tomlow_rev := %save[266]
+    $mix_ov_rev := %save[267]
+    $mix_bd_link := %save[268]
+    $mix_bdo_phase := %save[269]
+    $mix_sn_link := %save[270]
+    $mix_snbt_phase := %save[271]
+    $mix_rev_hp := %save[272]
+    $mix_rev_lp := %save[273]
+    $IR_current := %save[274]
+    $drums_hh_mic_current := %save[280]
+    $drums_bdi_mic_current := %save[281]
+    $drums_bdo_mic_current := %save[282]
+    $drums_sntop_mic_current := %save[283]
+    $drums_snbt_mic_current := %save[284]
+    $drums_tomhi_mic_current := %save[285]
+    $drums_tommid_mic_current := %save[286]
+    $drums_tomlow_mic_current := %save[287]
+    $drums_ov_mic_current := %save[288]
+    pgs_set_key_val(MICS,0,$drums_hh_mic_current)
+    pgs_set_key_val(MICS,1,$drums_bdi_mic_current)
+    pgs_set_key_val(MICS,2,$drums_bdo_mic_current)
+    pgs_set_key_val(MICS,3,$drums_sntop_mic_current)
+    pgs_set_key_val(MICS,4,$drums_snbt_mic_current)
+    pgs_set_key_val(MICS,5,$drums_tomhi_mic_current)
+    pgs_set_key_val(MICS,6,$drums_tommid_mic_current)
+    pgs_set_key_val(MICS,7,$drums_tomlow_mic_current)
+    pgs_set_key_val(MICS,8,$drums_ov_mic_current)
+    $fx_td_soft_hh := %save[298]
+    $fx_td_soft_bdi := %save[289]
+    $fx_td_soft_bdo := %save[290]
+    $fx_td_soft_sntop := %save[291]
+    $fx_td_soft_snbt := %save[292]
+    $fx_td_soft_tomhi := %save[293]
+    $fx_td_soft_tommid := %save[294]
+    $fx_td_soft_tomlow := %save[295]
+    $fx_td_soft_ov := %save[296]
+    $fx_td_soft_master := %save[297]
+    $options_wires_snbtm := %save[301]
+    $mix_swap := %save[302]
+    if ($mix_bd_link=1)
+        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
+    else
+    if ($mix_bd_link=0)
+        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+    end if
+    end if
+    if ($mix_sn_link=1)
+        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
+    else
+    if ($mix_sn_link=0)
+        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+    end if
+    end if
+
+    call fx_set_engine_par
+
+    if ($mix_hh_sel=1)
+        $help1 := 0
+        call assign_fx_hh
+    else
+    if ($mix_bdi_sel=1)
+        $help1 := 1
+        call assign_fx_bdi
+    else
+    if ($mix_bdo_sel=1)
+        $help1 := 2
+        call assign_fx_bdo
+    else
+    if ($mix_sntop_sel=1)
+        $help1 := 3
+        call assign_fx_sntop
+    else
+    if ($mix_snbt_sel=1)
+        $help1 := 4
+        call assign_fx_snbt
+    else
+    if ($mix_tomhi_sel=1)
+        $help1 := 5
+        call assign_fx_tomhi
+    else
+    if ($mix_tommid_sel=1)
+        $help1 := 6
+        call assign_fx_tommid
+    else
+    if ($mix_tomlow_sel=1)
+        $help1 := 7
+        call assign_fx_tomlow
+    else
+    if ($mix_ov_sel=1)
+        $help1 := 8
+        call assign_fx_ov
+    else
+    if ($mix_master_select=1)
+        $help1 := 9
+        call assign_fx_master
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+    end if
+
+    if ($help1 # 9)
+        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
+        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
+        set_text($fx_eq_lf_val,@fx_eq_lf_str)
+        set_text($fx_eq_lg_val,@fx_eq_lg_str)
+        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
+        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
+        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
+        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
+        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
+        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
+        set_text($fx_eq_hf_val,@fx_eq_hf_str)
+        set_text($fx_eq_hg_val,@fx_eq_hg_str)
+        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$help1)
+        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$help1)
+        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$help1)
+        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$help1)
+        set_text($fx_td_in_val,@fx_td_in_str)
+        set_text($fx_td_atk_val,@fx_td_atk_str)
+        set_text($fx_td_rel_val,@fx_td_rel_str)
+        set_text($fx_td_out_val,@fx_td_out_str)
+        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$help1)
+        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$help1)
+        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$help1)
+        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$help1)
+        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$help1)
+        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$help1)
+        set_text($fx_comp_tres_val,@fx_comp_tres_str)
+        set_text($fx_comp_atk_val,@fx_comp_atk_str)
+        set_text($fx_comp_rel_val,@fx_comp_rel_str)
+        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
+        set_text($fx_comp_mix_val,@fx_comp_mix_str)
+        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
+    else
+    if ($help1=9)
+        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,-1)
+        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,-1)
+        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,-1)
+        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,-1)
+        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,-1)
+        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,-1)
+        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,-1)
+        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,-1)
+        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,-1)
+        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,-1)
+        set_text($fx_eq_lf_val,@fx_eq_lf_str)
+        set_text($fx_eq_lg_val,@fx_eq_lg_str)
+        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
+        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
+        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
+        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
+        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
+        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
+        set_text($fx_eq_hf_val,@fx_eq_hf_str)
+        set_text($fx_eq_hg_val,@fx_eq_hg_str)
+        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
+        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1)
+        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1)
+        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1)
+        set_text($fx_td_in_val,@fx_td_in_str)
+        set_text($fx_td_atk_val,@fx_td_atk_str)
+        set_text($fx_td_rel_val,@fx_td_rel_str)
+        set_text($fx_td_out_val,@fx_td_out_str)
+        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,-1)
+        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,-1)
+        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,-1)
+        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,-1)
+        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,-1)
+        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,-1)
+        set_text($fx_comp_tres_val,@fx_comp_tres_str)
+        set_text($fx_comp_atk_val,@fx_comp_atk_str)
+        set_text($fx_comp_rel_val,@fx_comp_rel_str)
+        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
+        set_text($fx_comp_mix_val,@fx_comp_mix_str)
+        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
+    end if
+    end if
+    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
+    call update_all_volumes
+    if ($mix_ov_mono=0)
+        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
+        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
+    else
+    if ($mix_ov_mono=1)
+        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
+        set_engine_par($ENGINE_PAR_STEREO,0,-1,6,$NI_BUS_OFFSET+8)
+    end if
+    end if
+    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_LR,$mix_rev_hp*7874,-1,7,0)
+    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_ER,$mix_rev_hp*7874,-1,7,0)
+    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_LR,$mix_rev_lp*7874,-1,7,0)
+    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_ER,$mix_rev_lp*7874,-1,7,0)
+    set_engine_par($ENGINE_PAR_SEND_EFFECT_OUTPUT_GAIN,$mix_rev_vol*5200,-1,7,0)
+    $load_ir_id := load_ir_sample(!IR_id[$IR_current],7,0)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
+    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
+    
+    call update_mic_fader_labels
+
+    if ($mix_swap=0)
+        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
+    else
+    if ($mix_swap=1)
+        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
+    end if
+    end if
+    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
+    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
+end function
+
 on persistence_changed
     {call fx_set_engine_par}
     if ($menu_drums=1)
@@ -9414,720 +10318,9 @@ on ui_control($mix_preset_up)
     if ($current_preset>36)
         $current_preset := 1
     end if
-    $i := 0
-    while ($i<=8)
-        %solo_arr[$i] := 0
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-        if (get_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE)=1)
-            set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        inc($i)
-    end while
 
-    call update_all_volumes
+    call load_preset
 
-    $anysolo := 0
-
-    call fx_eq_td_comp_reset
-
-    if ($current_preset=1)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %default__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_default")
-            inc($i)
-        end while
-    else
-    if ($current_preset=2)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_rock[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=3)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_lofi[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi")
-            inc($i)
-        end while
-    else
-    if ($current_preset=4)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_fx01[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_fx1")
-            inc($i)
-        end while
-    else
-    if ($current_preset=5)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %deftones__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_deftones")
-            inc($i)
-        end while
-    else
-    if ($current_preset=6)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %demolofi__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_ambient")
-            inc($i)
-        end while
-    else
-    if ($current_preset=7)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %funkh__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_funkh")
-            inc($i)
-        end while
-    else
-    if ($current_preset=8)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %jazzfunk__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_jazzfunk")
-            inc($i)
-        end while
-    else
-    if ($current_preset=9)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %limpbizkit__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_limp")
-            inc($i)
-        end while
-    else
-    if ($current_preset=10)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %lofi2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=11)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %metal1__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal")
-            inc($i)
-        end while
-    else
-    if ($current_preset=12)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %metal2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=13)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %modernrock__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernrock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=14)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chili__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_redhotchillipeppers")
-            inc($i)
-        end while
-    else
-    if ($current_preset=15)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %postrock__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_postrock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=16)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %progressive__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_progressiverock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=17)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %rockj__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=18)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %triphop__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_triphop")
-            inc($i)
-        end while
-    else
-    if ($current_preset=19)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %winehouse__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_winehouse")
-            inc($i)
-        end while
-    else
-    if ($current_preset=20)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %posthardcore__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_posthardcore")
-            inc($i)
-        end while
-    else
-    if ($current_preset=21)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %normalj__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_normal")
-            inc($i)
-        end while
-    else
-    if ($current_preset=22)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %phat__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_phat")
-            inc($i)
-        end while
-    else
-    if ($current_preset=23)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dirtyblues__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dirtyblues")
-            inc($i)
-        end while
-    else
-    if ($current_preset=24)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dnb__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dnb")
-            inc($i)
-        end while
-    else
-    if ($current_preset=25)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %prodigy__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_prodigy")
-            inc($i)
-        end while
-    else
-    if ($current_preset=26)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %cranked__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_cranked")
-            inc($i)
-        end while
-    else
-    if ($current_preset=27)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %claustro__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_claustro")
-            inc($i)
-        end while
-    else
-    if ($current_preset=28)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %modernsoul__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernsoul")
-            inc($i)
-        end while
-    else
-    if ($current_preset=29)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chemical1__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical1")
-            inc($i)
-        end while
-    else
-    if ($current_preset=30)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chemical2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=31)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dub__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dub")
-            inc($i)
-        end while
-    else
-    if ($current_preset=32)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %oasis__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_oasis")
-            inc($i)
-        end while
-    else
-    if ($current_preset=33)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %hifi__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_hifi")
-            inc($i)
-        end while
-    else
-    if ($current_preset=34)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %natural__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_natural")
-            inc($i)
-        end while
-    else
-    if ($current_preset=35)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %extreme__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_extreme")
-            inc($i)
-        end while
-    else
-    if ($current_preset=36)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %init__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_init")
-            inc($i)
-        end while
-    end if {36}
-    end if {35}
-    end if {34}
-    end if {33}
-    end if {32}
-    end if {31}
-    end if {30}
-    end if {29}
-    end if {28}
-    end if {27}
-    end if {26}
-    end if {25}
-    end if {24}
-    end if {23}
-    end if {22}
-    end if {21}
-    end if {20}
-    end if {19}
-    end if {18}
-    end if {17}
-    end if {16}
-    end if {15}
-    end if {14}
-    end if {13}
-    end if {12}
-    end if {11}
-    end if {10}
-    end if { 9}
-    end if { 8}
-    end if { 7}
-    end if { 6}
-    end if { 5}
-    end if { 4}
-    end if { 3}
-    end if { 2}
-    end if { 1}
-
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_inactive")
-    $fx_eq_lf_hh := %save[0]
-    $fx_eq_lg_hh := %save[1]
-    $fx_eq_lb_hh := %save[2]
-    $fx_eq_lmf_hh := %save[3]
-    $fx_eq_lmg_hh := %save[4]
-    $fx_eq_lmq_hh := %save[5]
-    $fx_eq_hmf_hh := %save[6]
-    $fx_eq_hmg_hh := %save[7]
-    $fx_eq_hmq_hh := %save[8]
-    $fx_eq_hf_hh := %save[9]
-    $fx_eq_hg_hh := %save[10]
-    $fx_eq_hb_hh := %save[11]
-    $fx_eq_lf_bdi := %save[12]
-    $fx_eq_lg_bdi := %save[13]
-    $fx_eq_lb_bdi := %save[14]
-    $fx_eq_lmf_bdi := %save[15]
-    $fx_eq_lmg_bdi := %save[16]
-    $fx_eq_lmq_bdi := %save[17]
-    $fx_eq_hmf_bdi := %save[18]
-    $fx_eq_hmg_bdi := %save[19]
-    $fx_eq_hmq_bdi := %save[20]
-    $fx_eq_hf_bdi := %save[21]
-    $fx_eq_hg_bdi := %save[22]
-    $fx_eq_hb_bdi := %save[23]
-    $fx_eq_lf_bdo := %save[24]
-    $fx_eq_lg_bdo := %save[25]
-    $fx_eq_lb_bdo := %save[26]
-    $fx_eq_lmf_bdo := %save[27]
-    $fx_eq_lmg_bdo := %save[28]
-    $fx_eq_lmq_bdo := %save[29]
-    $fx_eq_hmf_bdo := %save[30]
-    $fx_eq_hmg_bdo := %save[31]
-    $fx_eq_hmq_bdo := %save[32]
-    $fx_eq_hf_bdo := %save[33]
-    $fx_eq_hg_bdo := %save[34]
-    $fx_eq_hb_bdo := %save[35]
-    $fx_eq_lf_sntop := %save[36]
-    $fx_eq_lg_sntop := %save[37]
-    $fx_eq_lb_sntop := %save[38]
-    $fx_eq_lmf_sntop := %save[39]
-    $fx_eq_lmg_sntop := %save[40]
-    $fx_eq_lmq_sntop := %save[41]
-    $fx_eq_hmf_sntop := %save[42]
-    $fx_eq_hmg_sntop := %save[43]
-    $fx_eq_hmq_sntop := %save[44]
-    $fx_eq_hf_sntop := %save[45]
-    $fx_eq_hg_sntop := %save[46]
-    $fx_eq_hb_sntop := %save[47]
-    $fx_eq_lf_snbt := %save[48]
-    $fx_eq_lg_snbt := %save[49]
-    $fx_eq_lb_snbt := %save[50]
-    $fx_eq_lmf_snbt := %save[51]
-    $fx_eq_lmg_snbt := %save[52]
-    $fx_eq_lmq_snbt := %save[53]
-    $fx_eq_hmf_snbt := %save[54]
-    $fx_eq_hmg_snbt := %save[55]
-    $fx_eq_hmq_snbt := %save[56]
-    $fx_eq_hf_snbt := %save[57]
-    $fx_eq_hg_snbt := %save[58]
-    $fx_eq_hb_snbt := %save[59]
-    $fx_eq_lf_tomhi := %save[60]
-    $fx_eq_lg_tomhi := %save[61]
-    $fx_eq_lb_tomhi := %save[62]
-    $fx_eq_lmf_tomhi := %save[63]
-    $fx_eq_lmg_tomhi := %save[64]
-    $fx_eq_lmq_tomhi := %save[65]
-    $fx_eq_hmf_tomhi := %save[66]
-    $fx_eq_hmg_tomhi := %save[67]
-    $fx_eq_hmq_tomhi := %save[68]
-    $fx_eq_hf_tomhi := %save[69]
-    $fx_eq_hg_tomhi := %save[70]
-    $fx_eq_hb_tomhi := %save[71]
-    $fx_eq_lf_tommid := %save[72]
-    $fx_eq_lg_tommid := %save[73]
-    $fx_eq_lb_tommid := %save[74]
-    $fx_eq_lmf_tommid := %save[75]
-    $fx_eq_lmg_tommid := %save[76]
-    $fx_eq_lmq_tommid := %save[77]
-    $fx_eq_hmf_tommid := %save[78]
-    $fx_eq_hmg_tommid := %save[79]
-    $fx_eq_hmq_tommid := %save[80]
-    $fx_eq_hf_tommid := %save[81]
-    $fx_eq_hg_tommid := %save[82]
-    $fx_eq_hb_tommid := %save[83]
-    $fx_eq_lf_tomlow := %save[84]
-    $fx_eq_lg_tomlow := %save[85]
-    $fx_eq_lb_tomlow := %save[86]
-    $fx_eq_lmf_tomlow := %save[87]
-    $fx_eq_lmg_tomlow := %save[88]
-    $fx_eq_lmq_tomlow := %save[89]
-    $fx_eq_hmf_tomlow := %save[90]
-    $fx_eq_hmg_tomlow := %save[91]
-    $fx_eq_hmq_tomlow := %save[92]
-    $fx_eq_hf_tomlow := %save[93]
-    $fx_eq_hg_tomlow := %save[94]
-    $fx_eq_hb_tomlow := %save[95]
-    $fx_eq_lf_ov := %save[96]
-    $fx_eq_lg_ov := %save[97]
-    $fx_eq_lb_ov := %save[98]
-    $fx_eq_lmf_ov := %save[99]
-    $fx_eq_lmg_ov := %save[100]
-    $fx_eq_lmq_ov := %save[101]
-    $fx_eq_hmf_ov := %save[102]
-    $fx_eq_hmg_ov := %save[103]
-    $fx_eq_hmq_ov := %save[104]
-    $fx_eq_hf_ov := %save[105]
-    $fx_eq_hg_ov := %save[106]
-    $fx_eq_hb_ov := %save[107]
-    $fx_eq_lf_master := %save[108]
-    $fx_eq_lg_master := %save[109]
-    $fx_eq_lb_master := %save[110]
-    $fx_eq_lmf_master := %save[111]
-    $fx_eq_lmg_master := %save[112]
-    $fx_eq_lmq_master := %save[113]
-    $fx_eq_hmf_master := %save[114]
-    $fx_eq_hmg_master := %save[115]
-    $fx_eq_hmq_master := %save[116]
-    $fx_eq_hf_master := %save[117]
-    $fx_eq_hg_master := %save[118]
-    $fx_eq_hb_master := %save[119]
-    $fx_td_in_hh := %save[120]
-    $fx_td_atk_hh := %save[121]
-    $fx_td_rel_hh := %save[122]
-    $fx_td_out_hh := %save[123]
-    $fx_td_in_bdi := %save[124]
-    $fx_td_atk_bdi := %save[125]
-    $fx_td_rel_bdi := %save[126]
-    $fx_td_out_bdi := %save[127]
-    $fx_td_in_bdo := %save[128]
-    $fx_td_atk_bdo := %save[129]
-    $fx_td_rel_bdo := %save[130]
-    $fx_td_out_bdo := %save[131]
-    $fx_td_in_sntop := %save[132]
-    $fx_td_atk_sntop := %save[133]
-    $fx_td_rel_sntop := %save[134]
-    $fx_td_out_sntop := %save[135]
-    $fx_td_in_snbt := %save[136]
-    $fx_td_atk_snbt := %save[137]
-    $fx_td_rel_snbt := %save[138]
-    $fx_td_out_snbt := %save[139]
-    $fx_td_in_tomhi := %save[140]
-    $fx_td_atk_tomhi := %save[141]
-    $fx_td_rel_tomhi := %save[142]
-    $fx_td_out_tomhi := %save[143]
-    $fx_td_in_tommid := %save[144]
-    $fx_td_atk_tommid := %save[145]
-    $fx_td_rel_tommid := %save[146]
-    $fx_td_out_tommid := %save[147]
-    $fx_td_in_tomlow := %save[148]
-    $fx_td_atk_tomlow := %save[149]
-    $fx_td_rel_tomlow := %save[150]
-    $fx_td_out_tomlow := %save[151]
-    $fx_td_atk_ov := %save[152]
-    $fx_td_atk_ov := %save[153]
-    $fx_td_rel_ov := %save[154]
-    $fx_td_out_ov := %save[155]
-    $fx_td_in_master := %save[156]
-    $fx_td_atk_master := %save[157]
-    $fx_td_rel_master := %save[158]
-    $fx_td_out_master := %save[159]
-    $fx_comp_tres_hh := %save[160]
-    $fx_comp_atk_hh := %save[161]
-    $fx_comp_rel_hh := %save[162]
-    $fx_comp_rat_hh := %save[163]
-    $fx_comp_mix_hh := %save[164]
-    $fx_comp_makeup_hh := %save[165]
-    $fx_comp_tres_bdi := %save[166]
-    $fx_comp_atk_bdi := %save[167]
-    $fx_comp_rel_bdi := %save[168]
-    $fx_comp_rat_bdi := %save[169]
-    $fx_comp_mix_bdi := %save[170]
-    $fx_comp_makeup_bdi := %save[171]
-    $fx_comp_tres_bdo := %save[172]
-    $fx_comp_atk_bdo := %save[173]
-    $fx_comp_rel_bdo := %save[174]
-    $fx_comp_rat_bdo := %save[175]
-    $fx_comp_mix_bdo := %save[176]
-    $fx_comp_makeup_bdo := %save[177]
-    $fx_comp_tres_sntop := %save[178]
-    $fx_comp_atk_sntop := %save[179]
-    $fx_comp_rel_sntop := %save[180]
-    $fx_comp_rat_sntop := %save[181]
-    $fx_comp_mix_sntop := %save[182]
-    $fx_comp_makeup_sntop := %save[299]
-    $fx_comp_tres_snbt := %save[183]
-    $fx_comp_atk_snbt := %save[184]
-    $fx_comp_rel_snbt := %save[185]
-    $fx_comp_rat_snbt := %save[186]
-    $fx_comp_mix_snbt := %save[187]
-    $fx_comp_makeup_snbt := %save[188]
-    $fx_comp_tres_tomhi := %save[189]
-    $fx_comp_atk_tomhi := %save[190]
-    $fx_comp_rel_tomhi := %save[191]
-    $fx_comp_rat_tomhi := %save[192]
-    $fx_comp_mix_tomhi := %save[193]
-    $fx_comp_makeup_tomhi := %save[194]
-    $fx_comp_tres_tommid := %save[195]
-    $fx_comp_atk_tommid := %save[196]
-    $fx_comp_rel_tommid := %save[197]
-    $fx_comp_rat_tommid := %save[198]
-    $fx_comp_mix_tommid := %save[199]
-    $fx_comp_makeup_tommid := %save[200]
-    $fx_comp_tres_tomlow := %save[201]
-    $fx_comp_atk_tomlow := %save[202]
-    $fx_comp_rel_tomlow := %save[203]
-    $fx_comp_rat_tomlow := %save[204]
-    $fx_comp_mix_tomlow := %save[205]
-    $fx_comp_makeup_tomlow := %save[206]
-    $fx_comp_tres_ov := %save[207]
-    $fx_comp_atk_ov := %save[208]
-    $fx_comp_rel_ov := %save[209]
-    $fx_comp_rat_ov := %save[210]
-    $fx_comp_mix_ov := %save[211]
-    $fx_comp_makeup_ov := %save[212]
-    $fx_comp_tres_master := %save[213]
-    $fx_comp_atk_master := %save[214]
-    $fx_comp_rel_master := %save[215]
-    $fx_comp_rat_master := %save[216]
-    $fx_comp_mix_master := %save[217]
-    $fx_comp_makeup_master := %save[218]
-    while ($mix_hh_vol # %save[230] or ($mix_bdi_vol # %save[231]) or ($mix_bdo_vol # %save[232]) or ($mix_sntop_vol # %save[233]) or ($mix_snbt_vol # %save[234]) or ($mix_tomhi_vol # %save[235]) or ($mix_tommid_vol # %save[236]) or ($mix_tomlow_vol # %save[237]) or ($mix_ov_vol # %save[238]) or ($mix_rev_vol # %save[239]))
-        if ($mix_hh_vol<%save[230])
-            inc($mix_hh_vol)
-        else
-        if ($mix_hh_vol>%save[230])
-            dec($mix_hh_vol)
-        end if
-        end if
-        if ($mix_bdi_vol<%save[231])
-            inc($mix_bdi_vol)
-        else
-        if ($mix_bdi_vol>%save[231])
-            dec($mix_bdi_vol)
-        end if
-        end if
-        if ($mix_bdo_vol<%save[232])
-            inc($mix_bdo_vol)
-        else
-        if ($mix_bdo_vol>%save[232])
-            dec($mix_bdo_vol)
-        end if
-        end if
-        if ($mix_sntop_vol<%save[233])
-            inc($mix_sntop_vol)
-        else
-        if ($mix_sntop_vol>%save[233])
-            dec($mix_sntop_vol)
-        end if
-        end if
-        if ($mix_snbt_vol<%save[234])
-            inc($mix_snbt_vol)
-        else
-        if ($mix_snbt_vol>%save[234])
-            dec($mix_snbt_vol)
-        end if
-        end if
-        if ($mix_tomhi_vol<%save[235])
-            inc($mix_tomhi_vol)
-        else
-        if ($mix_tomhi_vol>%save[235])
-            dec($mix_tomhi_vol)
-        end if
-        end if
-        if ($mix_tommid_vol<%save[236])
-            inc($mix_tommid_vol)
-        else
-        if ($mix_tommid_vol>%save[236])
-            dec($mix_tommid_vol)
-        end if
-        end if
-        if ($mix_tomlow_vol<%save[237])
-            inc($mix_tomlow_vol)
-        else
-        if ($mix_tomlow_vol>%save[237])
-            dec($mix_tomlow_vol)
-        end if
-        end if
-        if ($mix_ov_vol<%save[238])
-            inc($mix_ov_vol)
-        else
-        if ($mix_ov_vol>%save[238])
-            dec($mix_ov_vol)
-        end if
-        end if
-        if ($mix_rev_vol<%save[239])
-            inc($mix_rev_vol)
-        else
-        if ($mix_rev_vol>%save[239])
-            dec($mix_rev_vol)
-        end if
-        end if
-        wait(2000)
-    end while
-    $mix_hh_pan := %save[240]
-    $mix_bdi_pan := %save[241]
-    $mix_bdo_pan := %save[242]
-    $mix_sntop_pan := %save[243]
-    $mix_snbt_pan := %save[244]
-    $mix_tomhi_pan := %save[245]
-    $mix_tommid_pan := %save[246]
-    $mix_tomlow_pan := %save[247]
-    $mix_ov_pan := %save[248]
-    $mix_ov_spread := %save[249]
-    $mix_ov_mono := %save[250]
-    $mix_hh_ov := %save[251]
-    $mix_bdi_ov := %save[252]
-    $mix_sntop_ov := %save[254]
-    $mix_tomhi_ov := %save[256]
-    $mix_tommid_ov := %save[257]
-    $mix_tomlow_ov := %save[258]
-    $mix_hh_rev := %save[259]
-    $mix_bdi_rev := %save[260]
-    $mix_bdo_rev := %save[261]
-    $mix_sntop_rev := %save[262]
-    $mix_snbt_rev := %save[263]
-    $mix_tomhi_rev := %save[264]
-    $mix_tommid_rev := %save[265]
-    $mix_tomlow_rev := %save[266]
-    $mix_ov_rev := %save[267]
-    $mix_bd_link := %save[268]
-    $mix_bdo_phase := %save[269]
-    $mix_sn_link := %save[270]
-    $mix_snbt_phase := %save[271]
-    $mix_rev_hp := %save[272]
-    $mix_rev_lp := %save[273]
-    $IR_current := %save[274]
-    $drums_hh_mic_current := %save[280]
-    $drums_bdi_mic_current := %save[281]
-    $drums_bdo_mic_current := %save[282]
-    $drums_sntop_mic_current := %save[283]
-    $drums_snbt_mic_current := %save[284]
-    $drums_tomhi_mic_current := %save[285]
-    $drums_tommid_mic_current := %save[286]
-    $drums_tomlow_mic_current := %save[287]
-    $drums_ov_mic_current := %save[288]
-    pgs_set_key_val(MICS,0,$drums_hh_mic_current)
-    pgs_set_key_val(MICS,1,$drums_bdi_mic_current)
-    pgs_set_key_val(MICS,2,$drums_bdo_mic_current)
-    pgs_set_key_val(MICS,3,$drums_sntop_mic_current)
-    pgs_set_key_val(MICS,4,$drums_snbt_mic_current)
-    pgs_set_key_val(MICS,5,$drums_tomhi_mic_current)
-    pgs_set_key_val(MICS,6,$drums_tommid_mic_current)
-    pgs_set_key_val(MICS,7,$drums_tomlow_mic_current)
-    pgs_set_key_val(MICS,8,$drums_ov_mic_current)
-    $fx_td_soft_hh := %save[298]
-    $fx_td_soft_bdi := %save[289]
-    $fx_td_soft_bdo := %save[290]
-    $fx_td_soft_sntop := %save[291]
-    $fx_td_soft_snbt := %save[292]
-    $fx_td_soft_tomhi := %save[293]
-    $fx_td_soft_tommid := %save[294]
-    $fx_td_soft_tomlow := %save[295]
-    $fx_td_soft_ov := %save[296]
-    $fx_td_soft_master := %save[297]
-    $options_wires_snbtm := %save[301]
-    $mix_swap := %save[302]
-    if ($mix_bd_link=1)
-        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
-    else
-    if ($mix_bd_link=0)
-        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
-    if ($mix_sn_link=1)
-        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
-    else
-    if ($mix_sn_link=0)
-        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*6174,98,-1,-1)
     if ($options_wires_snbtm>60)
@@ -10165,192 +10358,6 @@ on ui_control($mix_preset_up)
         end if
     end if
     end if
-
-    call fx_set_engine_par
-
-    if ($mix_hh_sel=1)
-        $help1 := 0
-        call assign_fx_hh
-    else
-    if ($mix_bdi_sel=1)
-        $help1 := 1
-        call assign_fx_bdi
-    else
-    if ($mix_bdo_sel=1)
-        $help1 := 2
-        call assign_fx_bdo
-    else
-    if ($mix_sntop_sel=1)
-        $help1 := 3
-        call assign_fx_sntop
-    else
-    if ($mix_snbt_sel=1)
-        $help1 := 4
-        call assign_fx_snbt
-    else
-    if ($mix_tomhi_sel=1)
-        $help1 := 5
-        call assign_fx_tomhi
-    else
-    if ($mix_tommid_sel=1)
-        $help1 := 6
-        call assign_fx_tommid
-    else
-    if ($mix_tomlow_sel=1)
-        $help1 := 7
-        call assign_fx_tomlow
-    else
-    if ($mix_ov_sel=1)
-        $help1 := 8
-        call assign_fx_ov
-    else
-    if ($mix_master_select=1)
-        $help1 := 9
-        call assign_fx_master
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    if ($help1 # 9)
-        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        set_text($fx_eq_lf_val,@fx_eq_lf_str)
-        set_text($fx_eq_lg_val,@fx_eq_lg_str)
-        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
-        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
-        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
-        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
-        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
-        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
-        set_text($fx_eq_hf_val,@fx_eq_hf_str)
-        set_text($fx_eq_hg_val,@fx_eq_hg_str)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$help1)
-        set_text($fx_td_in_val,@fx_td_in_str)
-        set_text($fx_td_atk_val,@fx_td_atk_str)
-        set_text($fx_td_rel_val,@fx_td_rel_str)
-        set_text($fx_td_out_val,@fx_td_out_str)
-        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$help1)
-        set_text($fx_comp_tres_val,@fx_comp_tres_str)
-        set_text($fx_comp_atk_val,@fx_comp_atk_str)
-        set_text($fx_comp_rel_val,@fx_comp_rel_str)
-        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
-        set_text($fx_comp_mix_val,@fx_comp_mix_str)
-        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
-    else
-    if ($help1=9)
-        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,-1)
-        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,-1)
-        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,-1)
-        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,-1)
-        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,-1)
-        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,-1)
-        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,-1)
-        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,-1)
-        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,-1)
-        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,-1)
-        set_text($fx_eq_lf_val,@fx_eq_lf_str)
-        set_text($fx_eq_lg_val,@fx_eq_lg_str)
-        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
-        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
-        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
-        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
-        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
-        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
-        set_text($fx_eq_hf_val,@fx_eq_hf_str)
-        set_text($fx_eq_hg_val,@fx_eq_hg_str)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1)
-        set_text($fx_td_in_val,@fx_td_in_str)
-        set_text($fx_td_atk_val,@fx_td_atk_str)
-        set_text($fx_td_rel_val,@fx_td_rel_str)
-        set_text($fx_td_out_val,@fx_td_out_str)
-        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,-1)
-        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,-1)
-        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,-1)
-        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,-1)
-        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,-1)
-        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,-1)
-        set_text($fx_comp_tres_val,@fx_comp_tres_str)
-        set_text($fx_comp_atk_val,@fx_comp_atk_str)
-        set_text($fx_comp_rel_val,@fx_comp_rel_str)
-        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
-        set_text($fx_comp_mix_val,@fx_comp_mix_str)
-        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    call update_all_volumes
-    if ($mix_ov_mono=0)
-        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
-    else
-    if ($mix_ov_mono=1)
-        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,0,-1,6,$NI_BUS_OFFSET+8)
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_LR,$mix_rev_hp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_ER,$mix_rev_hp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_LR,$mix_rev_lp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_ER,$mix_rev_lp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_SEND_EFFECT_OUTPUT_GAIN,$mix_rev_vol*5200,-1,7,0)
-    $load_ir_id := load_ir_sample(!IR_id[$IR_current],7,0)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-
-    call update_mic_fader_labels
-
-    if ($mix_swap=0)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
-    else
-    if ($mix_swap=1)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
-    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
 end on
 
 on ui_control($mix_preset_down)
@@ -10359,720 +10366,9 @@ on ui_control($mix_preset_down)
     if ($current_preset<1)
         $current_preset := 36
     end if
-    $i := 0
-    while ($i<=8)
-        %solo_arr[$i] := 0
-        set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-        if (get_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE)=1)
-            set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        inc($i)
-    end while
 
-    call update_all_volumes
+    call load_preset
 
-    $anysolo := 0
-
-    call fx_eq_td_comp_reset
-
-    if ($current_preset=1)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %default__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_default")
-            inc($i)
-        end while
-    else
-    if ($current_preset=2)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_rock[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=3)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_lofi[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi")
-            inc($i)
-        end while
-    else
-    if ($current_preset=4)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %preset_fx01[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_fx1")
-            inc($i)
-        end while
-    else
-    if ($current_preset=5)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %deftones__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_deftones")
-            inc($i)
-        end while
-    else
-    if ($current_preset=6)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %demolofi__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_ambient")
-            inc($i)
-        end while
-    else
-    if ($current_preset=7)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %funkh__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_funkh")
-            inc($i)
-        end while
-    else
-    if ($current_preset=8)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %jazzfunk__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_jazzfunk")
-            inc($i)
-        end while
-    else
-    if ($current_preset=9)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %limpbizkit__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_limp")
-            inc($i)
-        end while
-    else
-    if ($current_preset=10)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %lofi2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_lofi2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=11)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %metal1__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal")
-            inc($i)
-        end while
-    else
-    if ($current_preset=12)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %metal2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_metal2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=13)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %modernrock__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernrock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=14)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chili__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_redhotchillipeppers")
-            inc($i)
-        end while
-    else
-    if ($current_preset=15)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %postrock__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_postrock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=16)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %progressive__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_progressiverock")
-            inc($i)
-        end while
-    else
-    if ($current_preset=17)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %rockj__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_rock2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=18)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %triphop__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_triphop")
-            inc($i)
-        end while
-    else
-    if ($current_preset=19)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %winehouse__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_winehouse")
-            inc($i)
-        end while
-    else
-    if ($current_preset=20)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %posthardcore__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_posthardcore")
-            inc($i)
-        end while
-    else
-    if ($current_preset=21)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %normalj__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_normal")
-            inc($i)
-        end while
-    else
-    if ($current_preset=22)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %phat__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_phat")
-            inc($i)
-        end while
-    else
-    if ($current_preset=23)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dirtyblues__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dirtyblues")
-            inc($i)
-        end while
-    else
-    if ($current_preset=24)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dnb__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dnb")
-            inc($i)
-        end while
-    else
-    if ($current_preset=25)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %prodigy__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_prodigy")
-            inc($i)
-        end while
-    else
-    if ($current_preset=26)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %cranked__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_cranked")
-            inc($i)
-        end while
-    else
-    if ($current_preset=27)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %claustro__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_claustro")
-            inc($i)
-        end while
-    else
-    if ($current_preset=28)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %modernsoul__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_modernsoul")
-            inc($i)
-        end while
-    else
-    if ($current_preset=29)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chemical1__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical1")
-            inc($i)
-        end while
-    else
-    if ($current_preset=30)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %chemical2__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_chemical2")
-            inc($i)
-        end while
-    else
-    if ($current_preset=31)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %dub__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_dub")
-            inc($i)
-        end while
-    else
-    if ($current_preset=32)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %oasis__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_oasis")
-            inc($i)
-        end while
-    else
-    if ($current_preset=33)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %hifi__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_hifi")
-            inc($i)
-        end while
-    else
-    if ($current_preset=34)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %natural__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_natural")
-            inc($i)
-        end while
-    else
-    if ($current_preset=35)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %extreme__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_extreme")
-            inc($i)
-        end while
-    else
-    if ($current_preset=36)
-        $i := 0
-        while ($i<=304)
-            %save[$i] := %init__preset[$i]
-            set_control_par_str(get_ui_id($mix_preset_label),$CONTROL_PAR_PICTURE,"preset_init")
-            inc($i)
-        end while
-    end if {36}
-    end if {35}
-    end if {34}
-    end if {33}
-    end if {32}
-    end if {31}
-    end if {30}
-    end if {29}
-    end if {28}
-    end if {27}
-    end if {26}
-    end if {25}
-    end if {24}
-    end if {23}
-    end if {22}
-    end if {21}
-    end if {20}
-    end if {19}
-    end if {18}
-    end if {17}
-    end if {16}
-    end if {15}
-    end if {14}
-    end if {13}
-    end if {12}
-    end if {11}
-    end if {10}
-    end if { 9}
-    end if { 8}
-    end if { 7}
-    end if { 6}
-    end if { 5}
-    end if { 4}
-    end if { 3}
-    end if { 2}
-    end if { 1}
-
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_inactive")
-    $fx_eq_lf_hh := %save[0]
-    $fx_eq_lg_hh := %save[1]
-    $fx_eq_lb_hh := %save[2]
-    $fx_eq_lmf_hh := %save[3]
-    $fx_eq_lmg_hh := %save[4]
-    $fx_eq_lmq_hh := %save[5]
-    $fx_eq_hmf_hh := %save[6]
-    $fx_eq_hmg_hh := %save[7]
-    $fx_eq_hmq_hh := %save[8]
-    $fx_eq_hf_hh := %save[9]
-    $fx_eq_hg_hh := %save[10]
-    $fx_eq_hb_hh := %save[11]
-    $fx_eq_lf_bdi := %save[12]
-    $fx_eq_lg_bdi := %save[13]
-    $fx_eq_lb_bdi := %save[14]
-    $fx_eq_lmf_bdi := %save[15]
-    $fx_eq_lmg_bdi := %save[16]
-    $fx_eq_lmq_bdi := %save[17]
-    $fx_eq_hmf_bdi := %save[18]
-    $fx_eq_hmg_bdi := %save[19]
-    $fx_eq_hmq_bdi := %save[20]
-    $fx_eq_hf_bdi := %save[21]
-    $fx_eq_hg_bdi := %save[22]
-    $fx_eq_hb_bdi := %save[23]
-    $fx_eq_lf_bdo := %save[24]
-    $fx_eq_lg_bdo := %save[25]
-    $fx_eq_lb_bdo := %save[26]
-    $fx_eq_lmf_bdo := %save[27]
-    $fx_eq_lmg_bdo := %save[28]
-    $fx_eq_lmq_bdo := %save[29]
-    $fx_eq_hmf_bdo := %save[30]
-    $fx_eq_hmg_bdo := %save[31]
-    $fx_eq_hmq_bdo := %save[32]
-    $fx_eq_hf_bdo := %save[33]
-    $fx_eq_hg_bdo := %save[34]
-    $fx_eq_hb_bdo := %save[35]
-    $fx_eq_lf_sntop := %save[36]
-    $fx_eq_lg_sntop := %save[37]
-    $fx_eq_lb_sntop := %save[38]
-    $fx_eq_lmf_sntop := %save[39]
-    $fx_eq_lmg_sntop := %save[40]
-    $fx_eq_lmq_sntop := %save[41]
-    $fx_eq_hmf_sntop := %save[42]
-    $fx_eq_hmg_sntop := %save[43]
-    $fx_eq_hmq_sntop := %save[44]
-    $fx_eq_hf_sntop := %save[45]
-    $fx_eq_hg_sntop := %save[46]
-    $fx_eq_hb_sntop := %save[47]
-    $fx_eq_lf_snbt := %save[48]
-    $fx_eq_lg_snbt := %save[49]
-    $fx_eq_lb_snbt := %save[50]
-    $fx_eq_lmf_snbt := %save[51]
-    $fx_eq_lmg_snbt := %save[52]
-    $fx_eq_lmq_snbt := %save[53]
-    $fx_eq_hmf_snbt := %save[54]
-    $fx_eq_hmg_snbt := %save[55]
-    $fx_eq_hmq_snbt := %save[56]
-    $fx_eq_hf_snbt := %save[57]
-    $fx_eq_hg_snbt := %save[58]
-    $fx_eq_hb_snbt := %save[59]
-    $fx_eq_lf_tomhi := %save[60]
-    $fx_eq_lg_tomhi := %save[61]
-    $fx_eq_lb_tomhi := %save[62]
-    $fx_eq_lmf_tomhi := %save[63]
-    $fx_eq_lmg_tomhi := %save[64]
-    $fx_eq_lmq_tomhi := %save[65]
-    $fx_eq_hmf_tomhi := %save[66]
-    $fx_eq_hmg_tomhi := %save[67]
-    $fx_eq_hmq_tomhi := %save[68]
-    $fx_eq_hf_tomhi := %save[69]
-    $fx_eq_hg_tomhi := %save[70]
-    $fx_eq_hb_tomhi := %save[71]
-    $fx_eq_lf_tommid := %save[72]
-    $fx_eq_lg_tommid := %save[73]
-    $fx_eq_lb_tommid := %save[74]
-    $fx_eq_lmf_tommid := %save[75]
-    $fx_eq_lmg_tommid := %save[76]
-    $fx_eq_lmq_tommid := %save[77]
-    $fx_eq_hmf_tommid := %save[78]
-    $fx_eq_hmg_tommid := %save[79]
-    $fx_eq_hmq_tommid := %save[80]
-    $fx_eq_hf_tommid := %save[81]
-    $fx_eq_hg_tommid := %save[82]
-    $fx_eq_hb_tommid := %save[83]
-    $fx_eq_lf_tomlow := %save[84]
-    $fx_eq_lg_tomlow := %save[85]
-    $fx_eq_lb_tomlow := %save[86]
-    $fx_eq_lmf_tomlow := %save[87]
-    $fx_eq_lmg_tomlow := %save[88]
-    $fx_eq_lmq_tomlow := %save[89]
-    $fx_eq_hmf_tomlow := %save[90]
-    $fx_eq_hmg_tomlow := %save[91]
-    $fx_eq_hmq_tomlow := %save[92]
-    $fx_eq_hf_tomlow := %save[93]
-    $fx_eq_hg_tomlow := %save[94]
-    $fx_eq_hb_tomlow := %save[95]
-    $fx_eq_lf_ov := %save[96]
-    $fx_eq_lg_ov := %save[97]
-    $fx_eq_lb_ov := %save[98]
-    $fx_eq_lmf_ov := %save[99]
-    $fx_eq_lmg_ov := %save[100]
-    $fx_eq_lmq_ov := %save[101]
-    $fx_eq_hmf_ov := %save[102]
-    $fx_eq_hmg_ov := %save[103]
-    $fx_eq_hmq_ov := %save[104]
-    $fx_eq_hf_ov := %save[105]
-    $fx_eq_hg_ov := %save[106]
-    $fx_eq_hb_ov := %save[107]
-    $fx_eq_lf_master := %save[108]
-    $fx_eq_lg_master := %save[109]
-    $fx_eq_lb_master := %save[110]
-    $fx_eq_lmf_master := %save[111]
-    $fx_eq_lmg_master := %save[112]
-    $fx_eq_lmq_master := %save[113]
-    $fx_eq_hmf_master := %save[114]
-    $fx_eq_hmg_master := %save[115]
-    $fx_eq_hmq_master := %save[116]
-    $fx_eq_hf_master := %save[117]
-    $fx_eq_hg_master := %save[118]
-    $fx_eq_hb_master := %save[119]
-    $fx_td_in_hh := %save[120]
-    $fx_td_atk_hh := %save[121]
-    $fx_td_rel_hh := %save[122]
-    $fx_td_out_hh := %save[123]
-    $fx_td_in_bdi := %save[124]
-    $fx_td_atk_bdi := %save[125]
-    $fx_td_rel_bdi := %save[126]
-    $fx_td_out_bdi := %save[127]
-    $fx_td_in_bdo := %save[128]
-    $fx_td_atk_bdo := %save[129]
-    $fx_td_rel_bdo := %save[130]
-    $fx_td_out_bdo := %save[131]
-    $fx_td_in_sntop := %save[132]
-    $fx_td_atk_sntop := %save[133]
-    $fx_td_rel_sntop := %save[134]
-    $fx_td_out_sntop := %save[135]
-    $fx_td_in_snbt := %save[136]
-    $fx_td_atk_snbt := %save[137]
-    $fx_td_rel_snbt := %save[138]
-    $fx_td_out_snbt := %save[139]
-    $fx_td_in_tomhi := %save[140]
-    $fx_td_atk_tomhi := %save[141]
-    $fx_td_rel_tomhi := %save[142]
-    $fx_td_out_tomhi := %save[143]
-    $fx_td_in_tommid := %save[144]
-    $fx_td_atk_tommid := %save[145]
-    $fx_td_rel_tommid := %save[146]
-    $fx_td_out_tommid := %save[147]
-    $fx_td_in_tomlow := %save[148]
-    $fx_td_atk_tomlow := %save[149]
-    $fx_td_rel_tomlow := %save[150]
-    $fx_td_out_tomlow := %save[151]
-    $fx_td_atk_ov := %save[152]
-    $fx_td_atk_ov := %save[153]
-    $fx_td_rel_ov := %save[154]
-    $fx_td_out_ov := %save[155]
-    $fx_td_in_master := %save[156]
-    $fx_td_atk_master := %save[157]
-    $fx_td_rel_master := %save[158]
-    $fx_td_out_master := %save[159]
-    $fx_comp_tres_hh := %save[160]
-    $fx_comp_atk_hh := %save[161]
-    $fx_comp_rel_hh := %save[162]
-    $fx_comp_rat_hh := %save[163]
-    $fx_comp_mix_hh := %save[164]
-    $fx_comp_makeup_hh := %save[165]
-    $fx_comp_tres_bdi := %save[166]
-    $fx_comp_atk_bdi := %save[167]
-    $fx_comp_rel_bdi := %save[168]
-    $fx_comp_rat_bdi := %save[169]
-    $fx_comp_mix_bdi := %save[170]
-    $fx_comp_makeup_bdi := %save[171]
-    $fx_comp_tres_bdo := %save[172]
-    $fx_comp_atk_bdo := %save[173]
-    $fx_comp_rel_bdo := %save[174]
-    $fx_comp_rat_bdo := %save[175]
-    $fx_comp_mix_bdo := %save[176]
-    $fx_comp_makeup_bdo := %save[177]
-    $fx_comp_tres_sntop := %save[178]
-    $fx_comp_atk_sntop := %save[179]
-    $fx_comp_rel_sntop := %save[180]
-    $fx_comp_rat_sntop := %save[181]
-    $fx_comp_mix_sntop := %save[182]
-    $fx_comp_makeup_sntop := %save[299]
-    $fx_comp_tres_snbt := %save[183]
-    $fx_comp_atk_snbt := %save[184]
-    $fx_comp_rel_snbt := %save[185]
-    $fx_comp_rat_snbt := %save[186]
-    $fx_comp_mix_snbt := %save[187]
-    $fx_comp_makeup_snbt := %save[188]
-    $fx_comp_tres_tomhi := %save[189]
-    $fx_comp_atk_tomhi := %save[190]
-    $fx_comp_rel_tomhi := %save[191]
-    $fx_comp_rat_tomhi := %save[192]
-    $fx_comp_mix_tomhi := %save[193]
-    $fx_comp_makeup_tomhi := %save[194]
-    $fx_comp_tres_tommid := %save[195]
-    $fx_comp_atk_tommid := %save[196]
-    $fx_comp_rel_tommid := %save[197]
-    $fx_comp_rat_tommid := %save[198]
-    $fx_comp_mix_tommid := %save[199]
-    $fx_comp_makeup_tommid := %save[200]
-    $fx_comp_tres_tomlow := %save[201]
-    $fx_comp_atk_tomlow := %save[202]
-    $fx_comp_rel_tomlow := %save[203]
-    $fx_comp_rat_tomlow := %save[204]
-    $fx_comp_mix_tomlow := %save[205]
-    $fx_comp_makeup_tomlow := %save[206]
-    $fx_comp_tres_ov := %save[207]
-    $fx_comp_atk_ov := %save[208]
-    $fx_comp_rel_ov := %save[209]
-    $fx_comp_rat_ov := %save[210]
-    $fx_comp_mix_ov := %save[211]
-    $fx_comp_makeup_ov := %save[212]
-    $fx_comp_tres_master := %save[213]
-    $fx_comp_atk_master := %save[214]
-    $fx_comp_rel_master := %save[215]
-    $fx_comp_rat_master := %save[216]
-    $fx_comp_mix_master := %save[217]
-    $fx_comp_makeup_master := %save[218]
-    while ($mix_hh_vol # %save[230] or ($mix_bdi_vol # %save[231]) or ($mix_bdo_vol # %save[232]) or ($mix_sntop_vol # %save[233]) or ($mix_snbt_vol # %save[234]) or ($mix_tomhi_vol # %save[235]) or ($mix_tommid_vol # %save[236]) or ($mix_tomlow_vol # %save[237]) or ($mix_ov_vol # %save[238]) or ($mix_rev_vol # %save[239]))
-        if ($mix_hh_vol<%save[230])
-            inc($mix_hh_vol)
-        else
-        if ($mix_hh_vol>%save[230])
-            dec($mix_hh_vol)
-        end if
-        end if
-        if ($mix_bdi_vol<%save[231])
-            inc($mix_bdi_vol)
-        else
-        if ($mix_bdi_vol>%save[231])
-            dec($mix_bdi_vol)
-        end if
-        end if
-        if ($mix_bdo_vol<%save[232])
-            inc($mix_bdo_vol)
-        else
-        if ($mix_bdo_vol>%save[232])
-            dec($mix_bdo_vol)
-        end if
-        end if
-        if ($mix_sntop_vol<%save[233])
-            inc($mix_sntop_vol)
-        else
-        if ($mix_sntop_vol>%save[233])
-            dec($mix_sntop_vol)
-        end if
-        end if
-        if ($mix_snbt_vol<%save[234])
-            inc($mix_snbt_vol)
-        else
-        if ($mix_snbt_vol>%save[234])
-            dec($mix_snbt_vol)
-        end if
-        end if
-        if ($mix_tomhi_vol<%save[235])
-            inc($mix_tomhi_vol)
-        else
-        if ($mix_tomhi_vol>%save[235])
-            dec($mix_tomhi_vol)
-        end if
-        end if
-        if ($mix_tommid_vol<%save[236])
-            inc($mix_tommid_vol)
-        else
-        if ($mix_tommid_vol>%save[236])
-            dec($mix_tommid_vol)
-        end if
-        end if
-        if ($mix_tomlow_vol<%save[237])
-            inc($mix_tomlow_vol)
-        else
-        if ($mix_tomlow_vol>%save[237])
-            dec($mix_tomlow_vol)
-        end if
-        end if
-        if ($mix_ov_vol<%save[238])
-            inc($mix_ov_vol)
-        else
-        if ($mix_ov_vol>%save[238])
-            dec($mix_ov_vol)
-        end if
-        end if
-        if ($mix_rev_vol<%save[239])
-            inc($mix_rev_vol)
-        else
-        if ($mix_rev_vol>%save[239])
-            dec($mix_rev_vol)
-        end if
-        end if
-        wait(2000)
-    end while
-    $mix_hh_pan := %save[240]
-    $mix_bdi_pan := %save[241]
-    $mix_bdo_pan := %save[242]
-    $mix_sntop_pan := %save[243]
-    $mix_snbt_pan := %save[244]
-    $mix_tomhi_pan := %save[245]
-    $mix_tommid_pan := %save[246]
-    $mix_tomlow_pan := %save[247]
-    $mix_ov_pan := %save[248]
-    $mix_ov_spread := %save[249]
-    $mix_ov_mono := %save[250]
-    $mix_hh_ov := %save[251]
-    $mix_bdi_ov := %save[252]
-    $mix_sntop_ov := %save[254]
-    $mix_tomhi_ov := %save[256]
-    $mix_tommid_ov := %save[257]
-    $mix_tomlow_ov := %save[258]
-    $mix_hh_rev := %save[259]
-    $mix_bdi_rev := %save[260]
-    $mix_bdo_rev := %save[261]
-    $mix_sntop_rev := %save[262]
-    $mix_snbt_rev := %save[263]
-    $mix_tomhi_rev := %save[264]
-    $mix_tommid_rev := %save[265]
-    $mix_tomlow_rev := %save[266]
-    $mix_ov_rev := %save[267]
-    $mix_bd_link := %save[268]
-    $mix_bdo_phase := %save[269]
-    $mix_sn_link := %save[270]
-    $mix_snbt_phase := %save[271]
-    $mix_rev_hp := %save[272]
-    $mix_rev_lp := %save[273]
-    $IR_current := %save[274]
-    $drums_hh_mic_current := %save[280]
-    $drums_bdi_mic_current := %save[281]
-    $drums_bdo_mic_current := %save[282]
-    $drums_sntop_mic_current := %save[283]
-    $drums_snbt_mic_current := %save[284]
-    $drums_tomhi_mic_current := %save[285]
-    $drums_tommid_mic_current := %save[286]
-    $drums_tomlow_mic_current := %save[287]
-    $drums_ov_mic_current := %save[288]
-    pgs_set_key_val(MICS,0,$drums_hh_mic_current)
-    pgs_set_key_val(MICS,1,$drums_bdi_mic_current)
-    pgs_set_key_val(MICS,2,$drums_bdo_mic_current)
-    pgs_set_key_val(MICS,3,$drums_sntop_mic_current)
-    pgs_set_key_val(MICS,4,$drums_snbt_mic_current)
-    pgs_set_key_val(MICS,5,$drums_tomhi_mic_current)
-    pgs_set_key_val(MICS,6,$drums_tommid_mic_current)
-    pgs_set_key_val(MICS,7,$drums_tomlow_mic_current)
-    pgs_set_key_val(MICS,8,$drums_ov_mic_current)
-    $fx_td_soft_hh := %save[298]
-    $fx_td_soft_bdi := %save[289]
-    $fx_td_soft_bdo := %save[290]
-    $fx_td_soft_sntop := %save[291]
-    $fx_td_soft_snbt := %save[292]
-    $fx_td_soft_tomhi := %save[293]
-    $fx_td_soft_tommid := %save[294]
-    $fx_td_soft_tomlow := %save[295]
-    $fx_td_soft_ov := %save[296]
-    $fx_td_soft_master := %save[297]
-    $options_wires_snbtm := %save[301]
-    $mix_swap := %save[302]
-    if ($mix_bd_link=1)
-        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
-    else
-    if ($mix_bd_link=0)
-        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
-    if ($mix_sn_link=1)
-        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
-    else
-    if ($mix_sn_link=0)
-        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*6174,98,-1,-1)
     if ($options_wires_snbtm>60)
@@ -11110,193 +10406,6 @@ on ui_control($mix_preset_down)
         end if
     end if
     end if
-
-    call fx_set_engine_par
-
-    if ($mix_hh_sel=1)
-        $help1 := 0
-        call assign_fx_hh
-    else
-    if ($mix_bdi_sel=1)
-        $help1 := 1
-        call assign_fx_bdi
-    else
-    if ($mix_bdo_sel=1)
-        $help1 := 2
-        call assign_fx_bdo
-    else
-    if ($mix_sntop_sel=1)
-        $help1 := 3
-        call assign_fx_sntop
-    else
-    if ($mix_snbt_sel=1)
-        $help1 := 4
-        call assign_fx_snbt
-    else
-    if ($mix_tomhi_sel=1)
-        $help1 := 5
-        call assign_fx_tomhi
-    else
-    if ($mix_tommid_sel=1)
-        $help1 := 6
-        call assign_fx_tommid
-    else
-    if ($mix_tomlow_sel=1)
-        $help1 := 7
-        call assign_fx_tomlow
-    else
-    if ($mix_ov_sel=1)
-        $help1 := 8
-        call assign_fx_ov
-    else
-    if ($mix_master_select=1)
-        $help1 := 9
-        call assign_fx_master
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-    end if
-
-    if ($help1 # 9)
-        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,$NI_BUS_OFFSET+$help1)
-        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,$NI_BUS_OFFSET+$help1)
-        set_text($fx_eq_lf_val,@fx_eq_lf_str)
-        set_text($fx_eq_lg_val,@fx_eq_lg_str)
-        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
-        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
-        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
-        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
-        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
-        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
-        set_text($fx_eq_hf_val,@fx_eq_hf_str)
-        set_text($fx_eq_hg_val,@fx_eq_hg_str)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,$NI_BUS_OFFSET+$help1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,$NI_BUS_OFFSET+$help1)
-        set_text($fx_td_in_val,@fx_td_in_str)
-        set_text($fx_td_atk_val,@fx_td_atk_str)
-        set_text($fx_td_rel_val,@fx_td_rel_str)
-        set_text($fx_td_out_val,@fx_td_out_str)
-        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,$NI_BUS_OFFSET+$help1)
-        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$help1)
-        set_text($fx_comp_tres_val,@fx_comp_tres_str)
-        set_text($fx_comp_atk_val,@fx_comp_atk_str)
-        set_text($fx_comp_rel_val,@fx_comp_rel_str)
-        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
-        set_text($fx_comp_mix_val,@fx_comp_mix_str)
-        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
-    else
-    if ($help1=9)
-        @fx_eq_lf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_FREQ,-1,1,-1)
-        @fx_eq_lg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LF_GAIN,-1,1,-1)
-        @fx_eq_lmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_FREQ,-1,1,-1)
-        @fx_eq_lmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_GAIN,-1,1,-1)
-        @fx_eq_lmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_LMF_Q,-1,1,-1)
-        @fx_eq_hmf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_FREQ,-1,1,-1)
-        @fx_eq_hmg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_GAIN,-1,1,-1)
-        @fx_eq_hmq_str := get_engine_par_disp($ENGINE_PAR_SEQ_HMF_Q,-1,1,-1)
-        @fx_eq_hf_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_FREQ,-1,1,-1)
-        @fx_eq_hg_str := get_engine_par_disp($ENGINE_PAR_SEQ_HF_GAIN,-1,1,-1)
-        set_text($fx_eq_lf_val,@fx_eq_lf_str)
-        set_text($fx_eq_lg_val,@fx_eq_lg_str)
-        set_text($fx_eq_lmf_val,@fx_eq_lmf_str)
-        set_text($fx_eq_lmg_val,@fx_eq_lmg_str)
-        set_text($fx_eq_lmq_val,@fx_eq_lmq_str)
-        set_text($fx_eq_hmf_val,@fx_eq_hmf_str)
-        set_text($fx_eq_hmg_val,@fx_eq_hmg_str)
-        set_text($fx_eq_hmq_val,@fx_eq_hmq_str)
-        set_text($fx_eq_hf_val,@fx_eq_hf_str)
-        set_text($fx_eq_hg_val,@fx_eq_hg_str)
-        @fx_td_in_str := get_engine_par_disp($ENGINE_PAR_TR_INPUT,-1,2,-1)
-        @fx_td_atk_str := get_engine_par_disp($ENGINE_PAR_TR_ATTACK,-1,2,-1)
-        @fx_td_rel_str := get_engine_par_disp($ENGINE_PAR_TR_SUSTAIN,-1,2,-1)
-        @fx_td_out_str := get_engine_par_disp($ENGINE_PAR_INSERT_EFFECT_OUTPUT_GAIN,-1,2,-1)
-        set_text($fx_td_in_val,@fx_td_in_str)
-        set_text($fx_td_atk_val,@fx_td_atk_str)
-        set_text($fx_td_rel_val,@fx_td_rel_str)
-        set_text($fx_td_out_val,@fx_td_out_str)
-        @fx_comp_tres_str := get_engine_par_disp($ENGINE_PAR_SCOMP_THRESHOLD,-1,4,-1)
-        @fx_comp_atk_str := get_engine_par_disp($ENGINE_PAR_SCOMP_ATTACK,-1,4,-1)
-        @fx_comp_rel_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RELEASE,-1,4,-1)
-        @fx_comp_rat_str := get_engine_par_disp($ENGINE_PAR_SCOMP_RATIO,-1,4,-1)
-        @fx_comp_mix_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MIX,-1,4,-1)
-        @fx_comp_makeup_str := get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,-1)
-        set_text($fx_comp_tres_val,@fx_comp_tres_str)
-        set_text($fx_comp_atk_val,@fx_comp_atk_str)
-        set_text($fx_comp_rel_val,@fx_comp_rel_str)
-        set_text($fx_comp_rat_val,"1:" & @fx_comp_rat_str)
-        set_text($fx_comp_mix_val,@fx_comp_mix_str)
-        set_text($fx_comp_makeup_val,@fx_comp_makeup_str)
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    call update_all_volumes
-    if ($mix_ov_mono=0)
-        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
-    else
-    if ($mix_ov_mono=1)
-        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,0,-1,6,$NI_BUS_OFFSET+8)
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_LR,$mix_rev_hp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_HIGHPASS_ER,$mix_rev_hp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_LR,$mix_rev_lp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_IRC_FREQ_LOWPASS_ER,$mix_rev_lp*7874,-1,7,0)
-    set_engine_par($ENGINE_PAR_SEND_EFFECT_OUTPUT_GAIN,$mix_rev_vol*5200,-1,7,0)
-    $load_ir_id := load_ir_sample(!IR_id[$IR_current],7,0)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_hh_rev*$mix_hh_vol*62,-1,7,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdi_rev*$mix_bdi_vol*62,-1,7,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_bdo_rev*$mix_bdo_vol*62,-1,7,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_sntop_rev*$mix_sntop_vol*62,-1,7,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_snbt_rev*$mix_snbt_vol*62,-1,7,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomhi_rev*$mix_tomhi_vol*62,-1,7,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tommid_rev*$mix_tommid_vol*62,-1,7,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_tomlow_rev*$mix_tomlow_vol*62,-1,7,$NI_BUS_OFFSET+7)
-    set_engine_par($ENGINE_PAR_SENDLEVEL_7,$mix_ov_rev*$mix_ov_vol*62,-1,7,$NI_BUS_OFFSET+8)
-    
-    call update_mic_fader_labels
-
-    if ($mix_swap=0)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
-    else
-    if ($mix_swap=1)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
-    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
 end on
 
 on ui_control($mix_load)
@@ -14286,7 +13395,7 @@ on async_complete
                 if (get_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE)=1)
                     set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
                 end if
-                    inc($i)
+                inc($i)
             end while
 
             call update_all_volumes
