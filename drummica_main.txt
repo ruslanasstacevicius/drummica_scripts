@@ -10775,94 +10775,57 @@ on ui_control($mix_save)
     $save_arr_id := save_array(%save,0)
 end on
 
+function mix_swap
+    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
+    if ($mix_swap=1)
+        $mix_swap := 0
+    else
+    if ($mix_swap=0)
+        $mix_swap := 1
+    end if
+    end if
+    if ($mix_swap=0)
+        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
+    else
+    if ($mix_swap=1)
+        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
+    end if
+    end if
+    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
+    $mix_hh_pan := 2000-$mix_hh_pan
+    $mix_bdi_pan := 2000-$mix_bdi_pan
+    $mix_bdo_pan := 2000-$mix_bdo_pan
+    $mix_sntop_pan := 2000-$mix_sntop_pan
+    $mix_snbt_pan := 2000-$mix_snbt_pan
+    $mix_tomhi_pan := 2000-$mix_tomhi_pan
+    $mix_tommid_pan := 2000-$mix_tommid_pan
+    $mix_tomlow_pan := 2000-$mix_tomlow_pan
+    $mix_ov_pan := 2000-$mix_ov_pan
+    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
+    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
+    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
+    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
+    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
+    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
+    if ($mix_ov_mono=0)
+        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
+        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
+    else
+    if ($mix_ov_mono=1)
+        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
+    end if
+    end if
+end function
+
 on ui_control($mix_swap_L)
     $mix_swap_L := 0
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
-    if ($mix_swap=1)
-        $mix_swap := 0
-    else
-    if ($mix_swap=0)
-        $mix_swap := 1
-    end if
-    end if
-    if ($mix_swap=0)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
-    else
-    if ($mix_swap=1)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
-    $mix_hh_pan := 2000-$mix_hh_pan
-    $mix_bdi_pan := 2000-$mix_bdi_pan
-    $mix_bdo_pan := 2000-$mix_bdo_pan
-    $mix_sntop_pan := 2000-$mix_sntop_pan
-    $mix_snbt_pan := 2000-$mix_snbt_pan
-    $mix_tomhi_pan := 2000-$mix_tomhi_pan
-    $mix_tommid_pan := 2000-$mix_tommid_pan
-    $mix_tomlow_pan := 2000-$mix_tomlow_pan
-    $mix_ov_pan := 2000-$mix_ov_pan
-    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    if ($mix_ov_mono=0)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
-    else
-    if ($mix_ov_mono=1)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
-    end if
-    end if
+    call mix_swap
 end on
-
 on ui_control($mix_swap_R)
     $mix_swap_R := 0
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
-    if ($mix_swap=1)
-        $mix_swap := 0
-    else
-    if ($mix_swap=0)
-        $mix_swap := 1
-    end if
-    end if
-    if ($mix_swap=0)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_drummer")
-    else
-    if ($mix_swap=1)
-        set_control_par_str(get_ui_id($mix_view_label),$CONTROL_PAR_PICTURE,"view_auditorial")
-    end if
-    end if
-    set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$mix_swap,-1,5,$NI_BUS_OFFSET+8)
-    $mix_hh_pan := 2000-$mix_hh_pan
-    $mix_bdi_pan := 2000-$mix_bdi_pan
-    $mix_bdo_pan := 2000-$mix_bdo_pan
-    $mix_sntop_pan := 2000-$mix_sntop_pan
-    $mix_snbt_pan := 2000-$mix_snbt_pan
-    $mix_tomhi_pan := 2000-$mix_tomhi_pan
-    $mix_tommid_pan := 2000-$mix_tommid_pan
-    $mix_tomlow_pan := 2000-$mix_tomlow_pan
-    $mix_ov_pan := 2000-$mix_ov_pan
-    set_engine_par($ENGINE_PAR_PAN,$mix_hh_pan*500,-1,-1,$NI_BUS_OFFSET+0)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdi_pan*500,-1,-1,$NI_BUS_OFFSET+1)
-    set_engine_par($ENGINE_PAR_PAN,$mix_bdo_pan*500,-1,-1,$NI_BUS_OFFSET+2)
-    set_engine_par($ENGINE_PAR_PAN,$mix_sntop_pan*500,-1,-1,$NI_BUS_OFFSET+3)
-    set_engine_par($ENGINE_PAR_PAN,$mix_snbt_pan*500,-1,-1,$NI_BUS_OFFSET+4)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomhi_pan*500,-1,-1,$NI_BUS_OFFSET+5)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tommid_pan*500,-1,-1,$NI_BUS_OFFSET+6)
-    set_engine_par($ENGINE_PAR_PAN,$mix_tomlow_pan*500,-1,-1,$NI_BUS_OFFSET+7)
-    if ($mix_ov_mono=0)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,500000,-1,6,$NI_BUS_OFFSET+8)
-        set_engine_par($ENGINE_PAR_STEREO,$mix_ov_spread*250,-1,6,$NI_BUS_OFFSET+8)
-    else
-    if ($mix_ov_mono=1)
-        set_engine_par($ENGINE_PAR_STEREO_PAN,$mix_ov_pan*500,-1,6,$NI_BUS_OFFSET+8)
-    end if
-    end if
+    call mix_swap
 end on
 
 on ui_control($mix_hh_sel)
