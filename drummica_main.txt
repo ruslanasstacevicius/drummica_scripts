@@ -5806,6 +5806,30 @@ function set_fx_text
     set_text($fx_comp_makeup_val,get_engine_par_disp($ENGINE_PAR_SCOMP_MAKEUP,-1,4,$NI_BUS_OFFSET+$busidx))
 end function
 
+function check_anysolo {parameter $busidx}
+    if ($anysolo=1)
+        %solo_arr[$busidx] := 1
+        set_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE,1)
+        $i := 0
+        while ($i<=8)
+            if (%solo_arr[$i]=0)
+                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
+                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+                if ($i<=8)
+                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+                end if
+            else
+            if (%solo_arr[$i]=1)
+                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$busidx],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$busidx)
+                $anysolo := 1
+            end if
+            end if
+            inc($i)
+        end while
+    end if
+end function
+
 function assign_fx_hh
     $fx_eq_lf := $fx_eq_lf_hh
     $fx_eq_lg := $fx_eq_lg_hh
@@ -10845,333 +10869,115 @@ on ui_control($mix_hh_sel)
     call unselect_all_channels
     $busidx := 0
     $mix_hh_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
     call assign_fx_hh
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_hh] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_hh],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_hh],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_hh)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_bdi_sel)
     call unselect_all_channels
     $busidx := 1
     $mix_bdi_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
     call assign_fx_bdi
     call set_fx_text
-    if ($anysolo=1)
-    %solo_arr[$instr_bus_bdi] := 1
-    set_control_par(%solo_ui_ids[$instr_bus_bdi],$CONTROL_PAR_VALUE,1)
-    $i := 0
-    while ($i<=8)
-        if (%solo_arr[$i]=0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            if ($i<=8)
-                set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            end if
-        else
-        if (%solo_arr[$i]=1)
-            set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_bdi],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_bdi)
-            $anysolo := 1
-        end if
-        end if
-        inc($i)
-    end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_bdo_sel)
     call unselect_all_channels
     $busidx := 2
     $mix_bdo_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
     call assign_fx_bdo
     call set_fx_text
-    if ($anysolo=1)
-    %solo_arr[$instr_bus_bdo] := 1
-    set_control_par(%solo_ui_ids[$instr_bus_bdo],$CONTROL_PAR_VALUE,1)
-    $i := 0
-    while ($i<=8)
-        if (%solo_arr[$i]=0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            if ($i<=8)
-                set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            end if
-        else
-        if (%solo_arr[$i]=1)
-            set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_bdo],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_bdo)
-            $anysolo := 1
-        end if
-        end if
-        inc($i)
-    end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_sntop_sel)
     call unselect_all_channels
     $busidx := 3
     $mix_sntop_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
     call assign_fx_sntop
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_sntop] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_sntop],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_sntop],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_sntop)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_snbt_sel)
     call unselect_all_channels
     $busidx := 4
     $mix_snbt_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
     call assign_fx_snbt
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_snbt] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_snbt],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_snbt],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_snbt)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_tomhi_sel)
     call unselect_all_channels
     $busidx := 5
     $mix_tomhi_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
     call assign_fx_tomhi
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_tomhi] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_tomhi],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_tomhi],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_tomhi)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_tommid_sel)
     call unselect_all_channels
     $busidx := 6
     $mix_tommid_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
     call assign_fx_tommid
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_tommid] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_tommid],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_tommid],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_tommid)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_tomlow_sel)
     call unselect_all_channels
     $busidx := 7
     $mix_tomlow_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
     call assign_fx_tomlow
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_tomlow] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_tomlow],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_tomlow],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_tomlow)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_ov_sel)
     call unselect_all_channels
     $busidx := 8
     $mix_ov_sel := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
     call assign_fx_ov
     call set_fx_text
-    if ($anysolo=1)
-        %solo_arr[$instr_bus_ov] := 1
-        set_control_par(%solo_ui_ids[$instr_bus_ov],$CONTROL_PAR_VALUE,1)
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$instr_bus_ov],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$instr_bus_ov)
-                $anysolo := 1
-            end if
-            end if
-            inc($i)
-        end while
-    end if
-
+    call check_anysolo
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($mix_master_select)
     call unselect_all_channels
     $busidx := -1025
     $mix_master_select := 1
-
     call update_fx_controls
-
     set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
     call assign_fx_master
     call set_fx_text
