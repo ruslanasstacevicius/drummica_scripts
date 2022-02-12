@@ -5713,59 +5713,66 @@ function update_all_volumes
     end while
 end function
 
-function update_solo_status
-    {parameter $busidx}
-    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=1)
-        %solo_arr[$busidx] := 1
-        call unselect_all_channels
-        set_control_par(%select_ui_ids[$busidx],$CONTROL_PAR_VALUE,1)
+function handle_soloed_channel {parameter $busidx}
+    %solo_arr[$busidx] := 1
+    call unselect_all_channels
+    set_control_par(%select_ui_ids[$busidx],$CONTROL_PAR_VALUE,1)
+    $i := 0
+    while ($i<=8)
+        if (%solo_arr[$i]=0)
+            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
+            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+            if ($i<=8)
+                set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+            end if
+        else
+        if (%solo_arr[$i]=1)
+            set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$busidx],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$busidx)
+            $anysolo := 1
+            call update_rev_send
+        end if
+        end if
+        inc($i)
+    end while
+end function
+
+function handle_unsoloed_channel {parameter $busidx}
+    %solo_arr[$busidx] := 0
+    $help1 := 0
+    $i := 0
+    while ($i<=8)
+        if (%solo_arr[$i]=1)
+            inc($help1)
+        else
+        if (%solo_arr[$i]=0)
+            set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
+        end if
+        end if
+        inc($i)
+    end while
+    if ($help1>0)
+        set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$busidx)
+        set_control_par_str(%solo_ui_ids[$busidx],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
+    else
+    if ($help1=0)
+        call update_all_volumes
+        $anysolo := 0
         $i := 0
         while ($i<=8)
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                end if
-            else
-            if (%solo_arr[$i]=1)
-                set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[$busidx],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+$busidx)
-                $anysolo := 1
-                call update_rev_send
-            end if
-            end if
+            set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
             inc($i)
         end while
+    end if
+    end if
+end function
+
+function update_solo_status {parameter $busidx}
+    if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=1)
+        call handle_soloed_channel
     else
     if (get_control_par(%solo_ui_ids[$busidx],$CONTROL_PAR_VALUE)=0)
-        %solo_arr[$busidx] := 0
-        $help1 := 0
-        $i := 0
-        while ($i<=8)
-            if (%solo_arr[$i]=1)
-                inc($help1)
-            else
-            if (%solo_arr[$i]=0)
-                set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-            end if
-            end if
-            inc($i)
-        end while
-        if ($help1>0)
-            set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$busidx)
-            set_control_par_str(%solo_ui_ids[$busidx],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-        else
-        if ($help1=0)
-            call update_all_volumes
-            $anysolo := 0
-            $i := 0
-            while ($i<=8)
-                set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                inc($i)
-            end while
-        end if
-        end if
+        call handle_unsoloed_channel
     end if
     end if
 end function
@@ -8255,504 +8262,74 @@ on ui_control($mic_solo)
     if ($mic_solo=1)
         if ($mic_current=1)
             $mix_hh_solo := 1
-            %solo_arr[0] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+0)
-                set_control_par_str(%solo_ui_ids[0],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 0
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[0] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[0],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                    set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[0],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+0)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=1)}
         if ($mic_current=2)
             $mix_bdi_solo := 1
-            %solo_arr[1] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+1)
-                set_control_par_str(%solo_ui_ids[1],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 1
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[1] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[1],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                    if (%solo_arr[$i]=1)
-                        set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[1],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+1)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=2)}
         if ($mic_current=3)
             $mix_bdo_solo := 1
-            %solo_arr[2] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+2)
-                set_control_par_str(%solo_ui_ids[2],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 2
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[2] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[2],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[2],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+2)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=3)}
         if ($mic_current=4)
             $mix_sntop_solo := 1
-            %solo_arr[3] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+3)
-                set_control_par_str(%solo_ui_ids[3],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 3
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[3] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[3],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[3],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+3)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=4)}
         if ($mic_current=5)
             $mix_snbt_solo := 1
-            %solo_arr[4] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+4)
-                set_control_par_str(%solo_ui_ids[4],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 4
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[4] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[4],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[4],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+4)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=5)}
         if ($mic_current=6)
             $mix_tomhi_solo := 1
-            %solo_arr[5] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+5)
-                set_control_par_str(%solo_ui_ids[5],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 5
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[5] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[5],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[5],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+5)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=6)}
         if ($mic_current=7)
             $mix_tommid_solo := 1
-            %solo_arr[6] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+6)
-                set_control_par_str(%solo_ui_ids[6],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 6
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[6] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[6],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[6],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+6)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=7)}
         if ($mic_current=8)
             $mix_tomlow_solo := 1
-            %solo_arr[7] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+7)
-                set_control_par_str(%solo_ui_ids[7],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 7
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[7] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[7],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[7],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+7)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=8)}
         if ($mic_current=9)
             $mix_ov_solo := 1
-            %solo_arr[8] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+8)
-                set_control_par_str(%solo_ui_ids[8],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 8
+            call handle_unsoloed_channel
             $anysolo := 1
-            %solo_arr[8] := 1
-            call unselect_all_channels
-            set_control_par(%select_ui_ids[8],$CONTROL_PAR_VALUE,1)
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+$i)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                    if ($i<=8)
-                        set_control_par(%solo_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-                        set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-                    end if
-                else
-                if (%solo_arr[$i]=1)
-                    set_engine_par($ENGINE_PAR_VOLUME,get_control_par(%vol_ui_ids[8],$CONTROL_PAR_VALUE)*7874,-1,-1,$NI_BUS_OFFSET+8)
-                    $anysolo := 1
-                    call update_rev_send
-                end if
-                end if
-                inc($i)
-            end while
+            call handle_soloed_channel
         end if {if ($mic_current=9)}
     else {($mic_solo=1)}
     if ($mic_solo=0)
         if ($mic_current=1)
             $mix_hh_solo := 0
             $anysolo := 0
-            %solo_arr[0] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+0)
-                set_control_par_str(%solo_ui_ids[0],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 0
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[0]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8764,33 +8341,8 @@ on ui_control($mic_solo)
         if ($mic_current=2)
             $mix_bdi_solo := 0
             $anysolo := 0
-            %solo_arr[1] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+1)
-                set_control_par_str(%solo_ui_ids[1],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 1
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[1]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8802,33 +8354,8 @@ on ui_control($mic_solo)
         if ($mic_current=3)
             $mix_bdo_solo := 0
             $anysolo := 0
-            %solo_arr[2] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+2)
-                set_control_par_str(%solo_ui_ids[2],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 2
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[2]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8840,33 +8367,8 @@ on ui_control($mic_solo)
         if ($mic_current=4)
             $mix_sntop_solo := 0
             $anysolo := 0
-            %solo_arr[3] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+3)
-                set_control_par_str(%solo_ui_ids[3],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 3
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[3]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8878,33 +8380,8 @@ on ui_control($mic_solo)
         if ($mic_current=5)
             $mix_snbt_solo := 0
             $anysolo := 0
-            %solo_arr[4] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+4)
-                set_control_par_str(%solo_ui_ids[4],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 4
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[4]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8916,33 +8393,8 @@ on ui_control($mic_solo)
         if ($mic_current=6)
             $mix_tomhi_solo := 0
             $anysolo := 0
-            %solo_arr[5] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+5)
-                set_control_par_str(%solo_ui_ids[5],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 5
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[5]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8954,33 +8406,8 @@ on ui_control($mic_solo)
         if ($mic_current=7)
             $mix_tommid_solo := 0
             $anysolo := 0
-            %solo_arr[6] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+6)
-                set_control_par_str(%solo_ui_ids[6],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 6
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[6]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -8992,33 +8419,8 @@ on ui_control($mic_solo)
         if ($mic_current=8)
             $mix_tomlow_solo := 0
             $anysolo := 0
-            %solo_arr[7] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+7)
-                set_control_par_str(%solo_ui_ids[7],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 7
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[7]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -9030,33 +8432,8 @@ on ui_control($mic_solo)
         if ($mic_current=9)
             $mix_ov_solo := 0
             $anysolo := 0
-            %solo_arr[8] := 0
-            $help1 := 0
-            $i := 0
-            while ($i<=8)
-                if (%solo_arr[$i]=1)
-                    inc($help1)
-                else
-                if (%solo_arr[$i]=0)
-                    set_engine_par($ENGINE_PAR_SENDLEVEL_7,0,-1,7,$NI_BUS_OFFSET+$i)
-                end if
-                end if
-                inc($i)
-            end while
-            if ($help1>0)
-                set_engine_par($ENGINE_PAR_VOLUME,0,-1,-1,$NI_BUS_OFFSET+8)
-                set_control_par_str(%solo_ui_ids[8],$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
-            else
-            if ($help1=0)
-                call update_all_volumes
-                $anysolo := 0
-                $i := 0
-                while ($i<=8)
-                    set_control_par_str(%solo_ui_ids[$i],$CONTROL_PAR_PICTURE,"dm_btn_solo")
-                    inc($i)
-                end while
-            end if
-            end if
+            $busidx := 8
+            call handle_unsoloed_channel
             if ($anysolo # 0 and (%solo_arr[8]=0))
                 set_control_par_str(get_ui_id($mic_solo),$CONTROL_PAR_PICTURE,"dm_btn_blanssc")
             else
@@ -10946,9 +10323,7 @@ on ui_control($mix_master_select)
             inc($i)
         end while
     end if
-
     call fx_eq_td_comp_reset
-
 end on
 
 on ui_control($fx_eq_lf)
