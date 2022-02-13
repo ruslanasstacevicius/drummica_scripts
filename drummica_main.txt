@@ -428,6 +428,7 @@ on init
 
     declare $IR_current := 0
     declare $busidx := -1
+    declare $return_to_mixer := 0
 
     make_persistent($IR_current)
 
@@ -7682,7 +7683,12 @@ on ui_control($mic_gallery_select1)
     end if
 
     if ($mic_gallery_select1=0)
-        call show_menu_drums
+        if ($return_to_mixer = 1)
+            $return_to_mixer := 0
+            call show_menu_mixer
+        else
+            call show_menu_drums
+        end if
     end if
 
     $i := 0
@@ -7753,7 +7759,12 @@ on ui_control($mic_gallery_select2)
     end if
 
     if ($mic_gallery_select2=0)
-        call show_menu_drums
+        if ($return_to_mixer = 1)
+            $return_to_mixer := 0
+            call show_menu_mixer
+        else
+            call show_menu_drums
+        end if
     end if
 
     $i := 0
@@ -7811,7 +7822,12 @@ on ui_control($mic_gallery_select3)
     end if
 
     if ($mic_gallery_select3=0)
-        call show_menu_drums
+        if ($return_to_mixer = 1)
+            $return_to_mixer := 0
+            call show_menu_mixer
+        else
+            call show_menu_drums
+        end if
     end if
 
     $i := 0
@@ -7839,7 +7855,12 @@ on ui_control($mic_gallery_select4)
     end if
 
     if ($mic_gallery_select4=0)
-        call show_menu_drums
+        if ($return_to_mixer = 1)
+            $return_to_mixer := 0
+            call show_menu_mixer
+        else
+            call show_menu_drums
+        end if
     end if
 
     $i := 0
@@ -8995,46 +9016,55 @@ end on
 
 on ui_control($mix_hh_miclabel)
     $mic_current := 1
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_bdi_miclabel)
     $mic_current := 2
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_bdo_miclabel)
     $mic_current := 3
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_sntop_miclabel)
     $mic_current := 4
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_snbt_miclabel)
     $mic_current := 5
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_tomhi_miclabel)
     $mic_current := 6
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_tommid_miclabel)
     $mic_current := 7
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_tomlow_miclabel)
     $mic_current := 8
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 
 on ui_control($mix_ov_miclabel)
     $mic_current := 9
+    $return_to_mixer := 1
     call show_menu_micsel
 end on
 

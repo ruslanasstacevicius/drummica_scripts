@@ -11,3 +11,4 @@ Changelog:
 - change: attach two channel meters to all mixer channels, single channel meters could not show levels when panned right
 - fix: Transient Master Soft button status not updated properly
 - fix: Transient Master labels for attack and sustain are "%", not "dB"
+- change: return back to mixer page, when mic selection was activated from mixer
