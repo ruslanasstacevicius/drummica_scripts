@@ -7211,191 +7211,243 @@ function load_preset
     set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
 end function
 
+function show_menu_beats
+    $i := 0
+    while ($i<=4)
+        if ($i # 4)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        set_control_par(%menu_ui_ids[4],$CONTROL_PAR_VALUE,1)
+        inc($i)
+    end while
+    call hide_all_controls
+    set_skin_offset(2408)
+    $i := 1
+    while ($i<=$id6)
+        set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
+    end while
+end function
+
+function show_menu_drums
+    $i := 0
+    while ($i<=4)
+        if ($i # 3)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        set_control_par(%menu_ui_ids[3],$CONTROL_PAR_VALUE,1)
+        inc($i)
+    end while
+    call hide_all_controls
+    set_skin_offset(0)
+    $i := 1
+    while ($i<=$id1)
+        set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
+    end while
+    call set_mic_pictures
+    $drums_hh_micthumb := 0
+    $drums_bdi_micthumb := 0
+    $drums_bdo_micthumb := 0
+    $drums_sntop_micthumb := 0
+    $drums_snbt_micthumb := 0
+    $drums_tomhi_micthumb := 0
+    $drums_tommid_micthumb := 0
+    $drums_tomlow_micthumb := 0
+    $drums_ov_micthumb := 0
+    call set_micthumb
+end function
+
+function show_menu_mixer
+    $i := 0
+    while ($i<=4)
+        if ($i # 2)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        set_control_par(%menu_ui_ids[2],$CONTROL_PAR_VALUE,1)
+        inc($i)
+    end while
+    call hide_all_controls
+    set_skin_offset(1204)
+    $i := 1
+    while ($i<=$id2)
+        set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
+    end while
+    if ($mix_hh_sel=1)
+        $busidx := 0
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
+        $fx_td_soft_hh := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_hh
+        call set_fx_text
+    else
+    if ($mix_bdi_sel=1)
+        $busidx := 1
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
+        $fx_td_soft_bdi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_bdi
+        call set_fx_text
+    else
+    if ($mix_bdo_sel=1)
+        $busidx := 2
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
+        $fx_td_soft_bdo := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_bdo
+        call set_fx_text
+    else
+    if ($mix_sntop_sel=1)
+        $busidx := 3
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
+        $fx_td_soft_sntop := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_sntop
+        call set_fx_text
+    else
+    if ($mix_snbt_sel=1)
+        $busidx := 4
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
+        $fx_td_soft_snbt := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_snbt
+        call set_fx_text
+    else
+    if ($mix_tomhi_sel=1)
+        $busidx := 5
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
+        $fx_td_soft_tomhi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_tomhi
+        call set_fx_text
+    else
+    if ($mix_tommid_sel=1)
+        $busidx := 6
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
+        $fx_td_soft_tommid := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_tommid
+        call set_fx_text
+    else
+    if ($mix_tomlow_sel=1)
+        $busidx := 7
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
+        $fx_td_soft_tomlow := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_tomlow
+        call set_fx_text
+    else
+    if ($mix_ov_sel=1)
+        $busidx := 8
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
+        $fx_td_soft_ov := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_ov
+        call set_fx_text
+    else
+    if ($mix_master_select=1)
+        $busidx := -$NI_BUS_OFFSET - 1
+        set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
+        $fx_td_soft_master := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
+        call assign_fx_master
+        call set_fx_text
+    end if {($mix_master_select=1)}
+    end if {($mix_ov_sel=1)}
+    end if {($mix_tomlow_sel=1)}
+    end if {($mix_tommid_sel=1)}
+    end if {($mix_tomhi_sel=1)}
+    end if {($mix_snbt_sel=1)}
+    end if {($mix_sntop_sel=1)}
+    end if {($mix_bdo_sel=1)}
+    end if {($mix_bdi_sel=1)}
+    end if {($mix_hh_sel=1)}
+    call update_mic_fader_labels
+    call update_fx_controls
+    if ($mix_ov_mono=0)
+        set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+    else
+    if ($mix_ov_mono=1)
+        set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+    end if
+    end if
+    set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
+end function
+
+function show_menu_micsel
+    call highlight_menu_micsel
+    call hide_all_controls
+    set_skin_offset(602)
+    $i := 1
+    while ($i<=$id3)
+        set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
+    end while
+    if ($mix_hh_sel=1)
+        $mic_current := 1
+    else
+    if ($mix_bdi_sel=1)
+        $mic_current := 2
+    else
+    if ($mix_bdo_sel=1)
+        $mic_current := 3
+    else
+    if ($mix_sntop_sel=1)
+        $mic_current := 4
+    else
+    if ($mix_snbt_sel=1)
+        $mic_current := 5
+    else
+    if ($mix_tomhi_sel=1)
+        $mic_current := 6
+    else
+    if ($mix_tommid_sel=1)
+        $mic_current := 7
+    else
+    if ($mix_tomlow_sel=1)
+        $mic_current := 8
+    else
+    if ($mix_ov_sel=1 or $mix_ov_sel=0 or $mix_master_select=1)
+        {if master selected or nothing selected display overheads page}
+        $mic_current := 9
+    end if {($mix_ov_sel=1)}
+    end if {($mix_tomlow_sel=1)}
+    end if {($mix_tommid_sel=1)}
+    end if {($mix_tomhi_sel=1)}
+    end if {($mix_snbt_sel=1)}
+    end if {($mix_sntop_sel=1)}
+    end if {($mix_bdo_sel=1)}
+    end if {($mix_bdi_sel=1)}
+    end if {($mix_hh_sel=1)}
+    call update_mic_pictures
+    call reset_mic_0db
+end function
+
+function show_menu_option
+    $i := 0
+    while ($i<=4)
+        if ($i # 0)
+            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
+        end if
+        set_control_par(%menu_ui_ids[0],$CONTROL_PAR_VALUE,1)
+        inc($i)
+    end while
+    call hide_all_controls
+    set_skin_offset(1806)
+    $i := 1
+    while ($i<=$id5)
+        set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
+        inc($i)
+    end while
+    set_control_par(get_ui_id($credits),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+end function
+
 on persistence_changed
-    {call fx_set_engine_par}
     if ($menu_drums=1)
-        set_skin_offset(0)
-        $i := 1
-        while ($i<=$id1)
-            set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        call set_mic_pictures
-        $drums_hh_micthumb := 0
-        $drums_bdi_micthumb := 0
-        $drums_bdo_micthumb := 0
-        $drums_sntop_micthumb := 0
-        $drums_snbt_micthumb := 0
-        $drums_tomhi_micthumb := 0
-        $drums_tommid_micthumb := 0
-        $drums_tomlow_micthumb := 0
-        $drums_ov_micthumb := 0
-        call set_micthumb
+        call show_menu_drums
     else
     if ($menu_mixer=1)
-        set_skin_offset(1204)
-        $i := 1
-        while ($i<=$id2)
-            set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        if ($mix_hh_sel=1)
-            $busidx := 0
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
-            $fx_td_soft_hh := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_hh
-            call set_fx_text
-        else
-        if ($mix_bdi_sel=1)
-            $busidx := 1
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
-            $fx_td_soft_bdi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_bdi
-            call set_fx_text
-        else
-        if ($mix_bdo_sel=1)
-            $busidx := 2
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
-            $fx_td_soft_bdo := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_bdo
-            call set_fx_text
-        else
-        if ($mix_sntop_sel=1)
-            $busidx := 3
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
-            $fx_td_soft_sntop := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_sntop
-            call set_fx_text
-        else
-        if ($mix_snbt_sel=1)
-            $busidx := 4
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
-            $fx_td_soft_snbt := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_snbt
-            call set_fx_text
-        else
-        if ($mix_tomhi_sel=1)
-            $busidx := 5
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
-            $fx_td_soft_tomhi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tomhi
-            call set_fx_text
-        else
-        if ($mix_tommid_sel=1)
-            $busidx := 6
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
-            $fx_td_soft_tommid := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tommid
-            call set_fx_text
-        else
-        if ($mix_tomlow_sel=1)
-            $busidx := 7
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
-            $fx_td_soft_tomlow := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tomlow
-            call set_fx_text
-        else
-        if ($mix_ov_sel=1)
-            $busidx := 8
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
-            $fx_td_soft_ov := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_ov
-            call set_fx_text
-        else
-        if ($mix_master_select=1)
-            $busidx := -$NI_BUS_OFFSET - 1
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
-            $fx_td_soft_master := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_master
-            call set_fx_text
-        end if {($mix_master_select=1)}
-        end if {($mix_ov_sel=1)}
-        end if {($mix_tomlow_sel=1)}
-        end if {($mix_tommid_sel=1)}
-        end if {($mix_tomhi_sel=1)}
-        end if {($mix_snbt_sel=1)}
-        end if {($mix_sntop_sel=1)}
-        end if {($mix_bdo_sel=1)}
-        end if {($mix_bdi_sel=1)}
-        end if {($mix_hh_sel=1)}
-
-        call update_mic_fader_labels
-        call update_fx_controls
-
-        if ($mix_ov_mono=0)
-            set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        else
-        if ($mix_ov_mono=1)
-            set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        end if
-        end if
-
-        set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
-
+        call show_menu_mixer
     else
     if ($menu_beats=1)
-        set_skin_offset(2408)
-        $i := 1
-        while ($i<=$id6)
-            set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
+        call show_menu_beats
     else
     if ($menu_option=1)
-        set_skin_offset(1806)
-        $i := 1
-        while ($i<=$id5)
-            set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        set_control_par(get_ui_id($credits),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+        call show_menu_option
     else
     if ($menu_micsel=1)
-        call hide_all_controls
-        set_skin_offset(602)
-        $i := 1
-        while ($i<=$id3)
-            set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        if ($mix_hh_sel=1)
-            $mic_current := 1
-        else
-        if ($mix_bdi_sel=1)
-            $mic_current := 2
-        else
-        if ($mix_bdo_sel=1)
-            $mic_current := 3
-        else
-        if ($mix_sntop_sel=1)
-            $mic_current := 4
-        else
-        if ($mix_snbt_sel=1)
-            $mic_current := 5
-        else
-        if ($mix_tomhi_sel=1)
-            $mic_current := 6
-        else
-        if ($mix_tommid_sel=1)
-            $mic_current := 7
-        else
-        if ($mix_tomlow_sel=1)
-            $mic_current := 8
-        else
-        if ($mix_ov_sel=1 or $mix_ov_sel=0)
-            {if master selected or nothing selected show overheads mic page}
-            $mic_current := 9
-        end if {($mix_ov_sel=1)}
-        end if {($mix_tomlow_sel=1)}
-        end if {($mix_tommid_sel=1)}
-        end if {($mix_tomhi_sel=1)}
-        end if {($mix_snbt_sel=1)}
-        end if {($mix_sntop_sel=1)}
-        end if {($mix_bdo_sel=1)}
-        end if {($mix_bdi_sel=1)}
-        end if {($mix_hh_sel=1)}
-        call update_mic_pictures
-        call reset_mic_0db
+        call show_menu_micsel
     end if {-($menu_micsel=1)}
     end if {-($menu_option=1)}
     end if {-($menu_beats=1)}
@@ -7410,6 +7462,7 @@ on persistence_changed
         set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
     end if
     end if
+
     {wires}
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*6174,98,-1,-1)
@@ -7479,242 +7532,31 @@ on ui_control($menu_output_ov)
 end on
 
 on ui_control($menu_option)
-    $i := 0
-    while ($i<=4)
-        if ($i # 0)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[0],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
-    if ($menu_option=1)
-        call hide_all_controls
-        set_skin_offset(1806)
-        $i := 1
-        while ($i<=$id5)
-            set_control_par(%ui_id5[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        set_control_par(get_ui_id($credits),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-    end if
+    call show_menu_option
 end on
 
 on ui_control($menu_micsel)
-    call highlight_menu_micsel
-    if ($menu_micsel=1)
-        call hide_all_controls
-        set_skin_offset(602)
-        $i := 1
-        while ($i<=$id3)
-            set_control_par(%ui_id3[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        if ($mix_hh_sel=1)
-            $mic_current := 1
-        else
-        if ($mix_bdi_sel=1)
-            $mic_current := 2
-        else
-        if ($mix_bdo_sel=1)
-            $mic_current := 3
-        else
-        if ($mix_sntop_sel=1)
-            $mic_current := 4
-        else
-        if ($mix_snbt_sel=1)
-            $mic_current := 5
-        else
-        if ($mix_tomhi_sel=1)
-            $mic_current := 6
-        else
-        if ($mix_tommid_sel=1)
-            $mic_current := 7
-        else
-        if ($mix_tomlow_sel=1)
-            $mic_current := 8
-        else
-        if ($mix_ov_sel=1 or $mix_ov_sel=0 or $mix_master_select=1)
-            {if master selected or nothing selected display overheads page}
-            $mic_current := 9
-        end if {($mix_ov_sel=1)}
-        end if {($mix_tomlow_sel=1)}
-        end if {($mix_tommid_sel=1)}
-        end if {($mix_tomhi_sel=1)}
-        end if {($mix_snbt_sel=1)}
-        end if {($mix_sntop_sel=1)}
-        end if {($mix_bdo_sel=1)}
-        end if {($mix_bdi_sel=1)}
-        end if {($mix_hh_sel=1)}
-        call update_mic_pictures
-        call reset_mic_0db
-    end if {-($menu_micsel=1)}
+    call show_menu_micsel
 end on
 
 on ui_control($menu_mixer)
-    $i := 0
-    while ($i<=4)
-        if ($i # 2)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[2],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
-    if ($menu_mixer=1)
-        call hide_all_controls
-        set_skin_offset(1204)
-        $i := 1
-        while ($i<=$id2)
-            set_control_par(%ui_id2[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        if ($mix_hh_sel=1)
-            $busidx := 0
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_hh)
-            $fx_td_soft_hh := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_hh
-            call set_fx_text
-        else
-        if ($mix_bdi_sel=1)
-            $busidx := 1
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdi)
-            $fx_td_soft_bdi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_bdi
-            call set_fx_text
-        else
-        if ($mix_bdo_sel=1)
-            $busidx := 2
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_bdo)
-            $fx_td_soft_bdo := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_bdo
-            call set_fx_text
-        else
-        if ($mix_sntop_sel=1)
-            $busidx := 3
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_sntop)
-            $fx_td_soft_sntop := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_sntop
-            call set_fx_text
-        else
-        if ($mix_snbt_sel=1)
-            $busidx := 4
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_snbt)
-            $fx_td_soft_snbt := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_snbt
-            call set_fx_text
-        else
-        if ($mix_tomhi_sel=1)
-            $busidx := 5
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomhi)
-            $fx_td_soft_tomhi := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tomhi
-            call set_fx_text
-        else
-        if ($mix_tommid_sel=1)
-            $busidx := 6
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tommid)
-            $fx_td_soft_tommid := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tommid
-            call set_fx_text
-        else
-        if ($mix_tomlow_sel=1)
-            $busidx := 7
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_tomlow)
-            $fx_td_soft_tomlow := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_tomlow
-            call set_fx_text
-        else
-        if ($mix_ov_sel=1)
-            $busidx := 8
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_ov)
-            $fx_td_soft_ov := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_ov
-            call set_fx_text
-        else
-        if ($mix_master_select=1)
-            $busidx := -$NI_BUS_OFFSET - 1
-            set_control_par_str(get_ui_id($fx_instr_label),$CONTROL_PAR_PICTURE,@fx_instr_label_master)
-            $fx_td_soft_master := get_engine_par($ENGINE_PAR_TR_SMOOTH,-1,2,$NI_BUS_OFFSET+$busidx)
-            call assign_fx_master
-            call set_fx_text
-        end if {($mix_master_select=1)}
-        end if {($mix_ov_sel=1)}
-        end if {($mix_tomlow_sel=1)}
-        end if {($mix_tommid_sel=1)}
-        end if {($mix_tomhi_sel=1)}
-        end if {($mix_snbt_sel=1)}
-        end if {($mix_sntop_sel=1)}
-        end if {($mix_bdo_sel=1)}
-        end if {($mix_bdi_sel=1)}
-        end if {($mix_hh_sel=1)}
-        call update_mic_fader_labels
-        call update_fx_controls
-        if ($mix_ov_mono=0)
-            set_control_par(get_ui_id($mix_ov_pan),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        else
-        if ($mix_ov_mono=1)
-            set_control_par(get_ui_id($mix_ov_spread),$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
-        end if
-        end if
-        set_control_par_str(get_ui_id($mix_rev_label),$CONTROL_PAR_PICTURE,!ir_id_pic[$IR_current])
-    end if
+    call show_menu_mixer
 end on
 
 on ui_control($menu_drums)
-    $i := 0
-    while ($i<=4)
-        if ($i # 3)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[3],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
-    $drums_hh_micthumb := 0
-    if ($menu_drums=1)
-        call hide_all_controls
-        set_skin_offset(0)
-        $i := 1
-        while ($i<=$id1)
-            set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-            inc($i)
-        end while
-        call set_mic_pictures
-        $drums_hh_micthumb := 0
-        $drums_bdi_micthumb := 0
-        $drums_bdo_micthumb := 0
-        $drums_sntop_micthumb := 0
-        $drums_snbt_micthumb := 0
-        $drums_tomhi_micthumb := 0
-        $drums_tommid_micthumb := 0
-        $drums_tomlow_micthumb := 0
-        $drums_ov_micthumb := 0
-        call set_micthumb
-    end if
+    call show_menu_drums
 end on
 
 on ui_control($menu_beats)
-    $i := 0
-    while ($i<=4)
-        if ($i # 4)
-            set_control_par(%menu_ui_ids[$i],$CONTROL_PAR_VALUE,0)
-        end if
-        set_control_par(%menu_ui_ids[4],$CONTROL_PAR_VALUE,1)
-        inc($i)
-    end while
-    call hide_all_controls
-    set_skin_offset(2408)
-    $i := 1
-    while ($i<=$id6)
-        set_control_par(%ui_id6[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
-        inc($i)
-    end while
+    call show_menu_beats
 end on
 
 on ui_control($drums_hh_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 1
     $mix_hh_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7729,11 +7571,11 @@ on ui_control($drums_hh_micthumb)
 end on
 
 on ui_control($drums_bdi_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 2
     $mix_bdi_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7748,11 +7590,11 @@ on ui_control($drums_bdi_micthumb)
 end on
 
 on ui_control($drums_bdo_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 3
     $mix_bdo_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7767,11 +7609,11 @@ on ui_control($drums_bdo_micthumb)
 end on
 
 on ui_control($drums_sntop_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 4
     $mix_sntop_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7786,11 +7628,11 @@ on ui_control($drums_sntop_micthumb)
 end on
 
 on ui_control($drums_snbt_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 5
     $mix_snbt_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7805,11 +7647,11 @@ on ui_control($drums_snbt_micthumb)
 end on
 
 on ui_control($drums_tomhi_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 6
     $mix_tomhi_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7824,11 +7666,11 @@ on ui_control($drums_tomhi_micthumb)
  end on
 
  on ui_control($drums_tommid_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 7
     $mix_tommid_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7843,11 +7685,11 @@ on ui_control($drums_tomhi_micthumb)
 end on
 
 on ui_control($drums_tomlow_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 8
     $mix_tomlow_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -7862,11 +7704,11 @@ on ui_control($drums_tomlow_micthumb)
 end on
 
 on ui_control($drums_ov_micthumb)
-    call highlight_menu_micsel
-    call hide_all_controls
     call unselect_all_channels
     $mic_current := 9
     $mix_ov_sel := 1
+    call highlight_menu_micsel
+    call hide_all_controls
     set_skin_offset(602)
     $i := 1
     while ($i<=$id3)
@@ -8131,9 +7973,7 @@ on ui_control($mic_gallery_select3)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-
         call set_mic_pictures
-
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -8143,10 +7983,9 @@ on ui_control($mic_gallery_select3)
         $drums_tommid_micthumb := 0
         $drums_tomlow_micthumb := 0
         $drums_ov_micthumb := 0
-
         call set_micthumb
-
     end if
+
     $i := 0
     while ($i<=3)
         if ($i # 2)
@@ -8187,9 +8026,7 @@ on ui_control($mic_gallery_select4)
             set_control_par(%ui_id1[$i],$CONTROL_PAR_HIDE,$HIDE_PART_NOTHING)
             inc($i)
         end while
-
         call set_mic_pictures
-
         $drums_hh_micthumb := 0
         $drums_bdi_micthumb := 0
         $drums_bdo_micthumb := 0
@@ -8199,10 +8036,9 @@ on ui_control($mic_gallery_select4)
         $drums_tommid_micthumb := 0
         $drums_tomlow_micthumb := 0
         $drums_ov_micthumb := 0
-
         call set_micthumb
-
     end if
+
     $i := 0
     while ($i<=3)
         if ($i # 3)
