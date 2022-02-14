@@ -5712,6 +5712,28 @@ function fx_dry_onoff {parameters $help1, $busidx}
     set_engine_par($ENGINE_PAR_EFFECT_BYPASS,$help1,-1,7,$NI_BUS_OFFSET+$busidx)
 end function
 
+function set_bd_link
+    if ($mix_bd_link=1)
+        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
+    else
+    if ($mix_bd_link=0)
+        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+    end if
+    end if
+end function
+
+function set_sn_link
+    if ($mix_sn_link=1)
+        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
+    else
+    if ($mix_sn_link=0)
+        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
+    end if
+    end if
+end function
+
 function load_preset
     $i := 0
     while ($i<=8)
@@ -6415,23 +6437,9 @@ function load_preset
     $fx_td_soft_master := %save[297]
     $options_wires_snbtm := %save[301]
     $mix_swap := %save[302]
-    if ($mix_bd_link=1)
-        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
-    else
-    if ($mix_bd_link=0)
-        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
-    if ($mix_sn_link=1)
-        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
-    else
-    if ($mix_sn_link=0)
-        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
 
+    call set_bd_link
+    call set_sn_link
     call fx_set_engine_par
 
     if ($mix_hh_sel=1)
@@ -7438,14 +7446,8 @@ on persistence_changed
     end if {-($menu_mixer=1)}
     end if {-($menu_drums=1)}
 
-    if ($mix_bd_link=1)
-        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
-    else
-    if ($mix_bd_link=0)
-        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
+    call set_bd_link
+    call set_sn_link
 
     {wires}
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
@@ -8445,14 +8447,7 @@ on ui_control($mix_bdi_vol)
 end on
 
 on ui_control($mix_bd_link)
-    if ($mix_bd_link=1)
-        $mix_bd_diff := $mix_bdi_vol-$mix_bdo_vol
-    else
-    if ($mix_bd_link=0)
-        set_control_par(get_ui_id($mix_bdi_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_bdo_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
+    call set_bd_link
 end on
 
 on ui_control($mix_bdi_solo)
@@ -8610,14 +8605,7 @@ on ui_control($mix_sntop_vol)
 end on
 
 on ui_control($mix_sn_link)
-    if ($mix_sn_link=1)
-        $mix_sn_diff := $mix_sntop_vol-$mix_snbt_vol
-    else
-    if ($mix_sn_link=0)
-        set_control_par(get_ui_id($mix_sntop_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-        set_control_par(get_ui_id($mix_snbt_vol),$CONTROL_PAR_MOUSE_BEHAVIOUR,$mix_vol_mousebehaviour)
-    end if
-    end if
+    call set_sn_link
 end on
 
 on ui_control($mix_sntop_solo)
