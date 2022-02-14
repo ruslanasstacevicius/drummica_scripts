@@ -13,3 +13,4 @@ Changelog:
 - fix: Transient Master labels for attack and sustain are "%", not "dB"
 - change: return back to mixer page, when mic selection was activated from mixer
 - fix: when patch was saved with snare link turned on, it did not retain volume difference on snare faders move after patch reload
+- fix: restore phase status on patch load

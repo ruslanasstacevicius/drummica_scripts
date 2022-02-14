@@ -5734,6 +5734,26 @@ function set_sn_link
     end if
 end function
 
+function set_bdo_phase
+    if ($mix_bdo_phase=1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,0,$NI_BUS_OFFSET+2)
+    else
+    if ($mix_bdo_phase=0)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,0,$NI_BUS_OFFSET+2)
+    end if
+    end if
+end function
+
+function set_snbt_phase
+    if ($mix_snbt_phase=1)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,0,$NI_BUS_OFFSET+4)
+    else
+    if ($mix_snbt_phase=0)
+        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,0,$NI_BUS_OFFSET+4)
+    end if
+    end if
+end function
+
 function load_preset
     $i := 0
     while ($i<=8)
@@ -6440,6 +6460,8 @@ function load_preset
 
     call set_bd_link
     call set_sn_link
+    call set_bdo_phase
+    call set_snbt_phase
     call fx_set_engine_par
 
     if ($mix_hh_sel=1)
@@ -7448,6 +7470,8 @@ on persistence_changed
 
     call set_bd_link
     call set_sn_link
+    call set_bdo_phase
+    call set_snbt_phase
 
     {wires}
     set_engine_par($ENGINE_PAR_VOLUME,$options_wires_snbtm*7874,97,-1,-1)
@@ -8552,14 +8576,7 @@ on ui_control($mix_bdo_pan)
 end on
 
 on ui_control($mix_bdo_phase)
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
-    if ($mix_bdo_phase=1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,0,$NI_BUS_OFFSET+2)
-    else
-    if ($mix_bdo_phase=0)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,0,$NI_BUS_OFFSET+2)
-    end if
-    end if
+    call set_bdo_phase
 end on
 
 on ui_control($mix_bdo_rev)
@@ -8710,14 +8727,7 @@ on ui_control($mix_snbt_pan)
 end on
 
 on ui_control($mix_snbt_phase)
-    set_control_par_str(get_ui_id($mix_edit_light),$CONTROL_PAR_PICTURE,"edit_light_active")
-    if ($mix_snbt_phase=1)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,0,-1,0,$NI_BUS_OFFSET+4)
-    else
-    if ($mix_snbt_phase=0)
-        set_engine_par($ENGINE_PAR_EFFECT_BYPASS,1,-1,0,$NI_BUS_OFFSET+4)
-    end if
-    end if
+    call set_snbt_phase
 end on
 
 on ui_control($mix_snbt_rev)
