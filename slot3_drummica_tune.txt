@@ -1,0 +1,173 @@
+on init
+
+message("")
+set_script_title("Drums Tune")
+set_ui_height(2) {532}
+{make_perfview}
+
+declare $count:=0
+declare $gr:=0
+
+declare %BassDrum_groups[18] := (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 57, 58, 59, 60, 61, 62, 63, 64)
+declare %Snare_groups[18] := (13, 14, 15, 99, 100, 101, 16, 17, 102, 103, 65, 66, 67, 68, 106, 107, 108, 109)
+declare %HiHat_groups[8] := (0, 1, 2, 104, 53, 54, 55, 56)
+declare %TomHi_groups[14] := (19, 20, 21, 22, 23, 24, 69, 70, 71, 72, 73, 74, 75, 76)
+declare %TomMid_groups[14] := (25, 26, 27, 28, 29, 30, 77, 78, 79, 80, 81, 82, 83, 84)
+declare %TomLow_groups[14] := (31, 32, 33, 34, 35, 36, 85, 86, 87, 88, 89, 90, 91, 92)
+declare %Crash16_groups[4] := (41, 42, 43, 44)
+declare %Crash18_groups[4] := (45, 46, 47, 48)
+declare %China_groups[4] := (49, 50, 51, 52)
+declare %Ride_groups[4] := (37, 38, 39, 40)
+declare %Sticks_groups[4] := (93, 94, 95, 96)
+
+declare %first_groups[12] := (-999, 3, 13, 0, 19, 25, 31, 41, 45, 49, 37, 93)
+
+declare const $INSTNUM:=12
+
+declare !Inst_Name[$INSTNUM]
+!Inst_Name[ 0]:="NoDrum"
+!Inst_Name[ 1]:="BassDrum"
+!Inst_Name[ 2]:="Snare"
+!Inst_Name[ 3]:="HiHat"
+!Inst_Name[ 4]:="TomHi"
+!Inst_Name[ 5]:="TomMid"
+!Inst_Name[ 6]:="TomLow"
+!Inst_Name[ 7]:="Crash16"
+!Inst_Name[ 8]:="Crash18"
+!Inst_Name[ 9]:="China"
+!Inst_Name[10]:="Ride"
+!Inst_Name[11]:="Sticks"
+
+
+{---------- Tune ----------}
+
+declare ui_knob $BassDrum_tune (333333, 666666,1)
+declare ui_knob $Snare_tune (333333, 666666,1)
+declare ui_knob $HiHat_tune (333333, 666666,1)
+declare ui_knob $TomHi_tune (333333, 666666,1)
+declare ui_knob $TomMid_tune (333333, 666666,1)
+declare ui_knob $TomLow_tune (333333, 666666,1)
+declare ui_knob $Crash16_tune (333333, 666666,1)
+declare ui_knob $Crash18_tune (333333, 666666,1)
+declare ui_knob $China_tune (333333, 666666,1)
+declare ui_knob $Ride_tune (333333, 666666,1)
+declare ui_knob $Sticks_tune (333333, 666666,1)
+
+declare %Inst_Tune_ID[$INSTNUM]
+
+%Inst_Tune_ID[ 1]:=get_ui_id($BassDrum_tune)
+%Inst_Tune_ID[ 2]:=get_ui_id($Snare_tune)
+%Inst_Tune_ID[ 3]:=get_ui_id($HiHat_tune)
+%Inst_Tune_ID[ 4]:=get_ui_id($TomHi_tune)
+%Inst_Tune_ID[ 5]:=get_ui_id($TomMid_tune)
+%Inst_Tune_ID[ 6]:=get_ui_id($TomLow_tune)
+%Inst_Tune_ID[ 7]:=get_ui_id($Crash16_tune)
+%Inst_Tune_ID[ 8]:=get_ui_id($Crash18_tune)
+%Inst_Tune_ID[ 9]:=get_ui_id($China_tune)
+%Inst_Tune_ID[10]:=get_ui_id($Ride_tune)
+%Inst_Tune_ID[11]:=get_ui_id($Sticks_tune)
+
+
+$count:=1
+while ($count<$INSTNUM)
+    $gr:=%first_groups[$count]
+    set_control_par_str(%Inst_Tune_ID[$count],$CONTROL_PAR_TEXT, !Inst_Name[$count])
+    set_control_par(%Inst_Tune_ID[$count],$CONTROL_PAR_DEFAULT_VALUE,500000)
+    set_control_par_str(%Inst_Tune_ID[$count],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, $gr,-1,-1))
+    set_control_par    (%Inst_Tune_ID[$count],$CONTROL_PAR_VALUE,get_engine_par     ($ENGINE_PAR_TUNE, $gr,-1,-1))
+    inc($count)
+end while
+
+end on
+
+
+{---- TUNE CALLBACKS ---------}
+
+on ui_control($BassDrum_tune)
+    $count:=0
+    while($count<18)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[1],$CONTROL_PAR_VALUE),%BassDrum_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[1],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %BassDrum_groups[0],-1,-1))
+end on
+on ui_control($Snare_tune)
+    $count:=0
+    while($count<18)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[2],$CONTROL_PAR_VALUE),%Snare_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[2],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %Snare_groups[0],-1,-1))
+end on
+on ui_control($HiHat_tune)
+    $count:=0
+    while($count<8)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[3],$CONTROL_PAR_VALUE),%HiHat_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[3],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %HiHat_groups[0],-1,-1))
+end on
+on ui_control($TomHi_tune)
+   $count:=0
+    while($count<14)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[4],$CONTROL_PAR_VALUE),%TomHi_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[4],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %TomHi_groups[0],-1,-1))
+end on
+on ui_control($TomMid_tune)
+   $count:=0
+    while($count<14)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[5],$CONTROL_PAR_VALUE),%TomMid_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[5],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %TomMid_groups[0],-1,-1))
+end on
+on ui_control($TomLow_tune)
+   $count:=0
+    while($count<14)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[6],$CONTROL_PAR_VALUE),%TomLow_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[6],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %TomLow_groups[0],-1,-1))
+end on
+on ui_control($Crash16_tune)
+   $count:=0
+    while($count<4)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[7],$CONTROL_PAR_VALUE),%Crash16_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[7],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %Crash16_groups[0],-1,-1))
+end on
+on ui_control($Crash18_tune)
+   $count:=0
+    while($count<4)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[8],$CONTROL_PAR_VALUE),%Crash18_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[8],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %Crash18_groups[0],-1,-1))
+end on
+on ui_control($China_tune)
+   $count:=0
+    while($count<4)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[9],$CONTROL_PAR_VALUE),%China_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[9],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %China_groups[0],-1,-1))
+end on
+on ui_control($Ride_tune)
+   $count:=0
+    while($count<4)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[10],$CONTROL_PAR_VALUE),%Ride_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[10],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %Ride_groups[0],-1,-1))
+end on
+on ui_control($Sticks_tune)
+   $count:=0
+    while($count<4)
+        set_engine_par($ENGINE_PAR_TUNE,get_control_par(%Inst_Tune_ID[11],$CONTROL_PAR_VALUE),%Sticks_groups[$count],-1,-1)
+        inc($count)
+    end while
+    set_control_par_str(%Inst_Tune_ID[11],$CONTROL_PAR_LABEL,get_engine_par_disp($ENGINE_PAR_TUNE, %Sticks_groups[0],-1,-1))
+end on
